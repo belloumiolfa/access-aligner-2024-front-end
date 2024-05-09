@@ -1,0 +1,76 @@
+<div class="card-plain">
+  <div class="header">
+    <h5 i18n>Log in</h5>
+  </div>
+  <form class="form" [formGroup]="signInForm" (ngSubmit)="onSubmit($event)">
+    <div [class]="!errors.email ? 'input-group ' : 'input-group has-danger'">
+      <input
+        type="text"
+        [class]="
+          !errors.email ? 'form-control ' : 'form-control form-control-danger'
+        "
+        i18n
+        placeholder="Enter Email"
+        formControlName="email"
+      />
+      <span *ngIf="!errors.email" class="input-group-addon"
+        ><i class="zmdi zmdi-email"></i
+      ></span>
+    </div>
+    <label for="terms" class="text-primary" *ngIf="errors.email" i18n>
+      {{ errors.email }}
+    </label>
+
+    <div [class]="!errors.password ? 'input-group' : 'input-group has-danger'">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        i18n
+        placeholder="Password"
+        [class]="
+          'form-control' + !errors.password &&
+          'form-control form-control-danger'
+        "
+        formControlName="password"
+      />
+      <span class="input-group-addon" *ngIf="!errors.password">
+        <ng-container *ngIf="!showPassword; else elseTemplate">
+          <i
+            type="button"
+            class="zmdi zmdi-lock-outline"
+            (click)="showPassword = !showPassword"
+          ></i>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <i
+            type="button"
+            class="zmdi zmdi-lock-open"
+            style="color: #f96332"
+            (click)="showPassword = !showPassword"
+          ></i>
+        </ng-template>
+      </span>
+    </div>
+    <label for="terms" class="text-primary" *ngIf="errors.password" i18n>
+      {{ errors.password }}
+    </label>
+
+    <div class="footer">
+      <button
+        class="btn btn-primary btn-round btn-block"
+        type="submit"
+        [disabled]="!signInForm.valid"
+        i18n
+      >
+        SIGN In
+      </button>
+      <a
+        [routerLink]="'/sign-up'"
+        class="btn btn-primary btn-simple btn-round btn-block"
+        i18n
+        >SIGN UP</a
+      >
+    </div>
+  </form>
+
+  <a [routerLink]="'/forgot-password'" class=" " i18n>Forgot Password?</a>
+</div>

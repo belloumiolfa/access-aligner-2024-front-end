@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/plugins/bootstrap/css/bootstrap.min.css";
+@import "./assets/plugins/fullcalendar/fullcalendar.min.css";
+@import "./assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css";
+@import "./assets/plugins/bootstrap-select/css/bootstrap-select.css";
+@import "./assets/plugins/dropzone/dropzone.css";
+@import "./assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css";
+@import "./assets/plugins/light-gallery/css/lightgallery.css";
+@import "./assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css";
+@import "./assets/css/main.css";
+@import "./assets/css/timeline.css";
+@import "./assets/css/blog.css";
+@import "./assets/css/color_skins.css";
+
+.display_overlay_menu {
+  display: block;
+}
+.display_menu {
+  display: none;
+}
+.display_left_menu {
+  display: block;
+}
+
+.hidden_overlay_menu {
+  display: none;
+}
+.scrollable-container {
+  height: 610px; /* Set the height of the container */
+  overflow: auto; /* Enable scrolling */
+}
+
+@media only screen and (max-width: 1000px) {
+  .scrollable-container {
+    height: 500px; /* Set the height of the container */
+    overflow: auto; /* Enable scrolling */
+  }
+  .display_menu {
+    display: inline;
+  }
+  .display_left_menu {
+    display: none;
+  }
+  .authentication {
+    height: 130vh;
+    max-height: 1200px;
+  }
+}

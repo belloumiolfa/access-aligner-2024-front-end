@@ -1,0 +1,23 @@
+<form class="form-group">
+  <h6 i18n>Make a choice regarding this user</h6>
+  <div class="footer row">
+    <div class="col-lg-6 col-sm-12">
+      <button type="button" 
+        class="btn btn-primary btn-round btn-block"
+        i18n
+        (click)="onSubmit(userId, adminId, 4)"
+      >
+        Accept
+      </button>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <button type="button" 
+        class="btn btn-default btn-round btn-block"
+        i18n
+        (click)="onSubmit(userId, adminId, 5)"
+      >
+        Block
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,44 @@
+<div class="">
+  <div class="card-plain">
+    <div [ngSwitch]="user$?.userStatus.status.id">
+      <div *ngSwitchCase="1">
+        <app-confirm-decision
+          [title]="'Account confirmed'"
+          [subTitle]="'Please Wait after administration decision.'"
+        ></app-confirm-decision>
+      </div>
+      <div *ngSwitchCase="2">
+        <app-confirm-decision
+          [title]="'Account Canceled'"
+          [subTitle]="
+            'We hope you will join us in this adventure by making another account.'
+          "
+        ></app-confirm-decision>
+      </div>
+      <div *ngSwitchCase="4">
+        <app-confirm-decision
+          [title]="'Welcome to AccessAligner.'"
+          [subTitle]="
+            'We hope you have a fantastic experience with us. Please login with your email and password and start the adventure. '
+          "
+        ></app-confirm-decision>
+      </div>
+      <div *ngSwitchCase="5">
+        <app-confirm-decision
+          [title]="'Sorry we reject you.'"
+          [subTitle]="
+            'Sorry, You were blocked from access aligner, please contact the administration if you feel there is something wrong.'
+          "
+        ></app-confirm-decision>
+      </div>
+
+      <div *ngSwitchDefault>
+        <app-confirm-form
+          [user]="user$"
+          (updatedUser$)="onChangeUser($event)"
+        ></app-confirm-form>
+      </div>
+    </div>
+  </div>
+</div>
+

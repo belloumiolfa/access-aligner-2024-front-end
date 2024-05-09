@@ -1,0 +1,157 @@
+<div class="card-plain">
+  <div class="header">
+    <h5>Sign Up</h5>
+  </div>
+
+  <form
+    class="form js-sweetalert"
+    [formGroup]="signUpForm"
+    (ngSubmit)="onSubmit($event)"
+  >
+    <div [class]="!errors.userName ? 'input-group' : 'input-group has-danger'">
+      <input
+        type="text"
+        [class]="
+          !errors.userName ? 'form-control' : 'form-control form-control-danger'
+        "
+        placeholder="Enter User Name"
+        formControlName="userName"
+      />
+      <span *ngIf="!errors.userName" class="input-group-addon"
+        ><i class="zmdi zmdi-account-circle"></i
+      ></span>
+    </div>
+    <label *ngIf="errors.userName" for="terms" class="text-primary">
+      {{ errors.userName }}</label
+    >
+
+    <div [class]="!errors.email ? 'input-group' : 'input-group has-danger'">
+      <input
+        type="text"
+        [class]="
+          !errors.email ? 'form-control' : 'form-control form-control-danger'
+        "
+        placeholder="Enter Email"
+        formControlName="email"
+      />
+      <span *ngIf="!errors.email" class="input-group-addon"
+        ><i class="zmdi zmdi-email"></i
+      ></span>
+    </div>
+    <label *ngIf="errors.email" for="terms" class="text-primary">
+      {{ errors.email }}</label
+    >
+
+    <div [class]="!errors.phone ? 'input-group' : 'input-group has-danger'">
+      <input
+        type="text"
+        [class]="
+          !errors.phone ? 'form-control' : 'form-control form-control-danger'
+        "
+        placeholder="Enter Phone"
+        formControlName="phone"
+      />
+      <span *ngIf="!errors.phone" class="input-group-addon"
+        ><i class="zmdi zmdi-phone"></i
+      ></span>
+    </div>
+    <label *ngIf="errors.phone" for="terms" class="text-primary">
+      {{ errors.phone }}</label
+    >
+
+    <div [class]="!errors.password ? 'input-group' : 'input-group has-danger'">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="Password"
+        [class]="
+          !errors.password ? 'form-control' : 'form-control form-control-danger'
+        "
+        formControlName="password"
+      />
+      <span class="input-group-addon">
+        <ng-container *ngIf="!showPassword; else elseTemplate">
+          <i
+            type="button"
+            class="zmdi zmdi-lock-outline"
+            (click)="showPassword = !showPassword"
+          ></i>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <i
+            type="button"
+            class="zmdi zmdi-lock-open"
+            style="color: #f96332"
+            (click)="showPassword = !showPassword"
+          ></i>
+        </ng-template>
+      </span>
+    </div>
+    <label
+      *ngIf="errors.password !== undefined"
+      for="terms"
+      class="text-primary"
+    >
+      {{ errors.password }}</label
+    >
+
+    <div
+      [class]="
+        !errors.confirmPassword ? 'input-group' : 'input-group has-danger'
+      "
+    >
+      <input
+        [type]="showRepeatPassword ? 'text' : 'password'"
+        placeholder="Confirm Password"
+        [class]="
+          !errors.confirmPassword
+            ? 'form-control'
+            : 'form-control form-control-danger'
+        "
+        formControlName="confirmPassword"
+      />
+      <span class="input-group-addon">
+        <ng-container *ngIf="!showRepeatPassword; else elseTemplate">
+          <i
+            type="button"
+            class="zmdi zmdi-lock-outline"
+            (click)="showRepeatPassword = !showRepeatPassword"
+          ></i>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <i
+            type="button"
+            class="zmdi zmdi-lock-open"
+            style="color: #f96332"
+            (click)="showRepeatPassword = !showRepeatPassword"
+          ></i>
+        </ng-template>
+      </span>
+    </div>
+    <label
+      *ngIf="errors.confirmPassword !== undefined"
+      for="terms"
+      class="text-primary"
+    >
+      {{ errors.confirmPassword }}</label
+    >
+
+    <div class="checkbox">
+      <input id="terms" type="checkbox" formControlName="term" />
+      <label for="terms"
+        >I read and Agree to the
+        <a href="javascript:void(0);">Terms of Usage</a></label
+      >
+    </div>
+    <div class="footer">
+      <button
+        class="btn btn-primary btn-round btn-block"
+        type="submit"
+        [disabled]="!signUpForm.valid"
+      >
+        SIGN UP
+      </button>
+    </div>
+  </form>
+
+  <a class="link" [routerLink]="'/sign-in'">You already have a membership?</a>
+</div>

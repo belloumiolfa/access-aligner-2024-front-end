@@ -1,0 +1,52 @@
+<div class="header">
+  <img
+    [src]="
+      user.profile.imagesList.length !== 0
+        ? user.profile.imagesList[0]
+        : 'assets/images/profile_av.png'
+    "
+    class="rounded-circle"
+    alt="User"
+  />
+  <h5>{{ user.userName }}</h5>
+  <span>{{ user.email }}</span>
+</div>
+<form class="form-group" [formGroup]="confirmForm">
+  <div class="checkbox">
+    <input id="terms" type="checkbox" formControlName="term" />
+    <label for="terms"
+      >I read and Agree to the
+      <a href="javascript:void(0);">Terms of Usage</a></label
+    >
+  </div>
+
+  <div class="footer row">
+    <div class="col-lg-6 col-sm-12">
+      <button
+        class="btn btn-primary btn-round btn-block"
+        [disabled]="!confirmForm.valid"
+        (click)="onSubmit(1, user.id)"
+      >
+        Confirm
+      </button>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <button
+        class="btn btn-default btn-round btn-block"
+        [disabled]="!confirmForm.valid"
+        (click)="onSubmit(2, user.id)"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>
+<!-- <div
+  class="alert alert-success"
+  data-swal-template="#my-template"
+  style="position: absolute; top: 0; right: 0"
+>
+  <strong>Well done!</strong> You successfully read this important alert
+  message.
+</div>
+ -->
