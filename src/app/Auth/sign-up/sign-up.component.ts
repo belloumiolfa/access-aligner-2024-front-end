@@ -63,7 +63,7 @@ export class SignUpComponent {
   onSubmit(e: Event) {
     this.formSubmitted = true;
     this.errors = this.handleErrors.handleError({});
-
+    this.spinner.show();
     if (this.signUpForm.valid) {
       this.spinner.show();
 
@@ -71,15 +71,13 @@ export class SignUpComponent {
         .signup(this.signUpForm.value)
         .pipe(first())
         .subscribe(
-          (data: User) => {
-            this.handleAlerts.handleSweetAlert(
-              "You will recieve a confirmation email.",
-              "success",
-              false
-            );
+          (data: any) => {
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(data.message, "success", false);
           },
           (err) => {
             this.errors = this.handleErrors.handleError(err);
+            this.spinner.hide();
             this.handleAlerts.handleSweetAlert(
               "Check your data input carefully.",
               "error",

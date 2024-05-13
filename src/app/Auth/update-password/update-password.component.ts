@@ -9,6 +9,11 @@ import {
 } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { CommonModule } from "@angular/common";
+import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
+import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
+import { AuthService } from "../../Core/Services/auth.service";
+import { ActivatedRoute } from "@angular/router";
+import { UtilsService } from "../Helpers/utils.service";
 
 @Component({
   selector: "app-update-password",
@@ -19,22 +24,53 @@ import { CommonModule } from "@angular/common";
 })
 export class UpdatePasswordComponent {
   updateForm!: FormGroup;
-  showNewPassword: any;
-  showOldPassword: any;
+  showConfirmPassword: any;
+  showPassword: any;
   errors: any = {};
 
   constructor(
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private utils: UtilsService,
+    private authService: AuthService,
+    private handleErrors: HandleErrorsService,
+    private handleAlerts: HandleAlertsService,
     private spinner: NgxSpinnerService
   ) {
     this.updateForm = this.formBuilder.group({
-      oldPassword: new FormControl("", [Validators.required]),
-      newPassword: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
+      confirmPassword: new FormControl("", [Validators.required]),
     });
   }
 
   onSubmit(e: Event) {
-    // show spinner
+    this.errors = this.handleErrors.handleError({});
     this.spinner.show();
+    if (this.updateForm.valid) {
+      this.authService
+        .updatePassword(
+          this.utils.getDecodedAccessToken(
+            this.route.snapshot.paramMap.get("token")
+          ).userId,
+          this.updateForm.value.password,
+          this.updateForm.value.confirmPassword
+        )
+        .subscribe(
+          (data) => {
+            console.log(data);
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(data.message, "success", false);
+          },
+          (err) => {
+            this.errors = this.handleErrors.handleError(err);
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(
+              "Check your data input carefully.",
+              "error",
+              false
+            );
+          }
+        );
+    }
   }
 }

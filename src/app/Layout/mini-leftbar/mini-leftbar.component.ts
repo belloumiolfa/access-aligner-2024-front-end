@@ -1,12 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { OverlayMenuComponent } from "../overlay-menu/overlay-menu.component";
 import { MenuAppComponent } from "../menu-app/menu-app.component";
 import { NotifMenuComponent } from "../notif-menu/notif-menu.component";
 import { TaskMenuComponent } from "../task-menu/task-menu.component";
 import { RigthSidebarComponent } from "../rigth-sidebar/rigth-sidebar.component";
-import { TabsetComponent } from "ngx-bootstrap/tabs";
 import { LeftSidebarMobilComponent } from "../left-sidebar-mobil/left-sidebar-mobil.component";
+import { logOut } from "../../Core/Helpers/utils";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-mini-leftbar",
@@ -30,4 +31,11 @@ export class MiniLeftbarComponent {
   task = false;
   activity = false;
   mobile = false;
+  
+  constructor(private router: Router) {}
+  
+  logOut() {
+    logOut();
+    this.router.navigate(["/sign-in"]);
+  }
 }

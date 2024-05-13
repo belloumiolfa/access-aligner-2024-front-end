@@ -1,7 +1,7 @@
 <div class="card-plain">
     <div class="header">                            
-        <h5>Error 500</h5>
-        <span>Something's broken :-(</span>
+        <h5 i18n>Error 500</h5>
+        <span i18n>Something's broken :-(</span>
     </div>
     <form class="form">                            
         <div class="input-group">
@@ -9,8 +9,6 @@
             <span class="input-group-addon"><i class="zmdi zmdi-search"></i></span>
         </div>
     </form>
-    <div class="footer">
-        <a href="index.html" class="btn btn-primary btn-round btn-block">Back To Home</a>                            
-    </div>
-    <a href="javascript:void(0);" class="link">Need Help?</a>
-</div>
+    <app-back-home></app-back-home>
+    <app-help-link></app-help-link>
+   </div>

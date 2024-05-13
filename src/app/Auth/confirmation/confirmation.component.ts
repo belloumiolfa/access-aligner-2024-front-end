@@ -4,16 +4,14 @@ import { HelpLinkComponent } from "../../Shared/Elements/help-link/help-link.com
 import { CompanyDetailsComponent } from "../company-details/company-details.component";
 import { environment } from "../../../environments/environment.development";
 import { CommonModule } from "@angular/common";
-import {
-  FormGroup,
-  ReactiveFormsModule,
-} from "@angular/forms";
+import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { UtilsService } from "../Helpers/utils.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { ConfirmFormComponent } from "../../Components/confirm-form/confirm-form.component";
 import { ConfirmDecisionComponent } from "../../Components/confirm-decision/confirm-decision.component";
-import { UserService } from "../../Core/Services/user.service";
+import { AuthService } from "../../Core/Services/auth.service";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-confirmation",
@@ -37,19 +35,18 @@ export class ConfirmationComponent {
   errors: any;
 
   constructor(
-     private route: ActivatedRoute,
+    private route: ActivatedRoute,
     private utils: UtilsService,
-    private userService: UserService,
-    private handleErrors: HandleErrorsService
-  ) {
-    
-  }
+    private authService: AuthService,
+    private handleErrors: HandleErrorsService,
+    private spinner: NgxSpinnerService
+  ) {}
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     // decode token
-
-    this.userService
+    this.spinner.show();
+    this.authService
       .getUserById(
         this.utils.getDecodedAccessToken(
           this.route.snapshot.paramMap.get("token")
@@ -57,9 +54,11 @@ export class ConfirmationComponent {
       )
       .subscribe(
         (data) => {
+          this.spinner.hide();
           this.user$ = data;
         },
         (err) => {
+          this.spinner.hide();
           this.errors = this.handleErrors.handleError(err);
         }
       );

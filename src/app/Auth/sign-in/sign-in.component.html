@@ -21,18 +21,15 @@
       {{ errors.email }}
     </label>
 
-    <div [class]="!errors.password ? 'input-group' : 'input-group has-danger'">
+    <div [class]="'input-group'">
       <input
         [type]="showPassword ? 'text' : 'password'"
         i18n
         placeholder="Password"
-        [class]="
-          'form-control' + !errors.password &&
-          'form-control form-control-danger'
-        "
+        [class]="'form-control'"
         formControlName="password"
       />
-      <span class="input-group-addon" *ngIf="!errors.password">
+      <span class="input-group-addon">
         <ng-container *ngIf="!showPassword; else elseTemplate">
           <i
             type="button"
@@ -50,10 +47,13 @@
         </ng-template>
       </span>
     </div>
-    <label for="terms" class="text-primary" *ngIf="errors.password" i18n>
-      {{ errors.password }}
+    <label for="terms" class="text-primary" *ngIf="errors.code" i18n>
+      {{ errors.message }}
     </label>
-
+    <div class="checkbox">
+      <input id="remember_me" type="checkbox" formControlName="keepLoggedIn" />
+      <label for="remember_me" i18n> Remember Me </label>
+    </div>
     <div class="footer">
       <button
         class="btn btn-primary btn-round btn-block"

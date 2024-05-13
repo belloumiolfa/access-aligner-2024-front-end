@@ -14,8 +14,7 @@ import { LockedScreenComponent } from "./Shared/Pages/locked-screen/locked-scree
 import { Error403Component } from "./Shared/Pages/error403/error403.component";
 import { Error500Component } from "./Shared/Pages/error500/error500.component";
 import { Error503Component } from "./Shared/Pages/error503/error503.component";
-import { AsckConfirmComponent } from "./Auth/asck-confirm/asck-confirm.component";
-export const routes: Routes = [
+ export const routes: Routes = [
   {
     path: "",
     component: LayoutContainerComponent,
@@ -37,11 +36,7 @@ export const routes: Routes = [
         title: "Sign up page. ",
         component: SignUpComponent,
       },
-      {
-        path: "go-to-confirm",
-        title: "Go to confirmation. ",
-        component: AsckConfirmComponent,
-      },
+    
       {
         path: "waiting",
         title: "Waiting page. ",
@@ -54,7 +49,7 @@ export const routes: Routes = [
       },
 
       {
-        path: "update-password",
+        path: "update-password/:token",
         title: "Update password  page. ",
         component: UpdatePasswordComponent,
       },

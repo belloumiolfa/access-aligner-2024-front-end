@@ -1,13 +1,15 @@
-<h6 i18n>
-    <ng-container *ngIf="user.userStatus.status.id == 4; else elseTemplate">
-      User was accepter by
-    </ng-container>
-    <ng-template #elseTemplate> User was blocked by </ng-template>
+<h6>
+  <ng-container *ngIf="user.userStatus.status.id == 4; else elseTemplate">
+    <span i18n>User was accepter by</span>
+  </ng-container>
+  <ng-template #elseTemplate
+    ><span i18n>User was blocked by</span>
+  </ng-template>
 
-    <a href="javascript:void(0);"
-      ><span>
-        {{ user.userStatus.responsible.profile.firstName }}
-        {{ user.userStatus.responsible.profile.lastName }}
-      </span></a
-    >
-  </h6>
+  <a href="javascript:void(0);"
+    ><span>
+      {{ user.userStatus.responsible.profile.firstName }}
+      {{ user.userStatus.responsible.profile.lastName }}
+    </span></a
+  >
+</h6>

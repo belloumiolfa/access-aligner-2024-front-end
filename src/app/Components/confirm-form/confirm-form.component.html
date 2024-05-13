@@ -15,7 +15,7 @@
   <div class="checkbox">
     <input id="terms" type="checkbox" formControlName="term" />
     <label for="terms"
-      >I read and Agree to the
+    i18n>I read and Agree to the
       <a href="javascript:void(0);">Terms of Usage</a></label
     >
   </div>
@@ -25,7 +25,7 @@
       <button
         class="btn btn-primary btn-round btn-block"
         [disabled]="!confirmForm.valid"
-        (click)="onSubmit(1, user.id)"
+        (click)="onSubmit(1, user.id)"i18n
       >
         Confirm
       </button>
@@ -34,7 +34,7 @@
       <button
         class="btn btn-default btn-round btn-block"
         [disabled]="!confirmForm.valid"
-        (click)="onSubmit(2, user.id)"
+        (click)="onSubmit(2, user.id)"i18n
       >
         Cancel
       </button>

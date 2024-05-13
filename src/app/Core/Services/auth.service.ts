@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { User } from "../Models/user.models";
 import { Observable, map } from "rxjs";
-import { loggedInUser } from "../Helpers/utils";
+import { logOut, loggedInUser } from "../Helpers/utils";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment.development";
 
@@ -18,7 +18,7 @@ export class AuthService {
     if (!this.user) {
       this.user = loggedInUser();
     }
- 
+
     return this.user;
   }
 
@@ -28,15 +28,15 @@ export class AuthService {
       .pipe(map((user: any) => user));
   }
 
-  getById(id: any): Observable<User> {
+  getUserById(id: any) {
     return this.http
       .get<User>(`${this.apiBaseUrl}/api/getById?id=${id}`)
       .pipe(map((user: any) => user));
   }
 
-  login(email: string, password: string): Observable<User> {
+  login(email: string, password: string): Observable<any> {
     return this.http
-      .post<User>(`${this.apiBaseUrl}/api/auth/login`, { email, password })
+      .post(`${this.apiBaseUrl}/api/auth/signin`, { email, password })
       .pipe(
         map((user) => {
           // login successful if there's a jwt token in the response
@@ -51,9 +51,38 @@ export class AuthService {
       );
   }
 
+  updateStatus(userId: any, statusId: any, adminId: any): Observable<User> {
+    return this.http
+      .post<User>(`${this.apiBaseUrl}/api/auth/updateStatus`, {
+        userId,
+        statusId,
+        adminId,
+      })
+      .pipe(map((user: any) => user));
+  }
+
+  forgetPassword(email: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiBaseUrl}/api/auth/forgetPassword`, { email })
+      .pipe(map((data: any) => data));
+  }
+
+  updatePassword(
+    userId: Number,
+    password: String,
+    confirmPassword: String
+  ): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiBaseUrl}/api/updatePassword`, {
+        password,
+        confirmPassword,
+        userId,
+      })
+      .pipe(map((data: any) => data));
+  }
+
   logout(): void {
-    // remove user from session storage to log user out
-    sessionStorage.removeItem("currentUser");
+    logOut();
     this.user = null;
   }
 }

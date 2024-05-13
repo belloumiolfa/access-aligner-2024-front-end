@@ -9,9 +9,9 @@ import {
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { CommonModule } from "@angular/common";
 import { User } from "../../Core/Models/user.models";
-import { UserService } from "../../Core/Services/user.service";
-import Swal from "sweetalert2";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
+import { AuthService } from "../../Core/Services/auth.service";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-confirm-form",
@@ -29,9 +29,10 @@ export class ConfirmFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private authService: AuthService,
     private handleErrors: HandleErrorsService,
-    private handleAlerts: HandleAlertsService
+    private handleAlerts: HandleAlertsService,
+    private spinner: NgxSpinnerService
   ) {
     this.confirmForm = this.formBuilder.group({
       term: new FormControl("", [Validators.required]),
@@ -40,9 +41,10 @@ export class ConfirmFormComponent {
 
   onSubmit(statusId: number, userId: any) {
     this.errors = this.handleErrors.handleError({});
-
-    this.userService.updateStatus(userId, statusId, null).subscribe(
+    this.spinner.show();
+    this.authService.updateStatus(userId, statusId, null).subscribe(
       (data) => {
+        this.spinner.hide();
         let title =
           statusId == 1
             ? "You have successfully confirmed your account. "
@@ -50,11 +52,11 @@ export class ConfirmFormComponent {
 
         this.handleAlerts.handleSweetAlert(title, "success", false);
 
-        // emit updated user
-        // this.updatedUser$.emit(data);
-      },
+       },
       (err) => {
         this.errors = this.handleErrors.handleError(err);
+        this.spinner.hide();
+
         this.handleAlerts.handleSweetAlert(
           this.errors.status,
           "warning",

@@ -1,6 +1,6 @@
 <div class="card-plain">
   <div class="header">
-    <h5>Sign Up</h5>
+    <h5 i18n>Sign Up</h5>
   </div>
 
   <form
@@ -137,9 +137,9 @@
 
     <div class="checkbox">
       <input id="terms" type="checkbox" formControlName="term" />
-      <label for="terms"
+      <label for="terms" i18n
         >I read and Agree to the
-        <a href="javascript:void(0);">Terms of Usage</a></label
+        <a href="javascript:void(0);"  >Terms of Usage</a></label
       >
     </div>
     <div class="footer">
@@ -147,6 +147,7 @@
         class="btn btn-primary btn-round btn-block"
         type="submit"
         [disabled]="!signUpForm.valid"
+        i18n
       >
         SIGN UP
       </button>

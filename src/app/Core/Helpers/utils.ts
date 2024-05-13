@@ -1,10 +1,16 @@
-import { Router } from "express";
-import { User } from "../Models/user.models";
-
-function loggedInUser(): User | null {
-  let user: User | null = {};
-  user = JSON.parse(sessionStorage.getItem("currentUser")!);
+function loggedInUser(): any {
+  let user = sessionStorage.getItem("currentUser");
+ 
   return user;
 }
 
- export { loggedInUser,   };
+function signInUser(token: string, keepLoggedIn: boolean) {
+  if (keepLoggedIn) localStorage.setItem("currentUser", token);
+  else sessionStorage.setItem("currentUser", token);
+}
+
+function logOut() {
+  sessionStorage.removeItem("currentUser");
+  localStorage.removeItem("currentUser");
+}
+export { loggedInUser, signInUser, logOut };
