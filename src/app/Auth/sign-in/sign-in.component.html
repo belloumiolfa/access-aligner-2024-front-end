@@ -47,8 +47,13 @@
         </ng-template>
       </span>
     </div>
-    <label for="terms" class="text-primary" *ngIf="errors.code" i18n>
-      {{ errors.message }}
+    <label
+      for="terms"
+      class="text-primary"
+      *ngIf="errors.credential != ''"
+      i18n
+    >
+      {{ errors.credential }}
     </label>
     <div class="checkbox">
       <input id="remember_me" type="checkbox" formControlName="keepLoggedIn" />

@@ -1,12 +1,13 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
+import { MorrisAreaChartDirective, MorrisJsModule } from "angular-morris-js";
 import "animate.css";
-import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerModule,  } from "ngx-spinner";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, NgxSpinnerModule],
+  imports: [RouterOutlet, NgxSpinnerModule, ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })

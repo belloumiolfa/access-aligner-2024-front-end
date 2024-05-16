@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { NgxSpinnerService } from "ngx-spinner";
-import { AuthService } from "../../Core/Services/auth.service";
+import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 

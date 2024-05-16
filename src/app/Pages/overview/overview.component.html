@@ -1,0 +1,313 @@
+<div role="tabpanel" class="tab-pane" id="overview">
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-6">
+      <div class="card text-center">
+        <div class="body">
+          <i class="zmdi zmdi-assignment zmdi-hc-2x"></i>
+          <h5
+            class="m-b-0 number count-to"
+            data-from="0"
+            data-to="1203"
+            data-speed="1000"
+            data-fresh-interval="700"
+          >
+            1203
+          </h5>
+          <small>Cases</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-6">
+      <div class="card text-center">
+        <div class="body">
+          <i class="zmdi zmdi-check-all zmdi-hc-2x"></i>
+          <h5 class="m-b-0 number count-to">
+            <span CountTo="324" from="0" duration="10">324</span>
+          </h5>
+          <small>Finished</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-6">
+      <div class="card text-center">
+        <div class="body">
+          <i class="zmdi zmdi-accounts-alt zmdi-hc-2x"></i>
+          <h5
+            class="m-b-0 number count-to"
+            data-from="0"
+            data-to="1980"
+            data-speed="1000"
+            data-fresh-interval="700"
+          >
+            1980
+          </h5>
+          <small>Clients</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-6">
+      <div class="card text-center">
+        <div class="body">
+          <i class="zmdi zmdi-attachment zmdi-hc-2x"></i>
+          <h5
+            class="m-b-0 number count-to"
+            data-from="0"
+            data-to="52"
+            data-speed="1000"
+            data-fresh-interval="700"
+          >
+            52
+          </h5>
+          <small>Attachment</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-12">
+      <div class="card">
+        <div class="header">
+          <h2><strong>Info</strong></h2>
+          <ul class="header-dropdown">
+            <li class="dropdown">
+              <a
+                href="javascript:void(0);"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="zmdi zmdi-more"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown-item">
+                  <a href="javascript:void(0);">Action</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a routerLink="settings">Update</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a routerLink="" class="boxs-close">Reset all</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="body">
+          <small class="text-muted">Address: </small>
+          <p>{{ user$.profile.address }}</p>
+          <div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1923731.7533500232!2d-120.39098936853455!3d37.63767091877441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1522391841133"
+              width="100%"
+              height="150"
+              frameborder="0"
+              style="border: 0"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <hr />
+          <small class="text-muted">Email address: </small>
+          <p>{{ user$.email }}</p>
+          <hr />
+          <small class="text-muted">Phone: </small>
+          <p>{{ user$.profile.phone }}</p>
+          <hr />
+          <small class="text-muted">Mobile: </small>
+          <p>{{ user$.profile.mobile }}</p>
+          <hr />
+          <small class="text-muted">Birth Date: </small>
+          <p class="m-b-0">{{ getDate(user$.profile.dateOfBirth) }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="header">
+          <h2><strong>My</strong> patients</h2>
+          <ul class="header-dropdown">
+            <li class="dropdown">
+              <a
+                href="javascript:void(0);"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="zmdi zmdi-more"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="javascript:void(0);">Action</a></li>
+                <li>
+                  <a href="javascript:void(0);">Sort by date</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">Sort By name</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" class="boxs-close"
+                    >Delete all</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="body">
+          <ul class="follow_us list-unstyled m-b-0">
+            <!-- class online if completed and   offline else -->
+            <li class="online">
+              <a href="javascript:void(0);">
+                <div class="media">
+                  <img
+                    class="media-object"
+                    src="assets/images/xs/avatar4.jpg"
+                    alt=""
+                  />
+                  <div class="media-body">
+                    <span class="name">Chris Fox</span>
+                    <span class="message">Service</span>
+                    <span class="badge badge-outline status"></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="online">
+              <a href="javascript:void(0);">
+                <div class="media">
+                  <img
+                    class="media-object"
+                    src="assets/images/xs/avatar5.jpg"
+                    alt=""
+                  />
+                  <div class="media-body">
+                    <span class="name">Joge Lucky</span>
+                    <span class="message">Service</span>
+                    <span class="badge badge-outline status"></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="offline">
+              <a href="javascript:void(0);">
+                <div class="media">
+                  <img
+                    class="media-object"
+                    src="assets/images/xs/avatar2.jpg"
+                    alt=""
+                  />
+                  <div class="media-body">
+                    <span class="name">Isabella</span>
+                    <span class="message">Service</span>
+                    <span class="badge badge-outline status"></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="offline">
+              <a href="javascript:void(0);">
+                <div class="media">
+                  <img
+                    class="media-object"
+                    src="assets/images/xs/avatar1.jpg"
+                    alt=""
+                  />
+                  <div class="media-body">
+                    <span class="name">Folisise Chosielie</span>
+                    <span class="message">Service</span>
+                    <span class="badge badge-outline status"></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="online">
+              <a href="javascript:void(0);">
+                <div class="media">
+                  <img
+                    class="media-object"
+                    src="assets/images/xs/avatar3.jpg"
+                    alt=""
+                  />
+                  <div class="media-body">
+                    <span class="name">Alexander</span>
+                    <span class="message">Service</span>
+                    <span class="badge badge-outline status"></span>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-12">
+      <div class="card">
+        <div class="header">
+          <h2><strong>Add</strong> Post</h2>
+          <ul class="header-dropdown">
+            <li class="dropdown">
+              <a
+                href="javascript:void(0);"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="zmdi zmdi-more"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="">New Post</a></li>
+                <li><a href="">Dashboard</a></li>
+                <li>
+                  <a href="javascript:void(0);" class="boxs-close"
+                    >Reset all all
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="body m-b-10">
+          <div class="form-group">
+            <textarea
+              rows="4"
+              class="form-control no-resize"
+              placeholder="Please type what you want..."
+            ></textarea>
+          </div>
+          <div class="post-toolbar-b">
+            <button class="btn btn-warning btn-icon btn-icon-mini btn-round">
+              <i class="zmdi zmdi-attachment"></i>
+            </button>
+            <button class="btn btn-warning btn-icon btn-icon-mini btn-round">
+              <i class="zmdi zmdi-camera"></i>
+            </button>
+            <button class="btn btn-primary btn-round">Post</button>
+          </div>
+        </div>
+        <div class="body">
+          <div class="post-img">
+            <img src="assets/images/image1.jpg" class="img-fluid" alt="" />
+          </div>
+          <h5 class="m-t-20 m-b-0 post_title">
+            It is a long established fact that a be distracted
+          </h5>
+          <p>
+            If you are going to use a passage of Lorem Ipsum, you need to be
+            sure there isn't anything embarrassing hidden in the middle of text
+          </p>
+          <div class="form-group m-b-0">
+            <button class="btn btn-info btn-round">Like 5</button>
+            <button class="btn btn-primary btn-simple btn-round">Reply</button>
+            <span class="date m-l-20"
+              ><i class="zmdi zmdi-alarm"></i> 7min ago</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

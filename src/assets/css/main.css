@@ -2161,10 +2161,9 @@ fieldset[disabled] .btn-link.active {
   color: #2c2c2c;
 }
 .form-control:focus + .input-group-addon,
-.form-control:focus ~ .input-group-addon {
+.form-control:focus ~ .input-group-addon  {
   border: 1px solid #f96332;
   border-left: none;
-  background-color: rgba(0, 0, 0, 0);
 }
 .has-success .form-control,
 .has-error .form-control,
@@ -16604,7 +16603,7 @@ section small {
   background-color: #eee !important;
 }
 .dropzone .dz-message .drag-icon-cph .material-icons {
-  font-size: 80px;
+  font-size: 50px;
   color: #757575;
 }
 .dz-drag-hover {
@@ -18767,4 +18766,10 @@ section small {
 }
 .morris-hover-point {
   color: rgba(257, 257, 257, 0.8) !important ;
+}
+
+
+
+.input-group:focus{
+
 }

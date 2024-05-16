@@ -1,0 +1,95 @@
+<div class="card">
+  <div class="header">
+    <h2><strong>Account</strong> Settings</h2>
+  </div>
+  <div class="body">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit($event)">
+      <div class="row clearfix">
+        <div class="col-lg-6 col-md-12">
+          <div class="form-group">
+            <input
+              formControlName="firstName"
+              type="text"
+              class="form-control"
+              placeholder="First Name"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="form-group">
+            <input
+              formControlName="lastName"
+              type="text"
+              class="form-control"
+              placeholder="Last Name"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="form-group">
+            <input
+              formControlName="phone"
+              type="text"
+              class="form-control"
+              placeholder="Phone"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="form-group">
+            <input
+              formControlName="mobile"
+              type="text"
+              class="form-control"
+              placeholder="Mobile"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="form-group">
+            <input
+              formControlName="dateOfBirth"
+              type="date"
+              class="form-control"
+              placeholder="Date"
+            />
+          </div>
+          <label
+            class="float-right"
+            style="right: 0"
+            *ngIf="user$.profile.dateOfBirth !== undefined"
+            class="text-secondary"
+          >
+            {{ birthDate }}</label
+          >
+        </div>
+        <div class="col-lg-9">
+          <div class="form-group">
+            <input
+              formControlName="address"
+              type="text"
+              class="form-control"
+              placeholder="Address"
+            />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary btn-round">Get Position</button>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <textarea
+              formControlName="description"
+              rows="4"
+              class="form-control no-resize"
+              placeholder="Description"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-primary btn-round">Save Changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

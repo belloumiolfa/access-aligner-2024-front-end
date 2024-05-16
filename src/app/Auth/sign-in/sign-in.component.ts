@@ -11,7 +11,7 @@ import { Router, RouterModule } from "@angular/router";
 import { first } from "rxjs";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
-import { AuthService } from "../../Core/Services/auth.service";
+import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { signInUser } from "../../Core/Helpers/utils";
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -26,10 +26,7 @@ export class SignInComponent {
   // sign up request
   signInForm!: FormGroup;
   showPassword: boolean = false;
-  errors: any = {
-    code: "",
-    message: "",
-  };
+  errors: any = {};
   formSubmitted: boolean = false;
 
   constructor(

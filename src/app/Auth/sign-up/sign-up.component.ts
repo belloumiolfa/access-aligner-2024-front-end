@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { AuthService } from "../../Core/Services/auth.service";
+import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { first } from "rxjs";
 import { User } from "../../Core/Models/user.models";
 import { PreloaderComponent } from "../../Shared/Ui/preloader/preloader.component";
@@ -63,7 +63,6 @@ export class SignUpComponent {
   onSubmit(e: Event) {
     this.formSubmitted = true;
     this.errors = this.handleErrors.handleError({});
-    this.spinner.show();
     if (this.signUpForm.valid) {
       this.spinner.show();
 

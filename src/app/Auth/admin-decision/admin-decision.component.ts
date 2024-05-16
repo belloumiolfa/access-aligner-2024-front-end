@@ -7,7 +7,7 @@ import { UtilsService } from "../Helpers/utils.service";
 import { AcceptDecisionComponent } from "../../Components/accept-decision/accept-decision.component";
 import { AcceptFormComponent } from "../../Components/accept-form/accept-form.component";
 import { NewUserDetailsComponent } from "../../Components/new-user-details/new-user-details.component";
-import { AuthService } from "../../Core/Services/auth.service";
+import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({

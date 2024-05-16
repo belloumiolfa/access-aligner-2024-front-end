@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { User } from "../Models/user.models";
+import { User } from "../../Models/user.models";
 import { Observable, map } from "rxjs";
-import { logOut, loggedInUser } from "../Helpers/utils";
+import { logOut, loggedInUser } from "../../Helpers/utils";
 import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../environments/environment.development";
+import { environment } from "../../../../environments/environment.development";
 
 @Injectable({
   providedIn: "root",
@@ -24,19 +24,19 @@ export class AuthService {
 
   signup(data: any): Observable<User> {
     return this.http
-      .post<User>(`${this.apiBaseUrl}/api/auth/signup`, data)
+      .post<User>(`${this.apiBaseUrl}/api/public/signup`, data)
       .pipe(map((user: any) => user));
   }
 
-  getUserById(id: any) {
+  getUserById(id: any): Observable<User>{
     return this.http
-      .get<User>(`${this.apiBaseUrl}/api/getById?id=${id}`)
+      .get<User>(`${this.apiBaseUrl}/api/public/getById?id=${id}`)
       .pipe(map((user: any) => user));
   }
 
   login(email: string, password: string): Observable<any> {
     return this.http
-      .post(`${this.apiBaseUrl}/api/auth/signin`, { email, password })
+      .post(`${this.apiBaseUrl}/api/public/signin`, { email, password })
       .pipe(
         map((user) => {
           // login successful if there's a jwt token in the response
@@ -53,7 +53,7 @@ export class AuthService {
 
   updateStatus(userId: any, statusId: any, adminId: any): Observable<User> {
     return this.http
-      .post<User>(`${this.apiBaseUrl}/api/auth/updateStatus`, {
+      .post<User>(`${this.apiBaseUrl}/api/public/updateStatus`, {
         userId,
         statusId,
         adminId,
@@ -63,7 +63,7 @@ export class AuthService {
 
   forgetPassword(email: any): Observable<any> {
     return this.http
-      .post<any>(`${this.apiBaseUrl}/api/auth/forgetPassword`, { email })
+      .post<any>(`${this.apiBaseUrl}/api/public/forgetPassword`, { email })
       .pipe(map((data: any) => data));
   }
 
@@ -73,7 +73,7 @@ export class AuthService {
     confirmPassword: String
   ): Observable<any> {
     return this.http
-      .post<any>(`${this.apiBaseUrl}/api/updatePassword`, {
+      .post<any>(`${this.apiBaseUrl}/api/public/updatePassword`, {
         password,
         confirmPassword,
         userId,

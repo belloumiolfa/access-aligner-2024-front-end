@@ -1,6 +1,5 @@
 function loggedInUser(): any {
-  let user = sessionStorage.getItem("currentUser");
- 
+  let user = sessionStorage.getItem("currentUser")!;
   return user;
 }
 
@@ -13,4 +12,23 @@ function logOut() {
   sessionStorage.removeItem("currentUser");
   localStorage.removeItem("currentUser");
 }
-export { loggedInUser, signInUser, logOut };
+
+function getDate(date: any) {
+  let result = "";
+  if (date)
+    result =
+      new Date(date).getUTCDate() +
+      "/" +
+      new Date(date).getUTCMonth() +
+      "/" +
+      new Date(date).getUTCFullYear();
+  return result;
+}
+function getTime(date: any) {
+  let result = "";
+  if (date) new Date(date).getHours() + ":" + new Date(date).getMinutes();
+
+  return result;
+}
+
+export { loggedInUser, signInUser, logOut, getDate, getTime };

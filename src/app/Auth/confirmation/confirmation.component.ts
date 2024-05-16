@@ -10,7 +10,7 @@ import { UtilsService } from "../Helpers/utils.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { ConfirmFormComponent } from "../../Components/confirm-form/confirm-form.component";
 import { ConfirmDecisionComponent } from "../../Components/confirm-decision/confirm-decision.component";
-import { AuthService } from "../../Core/Services/auth.service";
+import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({

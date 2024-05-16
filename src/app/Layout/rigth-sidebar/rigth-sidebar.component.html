@@ -3,13 +3,17 @@
   <div id="rightsidebar" class="right-sidebar open stretchLeft">
     <ul class="nav nav-tabs">
       <li class="nav-item" (click)="actSet = true">
-        <a class="nav-link active" data-toggle="tab" href="javascript:void(0);"
-        i18n>Setting</a
+        <a
+          class="nav-link active"
+          data-toggle="tab"
+          href="javascript:void(0);"
+          i18n
+          >Setting</a
         >
       </li>
       <li class="nav-item" (click)="actSet = false">
-        <a class="nav-link" data-toggle="tab" href="javascript:void(0);"
-        i18n >Activity</a
+        <a class="nav-link" data-toggle="tab" href="javascript:void(0);" i18n
+          >Activity</a
         >
       </li>
     </ul>
@@ -20,9 +24,9 @@
         id="setting"
         *ngIf="actSet === true"
       >
-        <div class="card">
+        <!--  <div class="card">
           <div class="header">
-            <h2 i18n><strong >Colors</strong> Skins</h2>
+            <h2 i18n><strong>Colors</strong> Skins</h2>
           </div>
           <div class="body">
             <ul class="choose-skin list-unstyled m-b-0">
@@ -49,7 +53,9 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
+        <app-security-form></app-security-form>
+        <app-photo-form></app-photo-form>
         <!-- <div class="card">
           <div class="header">
             <h2><strong>General</strong> Settings</h2>
@@ -121,7 +127,7 @@
               <div class="sl-item">
                 <div class="sl-content">
                   <div class="text-muted">Just now</div>
-                  <p  >
+                  <p>
                     Finished task
                     <a href="" class="text-info">#features 4</a>.
                   </p>

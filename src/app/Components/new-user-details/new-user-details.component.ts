@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { getDate, getTime } from "../../Core/Helpers/utils";
 
 @Component({
   selector: "app-new-user-details",
@@ -9,16 +10,10 @@ import { Component, Input } from "@angular/core";
 })
 export class NewUserDetailsComponent {
   getDate(date: any) {
-    return (
-      new Date(date).getUTCDate() +
-      "/" +
-      new Date(date).getUTCMonth() +
-      "/" +
-      new Date(date).getUTCFullYear()
-    );
+    return getDate(date)
   }
   getTime(date: any) {
-    return new Date(date).getHours() + ":" + new Date(date).getMinutes();
+    return getTime(date)
   }
   @Input() user!: any;
 }

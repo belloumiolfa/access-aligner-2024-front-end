@@ -10,7 +10,7 @@ import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { CommonModule } from "@angular/common";
 import { User } from "../../Core/Models/user.models";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
-import { AuthService } from "../../Core/Services/auth.service";
+import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -51,8 +51,7 @@ export class ConfirmFormComponent {
             : "You've successfully deactivated your account. ";
 
         this.handleAlerts.handleSweetAlert(title, "success", false);
-
-       },
+      },
       (err) => {
         this.errors = this.handleErrors.handleError(err);
         this.spinner.hide();

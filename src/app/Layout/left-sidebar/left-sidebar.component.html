@@ -188,14 +188,20 @@
       <li>
         <div class="user-info m-b-20">
           <div class="image">
-            <a href="profile.html"
-              ><img src="assets/images/profile_av.jpg" alt="User"
+            <a [routerLink]="'profile/' + user.id"
+              ><img
+                [src]="
+                  user.profile.imagesList.length !== 0
+                    ? user.profile.imagesList[0]
+                    : 'assets/images/profile_av.png'
+                "
+                alt="User"
             /></a>
           </div>
           <div class="detail">
-            <h6>Michael</h6>
-            <p class="m-b-0">infoexample.com</p>
-            <a
+            <h6>{{ user.userName }}</h6>
+            <p class="m-b-0">{{ user.email }}</p>
+            <!--  <a
               href="javascript:void(0);"
               title=""
               class="waves-effect waves-block"
@@ -218,7 +224,7 @@
               title=""
               class="waves-effect waves-block"
               ><i class="zmdi zmdi-twitter-box"></i
-            ></a>
+            ></a> -->
           </div>
         </div>
       </li>

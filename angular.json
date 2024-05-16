@@ -33,8 +33,16 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
-            "scripts": [],
+            "styles": [
+              "node_modules/morris.js/morris.css",
+              "node_modules/dropzone/dist/min/dropzone.min.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.slim.js",
+              "node_modules/raphael/raphael.js",
+              "node_modules/morris.js/morris.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
