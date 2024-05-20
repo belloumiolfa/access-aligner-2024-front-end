@@ -15,6 +15,7 @@ import {
   findAllParent,
 } from "../Shared/Helpers/Utils";
 import { User } from "../../Core/Models/user.models";
+import { AppService } from "../../Core/Services/app.service";
 
 @Component({
   selector: "app-left-sidebar",
@@ -30,13 +31,18 @@ import { User } from "../../Core/Models/user.models";
   styleUrl: "./left-sidebar.component.css",
 })
 export class LeftSidebarComponent {
-
-  @Input() user!:User;
-
+  @Input() user!: User;
+  profilePhoto$!: any;
   menuItems: MenuItem[] = [];
   activeMenuItems: string[] = [];
   chunkSize: number = 7;
   isCollapsed: any = true;
+
+  constructor(private appService: AppService) {
+    this.appService.getPhoto$.subscribe((data) => {
+      this.profilePhoto$ = data;
+     });
+  }
 
   ngOnInit(): void {
     this.menuItems = MENU_ITEMS;

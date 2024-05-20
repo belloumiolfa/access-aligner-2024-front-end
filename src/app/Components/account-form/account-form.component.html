@@ -57,7 +57,7 @@
           <label
             class="float-right"
             style="right: 0"
-            *ngIf="user$.profile.dateOfBirth !== undefined"
+            *ngIf="user$.profile?.dateOfBirth !== undefined"
             class="text-secondary"
           >
             {{ birthDate }}</label

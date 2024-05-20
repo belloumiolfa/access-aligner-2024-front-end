@@ -9,8 +9,7 @@ import { loggedInUser } from "../../Helpers/utils";
 })
 export class UserService {
   apiBaseUrl = environment.apiBaseUrl;
-  constructor(private http: HttpClient) {
-   }
+  constructor(private http: HttpClient) {}
 
   updateSetting(
     userName: string,
@@ -37,7 +36,7 @@ export class UserService {
 
   updateProfile(data: any, id: any): Observable<any> {
     console.log(data);
-    
+
     return this.http
       .post<any>(
         `${this.apiBaseUrl}/api/private/updateProfile?userId=` + id,
@@ -49,6 +48,43 @@ export class UserService {
           ),
         }
       )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
+  updatePhoto(file: File, id: any): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append("file", file);
+
+    return this.http
+      .post<any>(
+        this.apiBaseUrl + "/api/private/updatePhoto?userId=" + id,
+        formData,
+        {
+          headers: new HttpHeaders().set(
+            "Authorization",
+            `Bearer ${loggedInUser()}`
+          ),
+        }
+      )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+  getPhoto(id: any): Observable<any> {
+    return this.http
+      .get(this.apiBaseUrl + "/api/private/getPhoto?id=" + id, {
+        responseType: "blob",
+        headers: new HttpHeaders().set(
+          "Authorization",
+          `Bearer ${loggedInUser()}`
+        ),
+      })
       .pipe(
         map((data: any) => {
           return data;

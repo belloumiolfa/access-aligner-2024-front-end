@@ -191,16 +191,21 @@
             <a [routerLink]="'profile/' + user.id"
               ><img
                 [src]="
-                  user.profile.imagesList.length !== 0
-                    ? user.profile.imagesList[0]
-                    : 'assets/images/profile_av.png'
+                  profilePhoto$ ? profilePhoto$ : 'assets/images/profile_av.png'
                 "
                 alt="User"
             /></a>
           </div>
           <div class="detail">
-            <h6>{{ user.userName }}</h6>
-            <p class="m-b-0">{{ user.email }}</p>
+            <h6>
+              {{ user.userName }}<br />
+              {{ user.profile.firstName }}
+              {{ user.profile.lastName }}
+            </h6>
+
+            <p class="m-b-0">
+              {{ user.email }}
+            </p>
             <!--  <a
               href="javascript:void(0);"
               title=""

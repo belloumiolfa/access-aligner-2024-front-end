@@ -21,11 +21,14 @@ import { BaseChartDirective } from "ng2-charts";
 })
 export class ProfileComponent {
   user$!: User;
+  profilePhoto$!: any;
   clickedIndex = 0;
 
   constructor(private appService: AppService) {
     this.appService.getUser$.subscribe((data) => (this.user$ = data));
+    this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
   }
+  
   chartAreaData = [
     { y: "2006", a: 100, b: 90 },
     { y: "2007", a: 75, b: 65 },

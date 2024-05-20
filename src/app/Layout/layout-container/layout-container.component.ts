@@ -18,6 +18,9 @@ import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { User } from "../../Core/Models/user.models";
 import { AppService } from "../../Core/Services/app.service";
+import { UserService } from "../../Core/Services/UserService/user.service";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+import { log } from "console";
 export interface MenuItem {
   id?: number;
   key?: string;
@@ -58,17 +61,22 @@ export class LayoutContainerComponent {
   isCollapsed: any = true;
 
   user$!: User;
+  profilePhoto$!: any;
+
   errors!: any;
+  imageUrl!: SafeUrl;
 
   constructor(
     private route: ActivatedRoute,
     private utils: UtilsService,
     private authService: AuthService,
+    private userService: UserService,
     private handleErrors: HandleErrorsService,
     private spinner: NgxSpinnerService,
     private appService: AppService
   ) {
     this.appService.getUser$.subscribe((data) => (this.user$ = data));
+    this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
   }
 
   ngOnInit(): void {
@@ -80,13 +88,29 @@ export class LayoutContainerComponent {
       .getUserById(this.utils.getDecodedAccessToken(loggedInUser()).userId)
       .subscribe(
         (data) => {
-          this.spinner.hide();
           this.appService.setUser$(data);
+          this.getProfilePhoto(this.user$.profile.photo.id);
+          console.log(this.user$);
         },
         (err) => {
-          this.spinner.hide();
           this.errors = this.handleErrors.handleError(err);
         }
       );
+  }
+
+  // get profile photo
+  getProfilePhoto(id: any) {
+    this.userService.getPhoto(this.user$.profile?.photo.id).subscribe(
+      (data) => {
+        console.log("photo from layout ", data);
+
+        this.appService.setPhoto$(data);
+        this.spinner.hide();
+      },
+      (err) => {
+        this.spinner.hide();
+        this.errors = this.handleErrors.handleError(err);
+      }
+    );
   }
 }

@@ -38,16 +38,16 @@ export class AccountFormComponent {
     private handleAlerts: HandleAlertsService
   ) {
     this.appService.getUser$.subscribe((data) => (this.user$ = data));
-    this.birthDate = getDate(new Date(this.user$.profile.dateOfBirth));
+    this.birthDate = getDate(new Date(this.user$.profile?.dateOfBirth));
 
     this.profileForm = this.formBuilder.group({
-      firstName: new FormControl(this.user$.profile.firstName, []),
-      lastName: new FormControl(this.user$.profile.lastName, []),
-      dateOfBirth: new FormControl(this.user$.profile.dateOfBirth, []),
-      description: new FormControl(this.user$.profile.description, []),
-      phone: new FormControl(this.user$.profile.phone, []),
-      mobile: new FormControl(this.user$.profile.mobile, []),
-      address: new FormControl(this.user$.profile.address, []),
+      firstName: new FormControl(this.user$.profile?.firstName, []),
+      lastName: new FormControl(this.user$.profile?.lastName, []),
+      dateOfBirth: new FormControl(this.user$.profile?.dateOfBirth, []),
+      description: new FormControl(this.user$.profile?.description, []),
+      phone: new FormControl(this.user$.profile?.phone, []),
+      mobile: new FormControl(this.user$.profile?.mobile, []),
+      address: new FormControl(this.user$.profile?.address, []),
     });
   }
 

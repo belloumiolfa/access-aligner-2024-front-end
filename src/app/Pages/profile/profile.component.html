@@ -32,8 +32,8 @@
               <div class="col-lg-10 col-md-12">
                 <img
                   [src]="
-                    user$.profile.imagesList.length !== 0
-                      ? user$.profile.imagesList[0]
+                    profilePhoto$
+                      ? profilePhoto$
                       : 'assets/images/profile_av.png'
                   "
                   class="user_pic rounded img-raised"
@@ -43,11 +43,11 @@
                 <div class="detail">
                   <div class="u_name">
                     <ng-container
-                      *ngIf="user$.profile.firstName; else elseTemplate"
+                      *ngIf="user$.profile?.firstName; else elseTemplate"
                     >
                       <h4>
-                        <strong>{{ user$.profile.firstName }}</strong>
-                        {{ user$.profile.lastName }}
+                        <strong>{{ user$.profile?.firstName }}</strong>
+                        {{ user$.profile?.lastName }}
                       </h4>
                     </ng-container>
                     <ng-template #elseTemplate>
