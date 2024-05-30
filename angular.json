@@ -30,10 +30,18 @@
             "outputPath": "dist/front-end",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["node_modules/morris.js/morris.css", "src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/morris.js/morris.css",
+              "src/styles.css"
+            ],
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.js",
               "node_modules/raphael/raphael.js",
@@ -73,10 +81,14 @@
               ]
             },
             "fr-FR": {
-              "localize": ["fr-FR"]
+              "localize": [
+                "fr-FR"
+              ]
             },
             "en-US": {
-              "localize": ["en-US"]
+              "localize": [
+                "en-US"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -87,8 +99,12 @@
             "production": {
               "buildTarget": "front-end:build:production"
             },
-            "en-US": { "buildTarget": "front-end:build:production,en-US" },
-            "fr-FR": { "buildTarget": "front-end:build:production,fr-FR" },
+            "en-US": {
+              "buildTarget": "front-end:build:production,en-US"
+            },
+            "fr-FR": {
+              "buildTarget": "front-end:build:production,fr-FR"
+            },
             "development": {
               "buildTarget": "front-end:build:development"
             }
@@ -106,10 +122,18 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           }
         }

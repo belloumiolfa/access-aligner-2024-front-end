@@ -35,6 +35,9 @@
     height: 500px; /* Set the height of the container */
     overflow: auto; /* Enable scrolling */
   }
+  section.content {
+    margin: 0 0 0 70px;
+  }
   .display_menu {
     display: inline;
   }

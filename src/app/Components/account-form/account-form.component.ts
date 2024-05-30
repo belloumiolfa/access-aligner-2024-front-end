@@ -37,18 +37,23 @@ export class AccountFormComponent {
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService
   ) {
-    this.appService.getUser$.subscribe((data) => (this.user$ = data));
-    this.birthDate = getDate(new Date(this.user$.profile?.dateOfBirth));
+    this.appService.getUser$.subscribe((data) => {
+      this.user$ = data;
+      this.birthDate = getDate(new Date(this.user$.profile?.dateOfBirth));
 
-    this.profileForm = this.formBuilder.group({
-      firstName: new FormControl(this.user$.profile?.firstName, []),
-      lastName: new FormControl(this.user$.profile?.lastName, []),
-      dateOfBirth: new FormControl(this.user$.profile?.dateOfBirth, []),
-      description: new FormControl(this.user$.profile?.description, []),
-      phone: new FormControl(this.user$.profile?.phone, []),
-      mobile: new FormControl(this.user$.profile?.mobile, []),
-      address: new FormControl(this.user$.profile?.address, []),
+      this.profileForm = this.formBuilder.group({
+        firstName: new FormControl(this.user$.profile?.firstName, []),
+        lastName: new FormControl(this.user$.profile?.lastName, []),
+        dateOfBirth: new FormControl(this.user$.profile?.dateOfBirth, []),
+        description: new FormControl(this.user$.profile?.description, []),
+        phone: new FormControl(this.user$.profile?.phone, []),
+        mobile: new FormControl(this.user$.profile?.mobile, []),
+        address: new FormControl(this.user$.profile?.address, []),
+      });
     });
+  }
+  getDate(date: any) {
+    return getDate(new Date(date));
   }
 
   onSubmit($event: any) {

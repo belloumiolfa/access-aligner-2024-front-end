@@ -1,0 +1,335 @@
+<section class="body current">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 align-center">
+        <div class=" ">
+          <div class="container">
+            <div class="header">
+              <h6 class="title">
+                General information regarding the treatment.
+              </h6>
+            </div>
+            <form
+              class="row clearfix"
+              [formGroup]="treatForm"
+              (ngSubmit)="onSubmit($event)"
+            >
+              <div class="col-lg-12 col-md-12 col-sm-12 align-center">
+                <div class="form-group form-float">
+                  <div class="radio inlineblock m-r-20">
+                    <input
+                      type="radio"
+                      formControlName="treat"
+                      name="treat"
+                      id="type-upper-arch"
+                      class="with-gap"
+                      value="upper-arch"
+                    />
+                    <label for="type-upper-arch">Upper arch</label>
+                  </div>
+                  <div class="radio inlineblock m-r-20">
+                    <input
+                      type="radio"
+                      formControlName="treat"
+                      name="treat"
+                      id="type-lower-arch"
+                      class="with-gap"
+                      value="lower-arch"
+                    />
+                    <label for="type-lower-arch">Lower arch</label>
+                  </div>
+                  <div class="radio inlineblock">
+                    <input
+                      type="radio"
+                      formControlName="treat"
+                      name="treat"
+                      id="type-upper-lower"
+                      class="with-gap"
+                      value="upper-lower"
+                    />
+                    <label for="type-upper-lower">Upper & Lower arch</label>
+                  </div>
+                  <div class="help-info"></div>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 align-center">
+                <div class="form-group form-float">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Correcting posterior crossbite ? </b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="postCross"
+                                  name="postCross"
+                                  type="radio"
+                                  id="postCrossY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="postCrossY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="postCross"
+                                  name="postCross"
+                                  type="radio"
+                                  id="postCrossN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="postCrossN">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Correcting anterior crossbite ? </b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="antCross"
+                                  type="radio"
+                                  id="antCrossY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="antCrossY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="antCross"
+                                  type="radio"
+                                  id="antCrossN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="antCrossN">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Closing the gap (If applicable) ?</b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="gap"
+                                  type="radio"
+                                  id="gapY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="gapY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="gap"
+                                  type="radio"
+                                  id="gapN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="gapN">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Correcting the overbite (if present) ? </b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="overbite"
+                                  type="radio"
+                                  id="overbiteY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="overbiteY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="overbite"
+                                  type="radio"
+                                  id="overbiteN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="overbiteN">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Restoring Class I occlusion ?</b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="classI"
+                                  type="radio"
+                                  id="classIY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="classIY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="classI"
+                                  type="radio"
+                                  id="classIN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="classIN">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Reducing the overbite ?</b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="reduceOverbite"
+                                  type="radio"
+                                  id="reduceOverbiteY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="reduceOverbiteY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="reduceOverbite"
+                                  type="radio"
+                                  id="reduceOverbiteN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="reduceOverbiteN">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Closing crowding </b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="crowding"
+                                  type="radio"
+                                  id="crowdingY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="crowdingY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="crowding"
+                                  type="radio"
+                                  id="crowdingN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="crowdingN">No </label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="form-group form-float">
+                            <b>Planned extractions (if necessary)</b>
+
+                            <div class="form-group form-float">
+                              <div class="radio inlineblock m-r-20">
+                                <input
+                                  formControlName="extract"
+                                  type="radio"
+                                  id="extractY"
+                                  class="with-gap"
+                                  value="1"
+                                />
+                                <label for="extractY">Yes</label>
+                              </div>
+                              <div class="radio inlineblock">
+                                <input
+                                  formControlName="extract"
+                                  type="radio"
+                                  id="extractN"
+                                  class="with-gap"
+                                  value="0"
+                                  checked=""
+                                />
+                                <label for="extractN">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="col-lg-12 col-md-12 col-sm-12 align-center">
+                <div class="form-group form-float">
+                  <b>Comment about this treatement</b>
+                  <div class="form-group">
+                    <div class="form-line">
+                      <textarea
+                        rows="4"
+                        class="form-control no-resize"
+                        placeholder="Please type what you want..."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="float-right">
+                <button type="submit" class="btn btn-primary btn-round">
+                  Save
+                </button>
+                <button
+                  type="reset"
+                  class="btn btn-primary btn-simple btn-round"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

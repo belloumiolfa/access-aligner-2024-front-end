@@ -90,7 +90,6 @@ export class LayoutContainerComponent {
         (data) => {
           this.appService.setUser$(data);
           this.getProfilePhoto(this.user$.profile.photo.id);
-          console.log(this.user$);
         },
         (err) => {
           this.errors = this.handleErrors.handleError(err);
@@ -102,7 +101,6 @@ export class LayoutContainerComponent {
   getProfilePhoto(id: any) {
     this.userService.getPhoto(this.user$.profile?.photo.id).subscribe(
       (data) => {
-        console.log("photo from layout ", data);
 
         this.appService.setPhoto$(data);
         this.spinner.hide();

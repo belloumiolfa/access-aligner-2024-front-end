@@ -1,0 +1,160 @@
+<div class="">
+  <div class="header">
+    <h6 class="title">Complete the form with your patient information. .</h6>
+  </div>
+  <div class="container">
+    <form
+      class="row clearfix"
+      [formGroup]="patientForm"
+      (ngSubmit)="onSubmit($event)"
+    >
+      <div class="col-lg-3 col-md-12">
+        <div class="form-group form-float">
+          <b>Patient first name</b>
+          <input
+            formControlName="firstName"
+            type="text"
+            class="form-control"
+            placeholder="Ex: Jhone *"
+            name="firstName"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-12">
+        <div class="form-group form-float">
+          <b>Patient last name</b>
+
+          <input
+            formControlName="lastName"
+            type="text"
+            class="form-control"
+            placeholder="Ex: Smith *"
+            name="lastName"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-12">
+        <div class="form-group form-float">
+          <b>Birthday Date</b>
+
+          <input
+            formControlName="birthday"
+            type="date"
+            class="form-control date"
+            placeholder="Ex: 30/07/2016"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-12">
+        <div class="form-group form-float">
+          <b>Patient sex</b>
+
+          <div class="form-group form-float">
+            <div class="radio inlineblock m-r-20">
+              <input
+                formControlName="sex"
+                type="radio"
+                name="sex"
+                id="male"
+                class="with-gap"
+                value="Male"
+              />
+              <label for="male">Male</label>
+            </div>
+            <div class="radio inlineblock">
+              <input
+                formControlName="sex"
+                type="radio"
+                name="sex"
+                id="Female"
+                class="with-gap"
+                value="Female"
+              />
+              <label for="Female">Female</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="form-group form-float">
+          <b>Email Address</b>
+
+          <input
+            formControlName="email"
+            type="text"
+            name="email"
+            class="form-control email"
+            placeholder="Ex: example@example.com"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="form-group form-float">
+          <b>Mobile Phone Number</b>
+          <input
+            formControlName="phone"
+            type="text"
+            name="phone"
+            class="form-control mobile-phone-number"
+            placeholder="Ex: +00 (000) 000-00-00"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="form-group form-float">
+          <b>Patient profession</b>
+          <input
+            formControlName="profession"
+            type="text"
+            class="form-control"
+            placeholder="Ex: Dentist *"
+            name="profession"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="form-group form-float">
+          <b> Address</b>
+          <input
+            formControlName="address"
+            type="text"
+            class="form-control"
+            placeholder="Ex: Jhone *"
+            name="address"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-md-12">
+        <b>Comment about this patient</b>
+        <div class="form-group">
+          <div class="form-line">
+            <textarea
+              rows="4"
+              formControlName="comment"
+              name="comment"
+              class="form-control no-resize"
+              placeholder="Please type what you want..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12">
+        <label *ngIf="errors.existPatient" for="terms" class="text-primary">
+          {{ errors.existPatient }}</label
+        >
+      </div>
+      <div class="float-right">
+        <button class="btn btn-primary btn-round">Save</button>
+        <button class="btn btn-primary btn-simple btn-round">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

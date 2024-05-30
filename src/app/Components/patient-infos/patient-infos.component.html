@@ -1,0 +1,131 @@
+<div class="card">
+  <!--  <div class="header">
+              <h2><strong>User</strong> Activities</h2>
+          </div> -->
+  <div class="body m-b-10 widget-user">
+    <img class="rounded-circle" src="assets/images/sm/avatar5.jpg" alt="" />
+    <div class="wid-u-info">
+      <h5>{{ patient$?.firstName }} {{ patient$?.lastName }}</h5>
+      <p class="text-muted m-b-0">{{ patient$?.email }}</p>
+      <small class="text-warning"
+        ><b>{{ patient$?.sex }}</b></small
+      >
+    </div>
+  </div>
+
+  <div class="card">
+    <!--   <div class="header">
+        <h2><strong>Info</strong></h2>
+        <ul class="header-dropdown">
+          <li class="dropdown">
+            <a
+              href="javascript:void(0);"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="zmdi zmdi-more"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="javascript:void(0);">Action</a></li>
+              <li><a href="javascript:void(0);">Another action</a></li>
+              <li><a href="javascript:void(0);">Something else</a></li>
+              <li>
+                <a href="javascript:void(0);" class="boxs-close">Delete</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div> -->
+    <div class="body">
+      <small class="text-muted">Address: </small>
+      <p>{{ patient$?.address }}</p>
+      <div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1923731.7533500232!2d-120.39098936853455!3d37.63767091877441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1522391841133"
+          width="100%"
+          height="150"
+          frameborder="0"
+          style="border: 0"
+          allowfullscreen=""
+        ></iframe>
+      </div>
+      <hr />
+      <small class="text-muted">Email address: </small>
+      <p>{{ patient$?.email }}</p>
+      <hr />
+      <small class="text-muted">Phone: </small>
+      <p>{{ patient$?.phone }}</p>
+      <hr />
+      <small class="text-muted">Profession: </small>
+      <p>{{ patient$?.profession }}</p>
+      <hr />
+      <small class="text-muted">Birth Date: </small>
+      <p class="m-b-0">{{ getDate(patient$?.birthday) }}</p>
+    </div>
+  </div>
+
+  <!--   <div class="body activities">
+      <div class="streamline b-accent">
+        <div class="sl-item">
+          <div class="sl-content">
+            <div class="text-muted">Just now</div>
+            <p>Finished task <a href="" class="text-info">#features 4</a>.</p>
+          </div>
+        </div>
+        <div class="sl-item b-info">
+          <div class="sl-content">
+            <div class="text-muted">10:30</div>
+            <p><a href="">Jessi</a> retwit your post</p>
+          </div>
+        </div>
+        <div class="sl-item b-primary">
+          <div class="sl-content">
+            <div class="text-muted">12:30</div>
+            <p>
+              Call to customer <a href="" class="text-info">Jacob</a> and
+              discuss the detail.
+            </p>
+          </div>
+        </div>
+        <div class="sl-item b-warning">
+          <div class="sl-content">
+            <div class="text-muted">1 days ago</div>
+            <p><a href="" class="text-info">Jessi</a> commented your post.</p>
+          </div>
+        </div>
+        <div class="sl-item b-primary">
+          <div class="sl-content">
+            <div class="text-muted">2 days ago</div>
+            <p>
+              Call to customer <a href="" class="text-info">Jacob</a> and
+              discuss the detail.
+            </p>
+          </div>
+        </div>
+        <div class="sl-item b-primary">
+          <div class="sl-content">
+            <div class="text-muted">3 days ago</div>
+            <p>
+              Call to customer <a href="" class="text-info">Jacob</a> and
+              discuss the detail.
+            </p>
+          </div>
+        </div>
+        <div class="sl-item b-warning">
+          <div class="sl-content">
+            <div class="text-muted">4 Week ago</div>
+            <p><a href="" class="text-info">Jessi</a> commented your post.</p>
+          </div>
+        </div>
+        <div class="sl-item b-warning">
+          <div class="sl-content">
+            <div class="text-muted">5 days ago</div>
+            <p><a href="" class="text-info">Jessi</a> commented your post.</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+</div>

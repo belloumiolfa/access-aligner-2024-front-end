@@ -60,10 +60,11 @@ export class UserService {
     formData.append("file", file);
 
     return this.http
-      .post<any>(
+      .post(
         this.apiBaseUrl + "/api/private/updatePhoto?userId=" + id,
         formData,
         {
+          responseType: "blob",
           headers: new HttpHeaders().set(
             "Authorization",
             `Bearer ${loggedInUser()}`
@@ -76,6 +77,7 @@ export class UserService {
         })
       );
   }
+
   getPhoto(id: any): Observable<any> {
     return this.http
       .get(this.apiBaseUrl + "/api/private/getPhoto?id=" + id, {

@@ -16,8 +16,9 @@ const MENU_ITEMS: MenuItem[] = [
     label: "Palients",
     isTitle: false,
     icon: "zmdi zmdi-accounts-list-alt",
-    collapsed: true,
-    children: [
+    /*     collapsed: true,*/ 
+    url: "patients",
+    /* children: [
       {
         key: "patient-list",
         label: "Patient List",
@@ -33,7 +34,7 @@ const MENU_ITEMS: MenuItem[] = [
 
         parentKey: "treat-patient",
       },
-    ],
+    ], */
   },
   {
     key: "treat-cases",

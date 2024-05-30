@@ -5,6 +5,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, RouterOutlet } from "@angular/router";
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { BaseChartDirective } from "ng2-charts";
+import { BlockHeaderComponent } from "../../Shared/Elements/block-header/block-header.component";
 
 @Component({
   selector: "app-profile",
@@ -14,7 +15,7 @@ import { BaseChartDirective } from "ng2-charts";
     RouterModule,
     RouterOutlet,
     NgCircleProgressModule,
-    BaseChartDirective,
+    BaseChartDirective,BlockHeaderComponent
   ],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.css",
