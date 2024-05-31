@@ -189,11 +189,7 @@
         <div class="user-info m-b-20">
           <div class="image">
             <a [routerLink]="'profile/' + user.id"
-              ><img
-                [src]="
-                  profilePhoto$ ? profilePhoto$ : 'assets/images/profile_av.png'
-                "
-                alt="User"
+              ><img [src]="verifyProfilePhoto(profilePhoto$)" alt="User"
             /></a>
           </div>
           <div class="detail">

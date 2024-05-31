@@ -15,7 +15,8 @@ import { BlockHeaderComponent } from "../../Shared/Elements/block-header/block-h
     RouterModule,
     RouterOutlet,
     NgCircleProgressModule,
-    BaseChartDirective,BlockHeaderComponent
+    BaseChartDirective,
+    BlockHeaderComponent,
   ],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.css",
@@ -28,8 +29,9 @@ export class ProfileComponent {
   constructor(private appService: AppService) {
     this.appService.getUser$.subscribe((data) => (this.user$ = data));
     this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
+    console.log(this.profilePhoto$);
   }
-  
+
   chartAreaData = [
     { y: "2006", a: 100, b: 90 },
     { y: "2007", a: 75, b: 65 },
@@ -44,5 +46,8 @@ export class ProfileComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   }
-  CircleProgressOptions = {};
+  verifyProfilePhoto(photo: any) {
+    if (Object.keys(photo).length > 0) return photo;
+    else return "assets/images/profile_av.png";
+  }
 }

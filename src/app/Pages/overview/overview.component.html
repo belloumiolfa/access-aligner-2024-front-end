@@ -98,7 +98,7 @@
         </div>
         <div class="body">
           <small class="text-muted">Address: </small>
-          <p>{{ user$.profile.address }}</p>
+          <p>{{ user$.profile?.address }}</p>
           <div>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1923731.7533500232!2d-120.39098936853455!3d37.63767091877441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1522391841133"
@@ -114,13 +114,13 @@
           <p>{{ user$.email }}</p>
           <hr />
           <small class="text-muted">Phone: </small>
-          <p>{{ user$.profile.phone }}</p>
+          <p>{{ user$.profile?.phone }}</p>
           <hr />
           <small class="text-muted">Mobile: </small>
-          <p>{{ user$.profile.mobile }}</p>
+          <p>{{ user$.profile?.mobile }}</p>
           <hr />
           <small class="text-muted">Birth Date: </small>
-          <p class="m-b-0">{{ getDate(user$.profile.dateOfBirth) }}</p>
+          <p class="m-b-0">{{ getDate(user$.profile?.dateOfBirth) }}</p>
         </div>
       </div>
       <div class="card">

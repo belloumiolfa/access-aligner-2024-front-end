@@ -1,10 +1,6 @@
 <div class="header">
   <img
-    [src]="
-      user.profile.imagesList.length !== 0
-        ? user.profile.imagesList[0]
-        : 'assets/images/profile_av.png'
-    "
+    [src]="'assets/images/profile_av.png'"
     class="rounded-circle"
     alt="User"
   />
@@ -14,8 +10,8 @@
 <form class="form-group" [formGroup]="confirmForm">
   <div class="checkbox">
     <input id="terms" type="checkbox" formControlName="term" />
-    <label for="terms"
-    i18n>I read and Agree to the
+    <label for="terms" i18n
+      >I read and Agree to the
       <a href="javascript:void(0);">Terms of Usage</a></label
     >
   </div>
@@ -25,7 +21,8 @@
       <button
         class="btn btn-primary btn-round btn-block"
         [disabled]="!confirmForm.valid"
-        (click)="onSubmit(1, user.id)"i18n
+        (click)="onSubmit(1, user.id)"
+        i18n
       >
         Confirm
       </button>
@@ -34,7 +31,8 @@
       <button
         class="btn btn-default btn-round btn-block"
         [disabled]="!confirmForm.valid"
-        (click)="onSubmit(2, user.id)"i18n
+        (click)="onSubmit(2, user.id)"
+        i18n
       >
         Cancel
       </button>

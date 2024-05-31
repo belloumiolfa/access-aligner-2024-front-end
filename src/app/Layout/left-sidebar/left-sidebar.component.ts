@@ -78,4 +78,9 @@ export class LeftSidebarComponent {
     }
     collapse.toggle();
   }
+  verifyProfilePhoto(photo: any) {
+    if (Object.keys(photo).length > 0) return photo;
+    else return "assets/images/profile_av.png";
+  }
+
 }

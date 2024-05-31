@@ -89,7 +89,8 @@ export class LayoutContainerComponent {
       .subscribe(
         (data) => {
           this.appService.setUser$(data);
-          this.getProfilePhoto(this.user$.profile.photo.id);
+          this.spinner.hide();
+          if (data.profile.photo !== null) this.getProfilePhoto();
         },
         (err) => {
           this.errors = this.handleErrors.handleError(err);
@@ -98,10 +99,9 @@ export class LayoutContainerComponent {
   }
 
   // get profile photo
-  getProfilePhoto(id: any) {
+  getProfilePhoto() {
     this.userService.getPhoto(this.user$.profile?.photo.id).subscribe(
       (data) => {
-
         this.appService.setPhoto$(data);
         this.spinner.hide();
       },

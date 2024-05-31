@@ -28,9 +28,9 @@ export class AuthService {
       .pipe(map((user: any) => user));
   }
 
-  getUserById(id: any): Observable<User>{
+  getUserById(id: any): Observable<any> {
     return this.http
-      .get<User>(`${this.apiBaseUrl}/api/public/getById?id=${id}`)
+      .get<any>(`${this.apiBaseUrl}/api/public/getById?id=${id}`)
       .pipe(map((user: any) => user));
   }
 

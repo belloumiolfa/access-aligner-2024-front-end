@@ -1,9 +1,7 @@
 <div class="header">
   <img
     [src]="
-      user.profile.imagesList.length !== 0
-        ? user.profile.imagesList[0]
-        : 'assets/images/profile_av.png'
+      user.profile.photo ? user.profile.photo : 'assets/images/profile_av.png'
     "
     class="rounded-circle"
     i18n

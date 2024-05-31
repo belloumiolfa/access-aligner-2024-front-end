@@ -52,8 +52,6 @@ export class SignInComponent {
     this.errors = this.handleErrors.handleError({});
     this.spinner.show();
 
-    console.log(this.signInForm.value.keepLoggedIn);
-
     if (this.signInForm.valid) {
       this.authService
         .login(this.signInForm.value.email, this.signInForm.value.password)
