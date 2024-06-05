@@ -13,12 +13,22 @@ import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { PatientService } from "../../Core/Services/PatientService/patient.service";
 import { ActivatedRoute } from "@angular/router";
 import { AppService } from "../../Core/Services/app.service";
-import { log } from "console";
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import 'moment/locale/fr';
+import {MatInputModule} from '@angular/material/input';
+
+import {provideNativeDateAdapter} from '@angular/material/core';
+
+
 
 @Component({
   selector: "app-patient-update-form",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDatepickerModule, MatInputModule],
+  providers: [provideNativeDateAdapter()],
   templateUrl: "./patient-update-form.component.html",
   styleUrl: "./patient-update-form.component.css",
 })
@@ -37,6 +47,8 @@ export class PatientUpdateFormComponent {
     private spinner: NgxSpinnerService,
     private appService: AppService
   ) {
+
+  
     this.appService.getPatient$.subscribe((data) => {
       this.patient$ = data;
       // build update from

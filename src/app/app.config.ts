@@ -12,6 +12,8 @@ import { NgCircleProgressModule } from "ng-circle-progress";
 import { CountToModule } from "angular-count-to";
 import { provideAnimations } from "@angular/platform-browser/animations";
 
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -35,4 +37,5 @@ export const appConfig: ApplicationConfig = {
 
     /*   adding # in route   { provide: LocationStrategy, useClass: HashLocationStrategy },   */
   ],
+  
 };

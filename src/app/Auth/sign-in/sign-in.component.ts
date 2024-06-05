@@ -14,11 +14,12 @@ import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { signInUser } from "../../Core/Helpers/utils";
 import { NgxSpinnerService } from "ngx-spinner";
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   selector: "app-sign-in",
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule,HttpClientModule],
   templateUrl: "./sign-in.component.html",
   styleUrl: "./sign-in.component.css",
 })

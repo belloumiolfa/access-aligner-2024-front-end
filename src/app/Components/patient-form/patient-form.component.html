@@ -39,12 +39,27 @@
         <div class="form-group form-float">
           <b>Birthday Date</b>
 
-          <input
+
+         <!-- 
+
+  <input
             formControlName="birthday"
             type="date"
             class="form-control date"
             placeholder="Ex: 30/07/2016"
           />
+         -->
+
+         <mat-form-field appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input
+          class="form-control date"
+          formControlName="birthday"
+          matInput [matDatepicker]="picker">
+        
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         </div>
       </div>
 

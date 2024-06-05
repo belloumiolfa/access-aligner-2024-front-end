@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeftSidebarComponent } from './left-sidebar.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('LeftSidebarComponent', () => {
   let component: LeftSidebarComponent;
@@ -8,7 +10,17 @@ describe('LeftSidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LeftSidebarComponent]
+      imports: [LeftSidebarComponent],
+      providers : [ 
+
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: '123' }), // Mock any params you need
+            snapshot: { paramMap: { get: () => '123' } } // Mock snapshot if needed
+          }
+        },
+      ]
     })
     .compileComponents();
     

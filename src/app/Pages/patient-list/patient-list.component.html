@@ -1,3 +1,5 @@
+
+
 <div class="tab-pane active" id="List">
   <div class="card">
     <div class="body">
@@ -27,18 +29,29 @@
               <th data-breakpoints="xs">Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th data-breakpoints="xs">Phone</th>
-              <th data-breakpoints="xs sm md">Email</th>
-              <th data-breakpoints="xs sm md">Doctor</th>
-              <th data-breakpoints="xs sm md">Treatement</th>
-              <th data-breakpoints="xs">Action</th>
-            </tr>
-          </tfoot>
-          <tbody>
+
+
+         <tfoot *ngIf="patients$.length > 5">  <tr>
+      <th></th>
+      <th>Name</th>
+      <th data-breakpoints="xs">Phone</th>
+      <th data-breakpoints="xs sm md">Email</th>
+      <th data-breakpoints="xs sm md">Doctor</th>
+      <th data-breakpoints="xs sm md">Treatement</th>
+      <th data-breakpoints="xs">Action</th>
+    </tr>
+  </tfoot>
+
+          <tbody >
+
+         
+            
+            <h4  
+            *ngIf="patients$.length == 0" > No Patient added yet ! </h4>
+           
+          
+           
+           
             <tr *ngFor="let patient of patients$">
               <td><span class="font-bold">#</span>{{ patient.id }}</td>
 

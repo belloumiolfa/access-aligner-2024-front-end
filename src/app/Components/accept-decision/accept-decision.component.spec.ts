@@ -10,14 +10,21 @@ describe('AcceptDecisionComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AcceptDecisionComponent]
     })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(AcceptDecisionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(AcceptDecisionComponent);
+    const component = fixture.componentInstance;
+
+    // Mock user object with profile and photo
+    const mockUser = {
+      user: { status: 'confirmed' }
+    };
+
+    component.user = mockUser; 
+
+    fixture.detectChanges(); // Trigger change detection
+
     expect(component).toBeTruthy();
   });
 });

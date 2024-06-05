@@ -18,7 +18,7 @@ import { UtilsService } from "../Helpers/utils.service";
 @Component({
   selector: "app-update-password",
   standalone: true,
-  imports: [HelpLinkComponent, ReactiveFormsModule, CommonModule],
+  imports: [HelpLinkComponent, ReactiveFormsModule, CommonModule,],
   templateUrl: "./update-password.component.html",
   styleUrl: "./update-password.component.css",
 })

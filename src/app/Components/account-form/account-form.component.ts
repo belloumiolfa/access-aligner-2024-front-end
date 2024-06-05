@@ -13,7 +13,7 @@ import { UserService } from "../../Core/Services/UserService/user.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
-import { log } from "console";
+
 import { getDate } from "../../Core/Helpers/utils";
 
 @Component({

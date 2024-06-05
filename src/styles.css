@@ -11,7 +11,12 @@
 @import "./assets/css/timeline.css";
 @import "./assets/css/blog.css";
 @import "./assets/css/color_skins.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+
+@use '@angular/material' as mat;
+
+@include mat.core();
 .display_overlay_menu {
   display: block;
 }

@@ -10,6 +10,17 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import { MatButton, MatButtonModule } from "@angular/material/button";
+import { DeletePatientDialogComponent } from "../../Layout/Dialogs/delete-patient-dialog/delete-patient-dialog.component";
+
 @Component({
   selector: "app-patient-list",
   standalone: true,
@@ -18,7 +29,7 @@ import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
   styleUrl: "./patient-list.component.css",
 })
 export class PatientListComponent {
-  patients$!: any;
+  patients$!:   any;
   errors: any;
   user$!: any;
   profilePhoto$!: any;
@@ -27,7 +38,8 @@ export class PatientListComponent {
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
     private spinner: NgxSpinnerService,
-    private appService: AppService
+    private appService: AppService,
+    private dialog:MatDialog
   ) {
     this.appService.getPatients$.subscribe((data) => (this.patients$ = data));
     // privisoire until fixe the rest of the logic
@@ -52,24 +64,72 @@ export class PatientListComponent {
     );
   }
 
-  deletePatient(id: any) {
-    console.log("delete:", id);
-    this.patientService.deletePatient(Number(id)).subscribe(
-      (data) => {
-        // get patiens an other once
-        this.spinner.hide();
-        this.handleAlerts.handleSweetAlert(data.message, "success", false);
-        this.getPatients();
-      },
-      (err) => {
-        this.errors = this.handleErrors.handleError(err);
-        this.spinner.hide();
-        this.handleAlerts.handleSweetAlert(
-          "Check your data input carefully.",
-          "error",
-          false
+
+  deletePatient(id:any): void {
+
+
+    
+/*
+  this.patientService.deletePatient(Number(id)).subscribe(
+          (data) => {
+            // get patiens an other once
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(data.message, "success", false);
+            this.getPatients();
+          },
+          (err) => {
+            this.errors = this.handleErrors.handleError(err);
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(
+              "Check your data input carefully.",
+              "error",
+              false
+            );
+          }
         );
+    */
+
+        
+
+ 
+    const dialogRef =   this.dialog.open(DeletePatientDialogComponent, {
+      width: '350px',
+    
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+  
+      if (result==true) {
+      
+
+        this.patientService.deletePatient(Number(id)).subscribe(
+          (data) => {
+            // get patiens an other once
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(data.message, "success", false);
+            this.getPatients();
+          },
+          (err) => {
+            this.errors = this.handleErrors.handleError(err);
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(
+              "Check your data input carefully.",
+              "error",
+              false
+            );
+          }
+        );
+
       }
-    );
+
+      
+    });
+
+    
+
   }
+
 }
+
+

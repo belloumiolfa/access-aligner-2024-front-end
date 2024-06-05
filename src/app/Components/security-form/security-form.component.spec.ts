@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SecurityFormComponent } from './security-form.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('SecurityFormComponent', () => {
   let component: SecurityFormComponent;
@@ -8,7 +9,8 @@ describe('SecurityFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SecurityFormComponent]
+      imports: [SecurityFormComponent],
+      providers: [      HttpClient , HttpHandler]
     })
     .compileComponents();
     

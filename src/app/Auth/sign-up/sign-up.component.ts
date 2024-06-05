@@ -26,7 +26,7 @@ import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
     ReactiveFormsModule,
     RouterModule,
     PreloaderComponent,
-    HttpClientModule,
+    
   ],
   templateUrl: "./sign-up.component.html",
   styleUrl: "./sign-up.component.css",
@@ -43,7 +43,9 @@ export class SignUpComponent {
     private spinner: NgxSpinnerService,
     private authService: AuthService,
     private handleErrors: HandleErrorsService,
-    private handleAlerts: HandleAlertsService
+    private handleAlerts: HandleAlertsService,
+    private router : Router
+
   ) {
     this.signUpForm = this.formBuilder.group({
       userName: new FormControl("", [Validators.required]),
@@ -56,13 +58,14 @@ export class SignUpComponent {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+   
   }
 
   onSubmit(e: Event) {
     this.formSubmitted = true;
     this.errors = this.handleErrors.handleError({});
+
+    console.log("form value",this.signUpForm.value)
     if (this.signUpForm.valid) {
       this.spinner.show();
 
@@ -73,6 +76,7 @@ export class SignUpComponent {
           (data: any) => {
             this.spinner.hide();
             this.handleAlerts.handleSweetAlert(data.message, "success", false);
+            this.router.navigate(['sign-in'])
           },
           (err) => {
             this.errors = this.handleErrors.handleError(err);

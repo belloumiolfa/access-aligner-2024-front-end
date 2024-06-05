@@ -20,7 +20,7 @@ import { User } from "../../Core/Models/user.models";
 import { AppService } from "../../Core/Services/app.service";
 import { UserService } from "../../Core/Services/UserService/user.service";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { log } from "console";
+
 export interface MenuItem {
   id?: number;
   key?: string;

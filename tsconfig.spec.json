@@ -6,8 +6,13 @@
     "types": [
       "jasmine",
       "@angular/localize"
+   
     ]
   },
+  "files": [
+    "test.ts",
+    "src/polyfills.ts"
+  ],
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
