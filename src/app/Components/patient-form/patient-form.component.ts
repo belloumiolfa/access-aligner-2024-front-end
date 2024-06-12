@@ -23,6 +23,8 @@ import { AppService } from "../../Core/Services/app.service";
 export class PatientFormComponent {
   patientForm!: FormGroup<any>;
   errors: any = {};
+  user$!: any;
+  patient$!: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +34,9 @@ export class PatientFormComponent {
     private spinner: NgxSpinnerService,
     private appService: AppService
   ) {
+    this.appService.getUser$.subscribe((data) => (this.user$ = data));
+    this.appService.getPatient$.subscribe((data) => (this.patient$ = data));
+
     this.patientForm = this.formBuilder.group({
       firstName: new FormControl("", [Validators.required]),
       lastName: new FormControl("", [Validators.required]),
@@ -61,26 +66,30 @@ export class PatientFormComponent {
     this.errors = this.handleErrors.handleError({});
 
     if (this.patientForm.valid)
-      this.patientService.addPatient(this.patientForm.value).subscribe(
-        (data) => {
-          this.spinner.hide();
-          this.handleAlerts.handleSweetAlert(
-            "Patient successfully Added!",
-            "success",
-            false
-          );
-          this.patientForm.reset();
-          this.getPatients();
-        },
-        (err) => {
-          this.errors = this.handleErrors.handleError(err);
-          this.spinner.hide();
-          this.handleAlerts.handleSweetAlert(
-            "Check your data input carefully.",
-            "error",
-            false
-          );
-        }
-      );
+      this.patientService
+        .addPatient(this.patientForm.value, this.user$.id)
+        .subscribe(
+          (data) => {
+            console.log(data);
+
+            this.getPatients();
+
+            this.handleAlerts.handleSweetAlert(
+              "Patient successfully Added!",
+              "success",
+              false
+            );
+            this.patientForm.reset();
+          },
+          (err) => {
+            this.errors = this.handleErrors.handleError(err);
+            this.spinner.hide();
+            this.handleAlerts.handleSweetAlert(
+              "Check your data input carefully.",
+              "error",
+              false
+            );
+          }
+        );
   }
 }

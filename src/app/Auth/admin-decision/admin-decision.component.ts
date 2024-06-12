@@ -26,9 +26,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class AdminDecisionComponent {
   user$!: any;
   errors!: any;
-  admin = this.utils.getDecodedAccessToken(
-    this.route.snapshot.paramMap.get("token")
-  ).userId;
+  admin!: any;
   user = this.route.snapshot.paramMap.get("user");
   constructor(
     private utils: UtilsService,
@@ -36,7 +34,11 @@ export class AdminDecisionComponent {
     private route: ActivatedRoute,
     private handleErrors: HandleErrorsService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+    this.admin = this.utils.getDecodedAccessToken(
+      this.route.snapshot.paramMap.get("token")
+    ).userId;
+  }
   ngOnInit(): void {
     this.spinner.show();
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

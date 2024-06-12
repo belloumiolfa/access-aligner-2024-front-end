@@ -9,6 +9,7 @@ import { PatientService } from "../../Core/Services/PatientService/patient.servi
 import { NgxSpinnerService } from "ngx-spinner";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-patient-list",
@@ -20,8 +21,6 @@ import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 export class PatientListComponent {
   patients$!: any;
   errors: any;
-  user$!: any;
-  profilePhoto$!: any;
   constructor(
     private patientService: PatientService,
     private handleErrors: HandleErrorsService,
@@ -30,36 +29,21 @@ export class PatientListComponent {
     private appService: AppService
   ) {
     this.appService.getPatients$.subscribe((data) => (this.patients$ = data));
-    // privisoire until fixe the rest of the logic
-    this.appService.getUser$.subscribe((data) => (this.user$ = data));
-    this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
-  }
-
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-  }
-  getPatients() {
-    this.patientService.getPatients().subscribe(
-      (data) => {
-        this.spinner.hide();
-        this.appService.setPatients$(data);
-      },
-      (err) => {
-        this.spinner.hide();
-        this.errors = this.handleErrors.handleError(err);
-      }
-    );
   }
 
   deletePatient(id: any) {
-    console.log("delete:", id);
     this.patientService.deletePatient(Number(id)).subscribe(
       (data) => {
-        // get patiens an other once
+        console.log(data);
+
+        this.appService.setPatients$(data);
+
         this.spinner.hide();
-        this.handleAlerts.handleSweetAlert(data.message, "success", false);
-        this.getPatients();
+        this.handleAlerts.handleSweetAlert(
+          "patient successful deleted ",
+          "success",
+          false
+        );
       },
       (err) => {
         this.errors = this.handleErrors.handleError(err);

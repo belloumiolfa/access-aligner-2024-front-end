@@ -75,24 +75,34 @@
               <td>
                 <img
                   [src]="
-                    profilePhoto$
-                      ? profilePhoto$
+                    patient.doctor?.profile.photo
+                      ? patient.doctor?.profile.photo
                       : 'assets/images/profile_av.png'
                   "
                   class="rounded-circle avatar"
                   alt=""
                 />
-                <p class="c_name">Dr. {{ user$.profile.lastName }}</p>
+                <p class="c_name">Dr. {{ patient.doctor?.profile.lastName }}</p>
               </td>
+
               <td>
-                <a
-                  [routerLink]="'/treatment/new-treatment/' + patient.id+'/general'"
-                  class="btn btn-primary btn-sm btn-icon-mini btn-round"
-                  data-toggle="modal"
-                  data-target="#largeModal"
-                >
-                  <i class="zmdi zmdi-plus-circle-o-duplicate"></i>
-                </a>
+                <ng-container *ngIf="patient.nbrTreat === 0; else elseTemplate">
+                  <a
+                    [routerLink]="
+                      '/treatment/new-treatment/' + patient.id + '/general'
+                    "
+                    class="btn btn-primary btn-sm btn-icon-mini btn-round"
+                    data-toggle="modal"
+                    data-target="#largeModal"
+                  >
+                    <i class="zmdi zmdi-plus-circle-o-duplicate"></i>
+                  </a>
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <span class="badge badge-success m-l-10 hidden-sm-down">{{
+                    patient.nbrTreat
+                  }}</span>
+                </ng-template>
               </td>
               <td>
                 <button

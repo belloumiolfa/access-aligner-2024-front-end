@@ -79,6 +79,7 @@ export class UserService {
   }
 
   getPhoto(id: any): Observable<any> {
+ 
     return this.http
       .get(this.apiBaseUrl + "/api/private/getPhoto?id=" + id, {
         responseType: "blob",
