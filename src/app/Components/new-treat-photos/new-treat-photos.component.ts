@@ -2,6 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { AddFileComponent } from "../add-file/add-file.component";
+import { AppService } from "../../Core/Services/app.service";
+import { TreatmentComponent } from "../../Pages/treatment/treatment.component";
+import { TreatmentService } from "../../Core/Services/TreatService/treatment.service";
 
 @Component({
   selector: "app-new-treat-photos",
@@ -85,14 +88,32 @@ export class NewTreatPhotosComponent {
       label: "Téléradio ",
     },
   ];
-
+  treatment$!: any;
+  constructor(
+    private appService: AppService,
+    private treatmentService: TreatmentService
+  ) {
+    this.appService.getTreatment$.subscribe((data) => (this.treatment$ = data));
+  }
   onChangeFile(e: any) {
     this.files.push(e);
   }
   onSubmit(e: any) {
     e.preventDefault();
     console.log(this.files);
+
+    this.treatmentService
+      .addTreatPhotos(this.files, this.treatment$.id)
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
+  
   onReset() {
     this.files = [];
   }

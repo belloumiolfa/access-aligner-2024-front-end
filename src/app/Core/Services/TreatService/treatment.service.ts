@@ -12,8 +12,6 @@ export class TreatmentService {
   constructor(private http: HttpClient) {}
 
   addTreatInfo(data: any, patientId: any, doctorId: any): Observable<any> {
-    console.log(patientId, doctorId);
-
     return this.http
       .post<any>(
         `${this.apiBaseUrl}/api/private/add-information?patientId=` +
@@ -52,12 +50,15 @@ export class TreatmentService {
 
   getInitPaatientTreat(id: any): Observable<any> {
     return this.http
-      .get<any>(`${this.apiBaseUrl}/api/private/get-init-treatment?patientId=` + id, {
-        headers: new HttpHeaders().set(
-          "Authorization",
-          `Bearer ${loggedInUser()}`
-        ),
-      })
+      .get<any>(
+        `${this.apiBaseUrl}/api/private/get-init-treatment?patientId=` + id,
+        {
+          headers: new HttpHeaders().set(
+            "Authorization",
+            `Bearer ${loggedInUser()}`
+          ),
+        }
+      )
       .pipe(
         map((data: any) => {
           return data;
@@ -65,4 +66,47 @@ export class TreatmentService {
       );
   }
 
+  addTreatTeeth(data: any, id: any) {
+    return this.http
+      .post<any>(
+        `${this.apiBaseUrl}/api/private/add-teeth?treatId=` + id,
+        data,
+        {
+          headers: new HttpHeaders().set(
+            "Authorization",
+            `Bearer ${loggedInUser()}`
+          ),
+        }
+      )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
+  addTreatPhotos(data: any, id: any) {
+    const photos: FileList = data;
+    const formData = new FormData();
+    for (let i = 0; i < photos.length; i++) {
+      formData.append("photos", photos[i]);
+    }
+
+    return this.http
+      .post<any>(
+        `${this.apiBaseUrl}/api/private/add-photographs?treatId=` + id,
+        formData,
+        {
+          headers: new HttpHeaders().set(
+            "Authorization",
+            `Bearer ${loggedInUser()}`
+          ),
+        }
+      )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
 }

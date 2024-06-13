@@ -37,37 +37,41 @@ export class NewTreatGeneralComponent {
   ) {
     appService.getPatient$.subscribe((data) => (this.patient$ = data));
     appService.getUser$.subscribe((data) => (this.doctor$ = data));
-    appService.getTreatment$.subscribe((data) => (this.savedTreatment$ = data));
+    appService.getTreatment$.subscribe((data) => {
+      this.savedTreatment$ = data;
+      this.treatForm = this.formBuilder.group({
+        description: new FormControl(this.savedTreatment$.description),
+        treat: new FormControl(this.savedTreatment$.treat, [
+          Validators.required,
+        ]),
+        postCross: new FormControl(this.savedTreatment$.postCross, [
+          Validators.required,
+        ]),
+        antCross: new FormControl(this.savedTreatment$.antCross, [
+          Validators.required,
+        ]),
+        gap: new FormControl(this.savedTreatment$.gap, [Validators.required]),
+        overbite: new FormControl(this.savedTreatment$.overbite, [
+          Validators.required,
+        ]),
+        classI: new FormControl(this.savedTreatment$.classI, [
+          Validators.required,
+        ]),
+        reduceOverbite: new FormControl(this.savedTreatment$.reduceOverbite, [
+          Validators.required,
+        ]),
+        crowding: new FormControl(this.savedTreatment$.crowding, [
+          Validators.required,
+        ]),
+        extract: new FormControl(this.savedTreatment$.extract, [
+          Validators.required,
+        ]),
+      });
+    });
   }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.treatForm = this.formBuilder.group({
-      description: new FormControl(this.savedTreatment$.description),
-      treat: new FormControl(this.savedTreatment$.treat, [Validators.required]),
-      postCross: new FormControl(this.savedTreatment$.postCross, [
-        Validators.required,
-      ]),
-      antCross: new FormControl(this.savedTreatment$.antCross, [
-        Validators.required,
-      ]),
-      gap: new FormControl(this.savedTreatment$.gap, [Validators.required]),
-      overbite: new FormControl(this.savedTreatment$.overbite, [
-        Validators.required,
-      ]),
-      classI: new FormControl(this.savedTreatment$.classI, [
-        Validators.required,
-      ]),
-      reduceOverbite: new FormControl(this.savedTreatment$.reduceOverbite, [
-        Validators.required,
-      ]),
-      crowding: new FormControl(this.savedTreatment$.crowding, [
-        Validators.required,
-      ]),
-      extract: new FormControl(this.savedTreatment$.extract, [
-        Validators.required,
-      ]),
-    });
   }
 
   onSubmit($event: Event) {

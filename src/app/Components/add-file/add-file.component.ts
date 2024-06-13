@@ -23,7 +23,7 @@ export class AddFileComponent {
 
       // Create new filename with desired name and original extension
       //namephoto+treatid+patientid
-      const newFilename = `${item.name}-${item.id}.` + fileExtension;
+      const newFilename = `${item.name}.` + fileExtension;
 
       // Create new File object with the new filename and original content
       const renamedFile = new File([this.selectedFiles[0]], newFilename, {
@@ -38,7 +38,6 @@ export class AddFileComponent {
   onSelect(event: any, item: any) {
     this.selectedFiles = event.addedFiles;
 
-    
     this.renameFile(item);
     this.file.emit(this.selectedFiles[0]);
   }
