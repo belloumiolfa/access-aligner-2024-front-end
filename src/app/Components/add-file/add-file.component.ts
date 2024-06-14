@@ -1,5 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+import { data } from "jquery";
 import { NgxDropzoneModule } from "ngx-dropzone";
 
 @Component({
@@ -10,10 +12,17 @@ import { NgxDropzoneModule } from "ngx-dropzone";
   styleUrl: "./add-file.component.css",
 })
 export class AddFileComponent {
-  @Input() item!: any;
   @Output() file = new EventEmitter<any>();
+  @Input() item!: any;
+  @Input() existedFile!: any;
+  imageUrl!: SafeUrl;
 
   selectedFiles: File[] = [];
+  constructor(private sanitizer: DomSanitizer) {}
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+   }
   renameFile(item: any) {
     if (this.selectedFiles) {
       // Extract file extension from original filename
@@ -44,5 +53,23 @@ export class AddFileComponent {
 
   onRemove(event: any) {
     this.selectedFiles.splice(this.selectedFiles.indexOf(event), 1);
+  }
+
+  convertToUrlFile(file: any) {
+    console.log(file);
+  }
+
+  getImageUrl(photo:any ) {
+    // get imageUrl from array in appservice with id 
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(photo)
+      );    
+      //return this.imageUrl;
+
+    };
+    reader.readAsDataURL(photo);
+
   }
 }

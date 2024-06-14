@@ -126,6 +126,7 @@ export class AppService {
   }
 
   setTreatment(data: any) {
+    // get photos and clinix and put them in separate array to usedin add file component ( array of imageUrl )
     this.treatment$.next({ ...this.getTreatment$, ...data });
   }
 }

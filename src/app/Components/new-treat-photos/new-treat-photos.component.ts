@@ -5,6 +5,10 @@ import { AddFileComponent } from "../add-file/add-file.component";
 import { AppService } from "../../Core/Services/app.service";
 import { TreatmentComponent } from "../../Pages/treatment/treatment.component";
 import { TreatmentService } from "../../Core/Services/TreatService/treatment.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
+import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
+import { stringify } from "querystring";
 
 @Component({
   selector: "app-new-treat-photos",
@@ -15,6 +19,7 @@ import { TreatmentService } from "../../Core/Services/TreatService/treatment.ser
 })
 export class NewTreatPhotosComponent {
   files: File[] = [];
+  existedFiles: File[] = [];
 
   photos = [
     {
@@ -89,18 +94,42 @@ export class NewTreatPhotosComponent {
     },
   ];
   treatment$!: any;
+  errors: any;
+
   constructor(
     private appService: AppService,
-    private treatmentService: TreatmentService
+    private treatmentService: TreatmentService,
+    private handleErrors: HandleErrorsService,
+    private handleAlerts: HandleAlertsService,
+    private spinner: NgxSpinnerService
   ) {
-    this.appService.getTreatment$.subscribe((data) => (this.treatment$ = data));
+    this.appService.getTreatment$.subscribe((data) => {
+      this.treatment$ = data;
+      this.treatment$?.photos?.forEach((element: any) => {
+        console.log(element);
+
+        let file: File = new File([element], element.name, {
+          type: element.type,
+        });
+        this.existedFiles.push(file);
+        console.log(this.existedFiles);
+      });
+    });
   }
+  existedFile(photo: any) {
+    const result = this.existedFiles.filter(
+      (file) => file.name.split(".")[0] == photo.name
+    );
+
+    return result[0];
+  }
+
   onChangeFile(e: any) {
     this.files.push(e);
   }
+
   onSubmit(e: any) {
     e.preventDefault();
-    console.log(this.files);
 
     this.treatmentService
       .addTreatPhotos(this.files, this.treatment$.id)
@@ -109,14 +138,22 @@ export class NewTreatPhotosComponent {
           console.log(data);
         },
         (err) => {
-          console.log(err);
+          this.errors = this.handleErrors.handleError(err);
+          this.spinner.hide();
+
+          this.handleAlerts.handleSweetAlert(
+            "Check your data input carefully.",
+            "error",
+            false
+          );
         }
       );
   }
-  
+
   onReset() {
     this.files = [];
   }
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

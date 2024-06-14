@@ -108,12 +108,6 @@ export class NewTreatTeethComponent {
   }
 
   onReset() {
-    /* this.teeth = teeth;
-
-    teeth.forEach((element) => {
-      let t = { num: element.id, status: element.status };
-      this.data.push(t);
-    }); */
     this.treatment$.teeth?.forEach((element: any) => {
       this.changeColor(element.num, this.colors[element.action]);
     });
