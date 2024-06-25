@@ -32,6 +32,7 @@ import { NewTreatGeneralComponent } from "./Components/new-treat-general/new-tre
 import { NewTreatPhotosComponent } from "./Components/new-treat-photos/new-treat-photos.component";
 import { NewTreatClinicsComponent } from "./Components/new-treat-clinics/new-treat-clinics.component";
 import { NewTreatTeethComponent } from "./Components/new-treat-teeth/new-treat-teeth.component";
+import { TimelineTreatmentsComponent } from "./Components/timeline-treatments/timeline-treatments.component";
 export const routes: Routes = [
   {
     path: "",
@@ -43,6 +44,14 @@ export const routes: Routes = [
         title: "Dashboard page. ",
         component: DashboardComponent,
       },
+
+
+
+
+
+ 
+
+
       {
         path: "profile/:id",
         title: "User Profile page. ",
@@ -204,4 +213,8 @@ export const routes: Routes = [
       },
     ],
   },
+         // for testing
+         {path : "timeline",component : TimelineTreatmentsComponent} ,
+
+  
 ];

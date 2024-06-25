@@ -16,12 +16,22 @@ describe('AcceptDecisionComponent', () => {
     const fixture = TestBed.createComponent(AcceptDecisionComponent);
     const component = fixture.componentInstance;
 
-    // Mock user object with profile and photo
-    const mockUser = {
-      user: { status: 'confirmed' }
-    };
+   
 
-    component.user = mockUser; 
+   // Provide a mock user object
+   component.user = {
+    userStatus: {
+      status: {
+        id: 4
+      },
+      responsible: {
+        profile: {
+          firstName: 'John',
+          lastName: 'Doe'
+        }
+      }
+    }
+  };
 
     fixture.detectChanges(); // Trigger change detection
 

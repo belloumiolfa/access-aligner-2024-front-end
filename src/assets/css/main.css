@@ -16020,9 +16020,11 @@ section small {
 }
 .dtp .dtp-buttons {
   text-align: center !important;
+ 
 }
 .dtp .dtp-buttons .dtp-btn-ok {
   margin-left: 10px;
+  background-color: #177ca8 ;
 }
 .dtp .dtp-buttons .dtp-btn-clear {
   margin-right: 10px !important;

@@ -11,7 +11,7 @@ import { provideHttpClient } from "@angular/common/http";
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { CountToModule } from "angular-count-to";
 import { provideAnimations } from "@angular/platform-browser/animations";
-
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 
 
 export const appConfig: ApplicationConfig = {
@@ -20,6 +20,10 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(),
     provideAnimations(),
+
+
+
+    
     /*  (
       NgWizardModule.forRoot(
         ngWizardConfig

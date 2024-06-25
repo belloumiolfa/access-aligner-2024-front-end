@@ -13,7 +13,7 @@ import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { first } from "rxjs";
 import { User } from "../../Core/Models/user.models";
 import { PreloaderComponent } from "../../Shared/Ui/preloader/preloader.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import Swal from "sweetalert2";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
@@ -26,8 +26,10 @@ import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
     ReactiveFormsModule,
     RouterModule,
     PreloaderComponent,
+   
     
   ],
+  providers:[],
   templateUrl: "./sign-up.component.html",
   styleUrl: "./sign-up.component.css",
 })
@@ -49,16 +51,18 @@ export class SignUpComponent {
   ) {
     this.signUpForm = this.formBuilder.group({
       userName: new FormControl("", [Validators.required]),
-      phone: new FormControl("", [Validators.required]),
+      phone: new FormControl("", [Validators.required, ]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required, ]),
       confirmPassword: new FormControl("", [Validators.required]),
       term: new FormControl("", [Validators.required]),
     });
   }
 
+
+
   ngOnInit(): void {
-   
+  
   }
 
   onSubmit(e: Event) {

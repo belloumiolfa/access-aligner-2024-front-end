@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -15,20 +15,23 @@ import { AppService } from "../../Core/Services/app.service";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 import {MatInputModule} from '@angular/material/input';
 
 import {provideNativeDateAdapter} from '@angular/material/core';
 
+declare var $: any;
+
+
 @Component({
   selector: "app-patient-form",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, ],
   providers: [provideNativeDateAdapter()],
   templateUrl: "./patient-form.component.html",
   styleUrl: "./patient-form.component.css",
 })
-export class PatientFormComponent {
+export class PatientFormComponent implements OnInit{
   patientForm!: FormGroup<any>;
   errors: any = {};
 
@@ -39,6 +42,8 @@ export class PatientFormComponent {
     private handleAlerts: HandleAlertsService,
     private spinner: NgxSpinnerService,
     private appService: AppService
+
+    
   ) {
     this.patientForm = this.formBuilder.group({
       firstName: new FormControl("", [Validators.required]),
@@ -53,6 +58,26 @@ export class PatientFormComponent {
       address: new FormControl("", []),
       comment: new FormControl("", []),
     });
+  }
+  ngOnInit(): void {
+
+
+    $('#datetimepicker').bootstrapMaterialDatePicker({
+    
+       weekStart : 0, time: false 
+    }).on('change', (e: any, date: { format: (arg0: string) => any; }) => {
+    
+
+      const formattedDate = date.format('YYYY-MM-DD HH:mm');
+      this.patientForm.get('birthday')?.setValue(formattedDate);
+      console.log('Selected Date:', formattedDate);
+
+
+    });
+
+
+
+    
   }
   getPatients() {
     this.patientService.getPatients().subscribe(
@@ -100,4 +125,8 @@ export class PatientFormComponent {
         }
       );
   }
+
+
+
+
 }
