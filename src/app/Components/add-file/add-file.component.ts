@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { data } from "jquery";
 import { NgxDropzoneModule } from "ngx-dropzone";
+import { UserService } from "../../Core/Services/UserService/user.service";
 
 @Component({
   selector: "app-add-file",
@@ -13,16 +14,18 @@ import { NgxDropzoneModule } from "ngx-dropzone";
 })
 export class AddFileComponent {
   @Output() file = new EventEmitter<any>();
+  @Output() deletedFile = new EventEmitter<any>();
   @Input() item!: any;
   @Input() existedFile!: any;
   imageUrl!: SafeUrl;
 
   selectedFiles: File[] = [];
   constructor(private sanitizer: DomSanitizer) {}
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-   }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.getImageUrl(this.existedFile?.resource);
+  }
   renameFile(item: any) {
     if (this.selectedFiles) {
       // Extract file extension from original filename
@@ -55,21 +58,18 @@ export class AddFileComponent {
     this.selectedFiles.splice(this.selectedFiles.indexOf(event), 1);
   }
 
-  convertToUrlFile(file: any) {
-    console.log(file);
+  deleteFile(existedFile: any) {
+    this.deletedFile.emit(existedFile);
   }
 
-  getImageUrl(photo:any ) {
-    // get imageUrl from array in appservice with id 
+  getImageUrl(photo: any) {
+
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(
         URL.createObjectURL(photo)
-      );    
-      //return this.imageUrl;
-
+      );
     };
     reader.readAsDataURL(photo);
-
   }
 }

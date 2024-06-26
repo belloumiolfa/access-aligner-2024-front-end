@@ -3,11 +3,15 @@ import { Component } from "@angular/core";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { AddFileComponent } from "../add-file/add-file.component";
 import { AppService } from "../../Core/Services/app.service";
+import { TreatmentComponent } from "../../Pages/treatment/treatment.component";
 import { TreatmentService } from "../../Core/Services/TreatService/treatment.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
+import { stringify } from "querystring";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+import { UserService } from "../../Core/Services/UserService/user.service";
+import { env } from "process";
 
 @Component({
   selector: "app-new-treat-photos",
@@ -23,6 +27,7 @@ export class NewTreatPhotosComponent {
   photos = [
     {
       id: 0,
+      file: null,
       required: true,
       name: "smileExp",
       labelEn: "Smiley expression",
@@ -30,6 +35,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 1,
+      file: null,
       required: true,
       name: "overview",
       labelEn: "Overview",
@@ -37,6 +43,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 2,
+      file: null,
       required: true,
       name: "vestClosedOcc",
       labelEn: "Vestibular closed occlusion",
@@ -44,6 +51,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 3,
+      file: null,
       required: true,
       name: "closedLeftLatOCC",
       labelEn: "Closed Left Lateral Occlusion",
@@ -51,6 +59,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 4,
+      file: null,
       required: true,
       name: "closedRightLatOcc",
       labelEn: "Closed Right Lateral Occlusion",
@@ -58,6 +67,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 5,
+      file: null,
       required: true,
       name: "supMaxiOcc",
       labelEn: "Superior maxillary Occlusal view",
@@ -65,6 +75,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 6,
+      file: null,
       required: true,
       name: "jawOccView",
       labelEn: "Jaw Occlusal view",
@@ -72,6 +83,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 7,
+      file: null,
       required: true,
       name: "panoramicRadio",
       labelEn: "Panoramic Radio",
@@ -79,6 +91,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 8,
+      file: null,
       required: true,
       name: "inocclusion",
       labelEn: "Inocclusion",
@@ -86,6 +99,7 @@ export class NewTreatPhotosComponent {
     },
     {
       id: 9,
+      file: null,
       required: false,
       name: "teleradio",
       labelEn: "Teleradio",
@@ -94,6 +108,7 @@ export class NewTreatPhotosComponent {
   ];
   treatment$!: any;
   errors: any;
+  url: any;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -102,14 +117,27 @@ export class NewTreatPhotosComponent {
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
     private spinner: NgxSpinnerService
-  ) {
+  ) {}
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
     this.appService.getTreatment$.subscribe((data) => {
       this.treatment$ = data;
       this.treatment$?.photos?.forEach((element: any) => {
         this.getPhoto(element);
       });
-      console.log(this.treatment$);
     });
+    console.log(this.existedFiles);
+  }
+  getImageUrl(photo: any, callback: (url: any) => void) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      const imageUrl = this.sanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(photo)
+      );
+      callback(imageUrl);
+    };
+    reader.readAsDataURL(photo);
   }
 
   getPhoto(file: any) {
@@ -117,23 +145,24 @@ export class NewTreatPhotosComponent {
       (data) => {
         let exist = false;
         for (let i = 0; i < this.existedFiles.length; i++) {
-          exist = this.existedFiles[i].name === file.name;
-          break;
+          if (this.existedFiles[i].name === file.name) {
+            exist = true;
+            break;
+          }
         }
         if (!exist) {
-          const reader = new FileReader();
-          reader.onload = (e: any) => {
+          this.getImageUrl(data, (url) => {
+            console.log(url);
+
             let photo = {
-              resource: this.sanitizer.bypassSecurityTrustUrl(
-                URL.createObjectURL(data)
-              ),
+              resource: url,
               id: file.id,
+              file: null,
               name: file.name,
               type: file.type,
             };
             this.existedFiles.push(photo);
-          };
-          reader.readAsDataURL(data);
+          });
         }
       },
       (err) => {
@@ -158,6 +187,7 @@ export class NewTreatPhotosComponent {
       (file: any) => file.id !== event.id
     );
     this.files = this.files.filter((file: any) => file.name !== event.name);
+
     this.treatment$.photos = this.treatment$.photos.filter(
       (file: any) => file.id !== event.id
     );
@@ -167,12 +197,32 @@ export class NewTreatPhotosComponent {
 
   onSubmit(e: any) {
     e.preventDefault();
+
+    if (this.existedFiles.length > 0)
+      this.existedFiles.forEach((element: any) => {
+        let newFile = new File([element.resource], element.name, {
+          type: element.type,
+        });
+
+        let exist = false;
+        for (let i = 0; i < this.files.length; i++) {
+          if (this.files[i].name === newFile.name) {
+            exist = true;
+            break;
+          }
+        }
+
+        if (!exist) {
+          this.files.push(newFile);
+        }
+      });
+    console.log(this.files);
+
     this.treatmentService
       .addTreatPhotos(this.files, this.treatment$.id)
       .subscribe(
         (data) => {
           this.appService.setTreatment(data);
-         // window.location.reload();
         },
 
         (err) => {
@@ -195,6 +245,6 @@ export class NewTreatPhotosComponent {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    console.log(this.files);
+    //console.log(this.files);
   }
 }

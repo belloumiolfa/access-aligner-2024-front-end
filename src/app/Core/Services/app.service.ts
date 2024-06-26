@@ -38,7 +38,7 @@ export class AppService {
     this.user$.next(user);
     // get user photo
     if (user.profile.photo !== null) {
-      this.userService.getPhoto(user.profile.photo.id).subscribe(
+      this.userService.getPhoto(user.profile.photo.id, "Profile").subscribe(
         (data: any) => {
           this.setPhoto$(data);
         },
@@ -69,36 +69,38 @@ export class AppService {
     let tab: any[] = [];
     data.forEach((element: any) => {
       if (element.doctor.profile.photo != null) {
-        this.userService.getPhoto(element.doctor.profile?.photo.id).subscribe(
-          (data: any) => {
-            const reader = new FileReader();
-            let imageUrl!: SafeUrl;
+        this.userService
+          .getPhoto(element.doctor.profile?.photo.id, "Profile")
+          .subscribe(
+            (data: any) => {
+              const reader = new FileReader();
+              let imageUrl!: SafeUrl;
 
-            reader.onload = (e: any) => {
-              imageUrl = this.sanitizer.bypassSecurityTrustUrl(
-                URL.createObjectURL(data)
-              );
-              element = {
-                ...element,
-                doctor: {
-                  ...element.doctor,
-                  profile: { ...element.doctor.profile, photo: imageUrl },
-                },
+              reader.onload = (e: any) => {
+                imageUrl = this.sanitizer.bypassSecurityTrustUrl(
+                  URL.createObjectURL(data)
+                );
+                element = {
+                  ...element,
+                  doctor: {
+                    ...element.doctor,
+                    profile: { ...element.doctor.profile, photo: imageUrl },
+                  },
+                };
+                tab.push(element);
               };
-              tab.push(element);
-            };
 
-            reader.readAsDataURL(data);
-          },
-          (err: any) => {
-            this.errors = this.handleErrors.handleError(err);
-            this.handleAlerts.handleSweetAlert(
-              "Check your data input carefully.",
-              "error",
-              false
-            );
-          }
-        );
+              reader.readAsDataURL(data);
+            },
+            (err: any) => {
+              this.errors = this.handleErrors.handleError(err);
+              this.handleAlerts.handleSweetAlert(
+                "Check your data input carefully.",
+                "error",
+                false
+              );
+            }
+          );
       } else {
         tab.push(element);
       }

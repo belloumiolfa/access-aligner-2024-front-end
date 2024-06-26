@@ -88,8 +88,11 @@ export class TreatmentService {
   addTreatPhotos(data: any, id: any) {
     const photos: FileList = data;
     const formData = new FormData();
-    for (let i = 0; i < photos.length; i++) {
-      formData.append("photos", photos[i]);
+
+    if (data.length != 0) {
+      for (let i = 0; i < photos.length; i++) {
+        formData.append("photos", photos[i]);
+      }
     }
 
     return this.http
@@ -97,6 +100,51 @@ export class TreatmentService {
         `${this.apiBaseUrl}/api/private/add-photographs?treatId=` + id,
         formData,
         {
+          headers: new HttpHeaders().set(
+            "Authorization",
+            `Bearer ${loggedInUser()}`
+          ),
+        }
+      )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
+  getTreatPhoto(fileId: any, treatId: any): Observable<any> {
+    return this.http
+      .get(
+        this.apiBaseUrl +
+          "/api/private/getTreatPhoto?fileId=" +
+          fileId +
+          "&treatId=" +
+          treatId,
+        {
+          responseType: "blob",
+          headers: new HttpHeaders().set(
+            "Authorization",
+            `Bearer ${loggedInUser()}`
+          ),
+        }
+      )
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+  getTreatPhotos(id: any, type: any): Observable<any> {
+    return this.http
+      .get(
+        this.apiBaseUrl +
+          "/api/private/getPhotos?id=" +
+          id +
+          "&type=" +
+          type,
+        {
+          responseType: "blob",
           headers: new HttpHeaders().set(
             "Authorization",
             `Bearer ${loggedInUser()}`

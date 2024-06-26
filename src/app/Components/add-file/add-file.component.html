@@ -1,5 +1,5 @@
 <div class="card text-center">
-  <ng-container *ngIf="existedFile; else elseTemplate">
+  <ng-container *ngIf="existedFile != undefined; else elseTemplate">
     <div class="content file_manager">
       <div class="container-fluid">
         <div class="card">
@@ -9,19 +9,22 @@
                 <button
                   type="button"
                   class="btn btn-icon btn-icon-mini btn-round btn-danger"
+                  (click)="deleteFile(existedFile)"
                 >
                   <i class="zmdi zmdi-delete"></i>
                 </button>
               </div>
               <div class="image">
                 <img
-                  [src]="getImageUrl(existedFile)"
+                  [src]="(existedFile.resource) "
                   alt="img"
                   class="img-fluid"
                 />
               </div>
               <div class="file-name">
-                <p class="m-b-5 text-muted">{{ existedFile.name }}</p>
+                <p class="m-b-5 text-muted">
+                  <small>{{ item.labelEn }}</small>
+                </p>
                 <small
                   >Size: {{ existedFile.size }}MB,
                   <span class="date text-muted">Dec 11, 2017</span></small
