@@ -7,7 +7,7 @@ import { TaskMenuComponent } from "../task-menu/task-menu.component";
 import { RigthSidebarComponent } from "../rigth-sidebar/rigth-sidebar.component";
 import { LeftSidebarMobilComponent } from "../left-sidebar-mobil/left-sidebar-mobil.component";
 import { logOut } from "../../Core/Helpers/utils";
-import { Router } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-mini-leftbar",
@@ -20,6 +20,7 @@ import { Router } from "@angular/router";
     TaskMenuComponent,
     RigthSidebarComponent,
     LeftSidebarMobilComponent,
+    RouterModule
   ],
   templateUrl: "./mini-leftbar.component.html",
   styleUrl: "./mini-leftbar.component.css",

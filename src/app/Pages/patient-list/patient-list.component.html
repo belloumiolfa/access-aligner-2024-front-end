@@ -9,7 +9,9 @@
                 >Search:<input
                   type="search"
                   class="form-control form-control-sm"
-                  placeholder=""
+                  placeholder="search by name"
+                  [(ngModel)]="searchTerm"
+                  (input)="serachByName()"
                   aria-controls="DataTables_Table_0"
               /></label>
             </div>
@@ -27,11 +29,35 @@
               <th data-breakpoints="xs">Action</th>
             </tr>
           </thead>
-        
-          <tbody>
 
-            <h4 *ngIf="patients$.length === 0"> No patients added yet ... ! </h4>
-            <tr *ngFor="let patient of patients$">
+          <tbody>
+            <tr *ngIf="patients$.length === 0 && !filter">
+              <td colspan="7" *ngIf="patients$.length === 0 && !filter">
+                <div
+                  class="alert alert-info alert-table"
+                  role="alert"
+                  *ngIf="patients$.length === 0 && !filter"
+                >
+                  No patients added yet ... !
+                </div>
+              </td>
+            </tr>
+
+            <tr *ngIf="patients$.length === 0 && filter">
+              <td colspan="7" *ngIf="patients$.length === 0 && filter">
+                <div
+                  class="alert alert-danger alert-table"
+                  role="alert"
+                  *ngIf="patients$.length === 0 && filter"
+                >
+                  No patients found ... !
+                </div>
+              </td>
+            </tr>
+
+            <tr
+              *ngFor="let patient of filter ? patients$ : patientsBeforeFilter$"
+            >
               <td><span class="font-bold">#</span>{{ patient.id }}</td>
 
               <td>
@@ -119,7 +145,7 @@
             </tr>
           </tbody>
 
-          <tfoot *ngIf="patients$.length >= 5" >
+          <tfoot *ngIf="patients$.length >= 5">
             <tr>
               <th></th>
               <th>Name</th>

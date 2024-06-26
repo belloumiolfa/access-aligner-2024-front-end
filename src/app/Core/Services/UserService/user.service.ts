@@ -78,9 +78,9 @@ export class UserService {
       );
   }
 
-  getPhoto(id: any): Observable<any> {
+  getPhoto(id: any, type: any): Observable<any> {
     return this.http
-      .get(this.apiBaseUrl + "/api/private/getPhoto?id=" + id, {
+      .get(this.apiBaseUrl + "/api/private/getPhoto?id=" + id+"&type="+type, {
         responseType: "blob",
         headers: new HttpHeaders().set(
           "Authorization",

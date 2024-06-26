@@ -90,7 +90,6 @@ export class LayoutContainerComponent {
         (data) => {
           this.appService.setUser$(data);
           this.spinner.hide();
-          if (data.profile.photo !== null) this.getProfilePhoto();
         },
         (err) => {
           this.errors = this.handleErrors.handleError(err);
@@ -98,17 +97,4 @@ export class LayoutContainerComponent {
       );
   }
 
-  // get profile photo
-  getProfilePhoto() {
-    this.userService.getPhoto(this.user$.profile?.photo.id).subscribe(
-      (data) => {
-        this.appService.setPhoto$(data);
-        this.spinner.hide();
-      },
-      (err) => {
-        this.spinner.hide();
-        this.errors = this.handleErrors.handleError(err);
-      }
-    );
-  }
 }

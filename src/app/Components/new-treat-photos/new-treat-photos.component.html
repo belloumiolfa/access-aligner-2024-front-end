@@ -18,8 +18,10 @@
                 *ngFor="let item of photos"
               >
                 <app-add-file
+                  [existedFile]="existedFile(item)"
                   [item]="item"
                   (file)="onChangeFile($event)"
+                  (deletedFile)="onDeleteFile($event)"
                 ></app-add-file>
               </div>
 

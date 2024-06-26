@@ -39,9 +39,7 @@ export class LeftSidebarComponent {
   isCollapsed: any = true;
 
   constructor(private appService: AppService) {
-    this.appService.getPhoto$.subscribe((data) => {
-      this.profilePhoto$ = data;
-     });
+    this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
   }
 
   ngOnInit(): void {
@@ -82,5 +80,4 @@ export class LeftSidebarComponent {
     if (Object.keys(photo).length > 0) return photo;
     else return "assets/images/profile_av.png";
   }
-
 }

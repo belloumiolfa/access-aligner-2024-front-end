@@ -47,13 +47,13 @@ export class AddNewTreatmentComponent {
     },
     {
       id: 4,
-      label: "Photographs",
+      label: "Photographs and x-rays",
       url: "photos",
       done: false,
     },
     {
       id: 5,
-      label: "Clinics and x-rays",
+      label: "Clinics ",
       url: "clinics",
       done: false,
     },
@@ -70,6 +70,7 @@ export class AddNewTreatmentComponent {
     this.activeRoute.params.subscribe((params) => (this.id = params["id"]));
     this.appService.getPatient$.subscribe((data) => (this.patient$ = data));
   }
+  
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -100,6 +101,7 @@ export class AddNewTreatmentComponent {
       }`,
     ]);
   }
+
   previousStep() {
     this.clickedIndex -= 1;
     this.router.navigate([
@@ -108,13 +110,13 @@ export class AddNewTreatmentComponent {
       }`,
     ]);
   }
+
   finishing() {
     this.router.navigate([
       `treatment/new-treatment/${this.patient$.id}/${
         this.steps[this.clickedIndex].url
       }`,
     ]);
-
-    // redirect to verify data page to cofirm informations
   }
+
 }

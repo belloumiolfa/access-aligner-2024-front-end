@@ -29,7 +29,7 @@ export class ProfileComponent {
   constructor(private appService: AppService) {
     this.appService.getUser$.subscribe((data) => (this.user$ = data));
     this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
-    console.log(this.profilePhoto$);
+
   }
 
   chartAreaData = [

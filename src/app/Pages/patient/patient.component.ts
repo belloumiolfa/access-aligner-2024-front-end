@@ -27,10 +27,8 @@ export class PatientComponent {
     this.spinner.show();
     this.patientService.getPatients().subscribe(
       (data) => {
-        console.log(data);
-
-        this.spinner.hide();
         this.appService.setPatients$(data);
+        this.spinner.hide();
       },
       (err) => {
         this.spinner.hide();

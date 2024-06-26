@@ -10,16 +10,22 @@ import { loggedInUser } from "../../Helpers/utils";
 export class PatientService {
   apiBaseUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
 
-  addPatient(patientData: any): Observable<any> {
+  }
+
+  addPatient(patientData: any, id: any): Observable<any> {
     return this.http
-      .post<any>(`${this.apiBaseUrl}/api/private/add-patient`, patientData, {
-        headers: new HttpHeaders().set(
-          "Authorization",
-          `Bearer ${loggedInUser()}`
-        ),
-      })
+      .post<any>(
+        `${this.apiBaseUrl}/api/private/add-patient?doctorId=` + id,
+        patientData,
+        {
+          headers: new HttpHeaders().set(
+            "Authorization",
+            `Bearer ${loggedInUser()}`
+          ),
+        }
+      )
       .pipe(
         map((data: any) => {
           return data;
@@ -89,5 +95,4 @@ export class PatientService {
         })
       );
   }
-  
 }

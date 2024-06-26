@@ -1,0 +1,11 @@
+.row {
+  font-size: 14px;
+  padding: 90px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.55rem;
+  background: #fff;
+  color: #616161;
+  font-weight: 400;
+  transition: all 0.2s ease-in-out;
+}
+

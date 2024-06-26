@@ -50,11 +50,8 @@
               "node_modules/raphael/raphael.js",
               "node_modules/morris.js/morris.js",
               "node_modules/moment/min/moment.min.js",
-           
-              "./src/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js",
-              "./src/assets/plugins/bootstrap/js/bootstrap.min.js"
-
-            
+              "node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,

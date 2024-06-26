@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -22,7 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 
 import {provideNativeDateAdapter} from '@angular/material/core';
 
-
+declare var $: any;
 
 @Component({
   selector: "app-patient-update-form",
@@ -32,7 +32,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
   templateUrl: "./patient-update-form.component.html",
   styleUrl: "./patient-update-form.component.css",
 })
-export class PatientUpdateFormComponent {
+export class PatientUpdateFormComponent implements OnInit{
   patientForm!: FormGroup<any>;
   errors: any = {};
   id: any;
@@ -73,6 +73,18 @@ export class PatientUpdateFormComponent {
         comment: new FormControl(this.patient$.comment, []),
       });
     });
+  }
+  ngOnInit(): void {
+    $('#datetimepicker')
+      .bootstrapMaterialDatePicker({
+        weekStart: 0,
+        time: false,
+      })
+      .on('change', (e: any, date: { format: (arg0: string) => any }) => {
+        const formattedDate = date.format('YYYY-MM-DD');
+        this.patientForm.get('birthday')?.setValue(formattedDate);
+        console.log('Selected Date:', formattedDate);
+      });
   }
   getPatients() {
     this.patientService.getPatients().subscribe(
