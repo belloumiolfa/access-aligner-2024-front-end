@@ -2,14 +2,11 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import {
   ActivatedRoute,
-  NavigationEnd,
   Router,
   RouterModule,
   RouterOutlet,
 } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { Subscription, last } from "rxjs";
-import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { PatientService } from "../../Core/Services/PatientService/patient.service";
 import { AppService } from "../../Core/Services/app.service";
@@ -70,7 +67,7 @@ export class AddNewTreatmentComponent {
     this.activeRoute.params.subscribe((params) => (this.id = params["id"]));
     this.appService.getPatient$.subscribe((data) => (this.patient$ = data));
   }
-  
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -118,5 +115,4 @@ export class AddNewTreatmentComponent {
       }`,
     ]);
   }
-
 }
