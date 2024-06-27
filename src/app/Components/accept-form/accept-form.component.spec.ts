@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AcceptFormComponent } from './accept-form.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('AcceptFormComponent', () => {
   let component: AcceptFormComponent;
@@ -8,7 +9,8 @@ describe('AcceptFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AcceptFormComponent]
+      imports: [AcceptFormComponent],
+      providers: [  HttpClient , HttpHandler]
     })
     .compileComponents();
     

@@ -7,10 +7,19 @@
 @import "./assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css";
 @import "./assets/plugins/light-gallery/css/lightgallery.css";
 @import "./assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css";
+
+
+@import "./assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css";
+@import "./assets/plugins/sweetalert/sweetalert.css";
 @import "./assets/css/main.css";
 @import "./assets/css/timeline.css";
 @import "./assets/css/blog.css";
 @import "./assets/css/color_skins.css";
+
+
+
+
+
 
 .display_overlay_menu {
   display: block;

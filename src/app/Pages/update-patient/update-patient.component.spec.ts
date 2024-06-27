@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdatePatientComponent } from './update-patient.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('UpdatePatientComponent', () => {
   let component: UpdatePatientComponent;
@@ -8,7 +11,17 @@ describe('UpdatePatientComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UpdatePatientComponent]
+      imports: [UpdatePatientComponent],
+      providers : [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: '123' }), // Mock any params you need
+            snapshot: { paramMap: { get: () => '123' } } // Mock snapshot if needed
+          }
+        },
+        HttpClient , HttpHandler
+      ]
     })
     .compileComponents();
     

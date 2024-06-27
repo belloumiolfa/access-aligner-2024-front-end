@@ -13,7 +13,7 @@ import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { first } from "rxjs";
 import { User } from "../../Core/Models/user.models";
 import { PreloaderComponent } from "../../Shared/Ui/preloader/preloader.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import Swal from "sweetalert2";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
@@ -26,8 +26,10 @@ import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
     ReactiveFormsModule,
     RouterModule,
     PreloaderComponent,
-    HttpClientModule,
+   
+    
   ],
+  providers:[],
   templateUrl: "./sign-up.component.html",
   styleUrl: "./sign-up.component.css",
 })
@@ -43,26 +45,31 @@ export class SignUpComponent {
     private spinner: NgxSpinnerService,
     private authService: AuthService,
     private handleErrors: HandleErrorsService,
-    private handleAlerts: HandleAlertsService
+    private handleAlerts: HandleAlertsService,
+    private router : Router
+
   ) {
     this.signUpForm = this.formBuilder.group({
       userName: new FormControl("", [Validators.required]),
-      phone: new FormControl("", [Validators.required]),
+      phone: new FormControl("", [Validators.required, ]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required, ]),
       confirmPassword: new FormControl("", [Validators.required]),
       term: new FormControl("", [Validators.required]),
     });
   }
 
+
+
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+  
   }
 
   onSubmit(e: Event) {
     this.formSubmitted = true;
     this.errors = this.handleErrors.handleError({});
+
+    console.log("form value",this.signUpForm.value)
     if (this.signUpForm.valid) {
       this.spinner.show();
 
@@ -73,6 +80,7 @@ export class SignUpComponent {
           (data: any) => {
             this.spinner.hide();
             this.handleAlerts.handleSweetAlert(data.message, "success", false);
+            this.router.navigate(['sign-in'])
           },
           (err) => {
             this.errors = this.handleErrors.handleError(err);

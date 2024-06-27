@@ -1,14 +1,35 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PatientDetailComponent } from './patient-detail.component';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { of } from 'rxjs';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+
 
 describe('PatientDetailComponent', () => {
+
+
+
+
+
   let component: PatientDetailComponent;
   let fixture: ComponentFixture<PatientDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PatientDetailComponent]
+      imports: [PatientDetailComponent],
+      providers: [
+
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: '123' }), // Mock any params you need
+            snapshot: { paramMap: { get: () => '123' } } // Mock snapshot if needed
+          }
+        },
+
+           HttpClient , HttpHandler
+      ]
     })
     .compileComponents();
     
@@ -21,3 +42,5 @@ describe('PatientDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -12,15 +12,30 @@ import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AppService } from "../../Core/Services/app.service";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatFormFieldModule } from "@angular/material/form-field";
+
+import { MatInputModule } from "@angular/material/input";
+
+import { provideNativeDateAdapter } from "@angular/material/core";
+
+declare var $: any;
 
 @Component({
   selector: "app-patient-form",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: "./patient-form.component.html",
   styleUrl: "./patient-form.component.css",
 })
-export class PatientFormComponent {
+export class PatientFormComponent implements OnInit {
   patientForm!: FormGroup<any>;
   errors: any = {};
   user$!: any;
@@ -40,7 +55,9 @@ export class PatientFormComponent {
     this.patientForm = this.formBuilder.group({
       firstName: new FormControl("", [Validators.required]),
       lastName: new FormControl("", [Validators.required]),
-      birthday: new FormControl("", [Validators.required]),
+
+      // birthday: new FormControl("", [Validators.required]),
+      birthday: new FormControl(null),
       sex: new FormControl("", []),
       email: new FormControl("", [Validators.required, Validators.email]),
       phone: new FormControl("", [Validators.required]),
@@ -48,6 +65,18 @@ export class PatientFormComponent {
       address: new FormControl("", []),
       comment: new FormControl("", []),
     });
+  }
+  ngOnInit(): void {
+    $("#datetimepicker")
+      .bootstrapMaterialDatePicker({
+        weekStart: 0,
+        time: false,
+      })
+      .on("change", (e: any, date: { format: (arg0: string) => any }) => {
+        const formattedDate = date.format("YYYY-MM-DD");
+        this.patientForm.get("birthday")?.setValue(formattedDate);
+        console.log("Selected Date:", formattedDate);
+      });
   }
   getPatients() {
     this.patientService.getPatients().subscribe(
@@ -63,6 +92,7 @@ export class PatientFormComponent {
   }
 
   onSubmit(e: any) {
+    console.log("data ", this.patientForm.value);
     this.errors = this.handleErrors.handleError({});
     console.log(this.patientForm.value.birthday);
 
@@ -71,7 +101,6 @@ export class PatientFormComponent {
         .addPatient(this.patientForm.value, this.user$.id)
         .subscribe(
           (data) => {
- 
             this.getPatients();
 
             this.handleAlerts.handleSweetAlert(

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountFormComponent } from './account-form.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('AccountFormComponent', () => {
   let component: AccountFormComponent;
@@ -8,7 +9,8 @@ describe('AccountFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccountFormComponent]
+      imports: [AccountFormComponent],
+      providers: [      HttpClient , HttpHandler]
     })
     .compileComponents();
     

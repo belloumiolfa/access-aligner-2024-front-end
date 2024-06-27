@@ -78,6 +78,11 @@
 .theme-black .authentication {
   background: #177ca8 !important;
 }
+
+.theme-black .coming {
+  background: #313740 !important ;
+}
+
 .theme-black .menu-container ul > li > ul > li a:hover,
 .theme-black .menu-container ul.normal-sub > li a:hover {
   background: #177ca8;

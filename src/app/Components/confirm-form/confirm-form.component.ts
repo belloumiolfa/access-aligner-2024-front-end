@@ -12,6 +12,7 @@ import { User } from "../../Core/Models/user.models";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { AuthService } from "../../Core/Services/AuthService/auth.service";
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-confirm-form",
@@ -32,7 +33,8 @@ export class ConfirmFormComponent {
     private authService: AuthService,
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {
     this.confirmForm = this.formBuilder.group({
       term: new FormControl("", [Validators.required]),
@@ -51,6 +53,9 @@ export class ConfirmFormComponent {
             : "You've successfully deactivated your account. ";
 
         this.handleAlerts.handleSweetAlert(title, "success", false);
+        this.router.navigate(['sign-in'])
+
+        
       },
       (err) => {
         this.errors = this.handleErrors.handleError(err);

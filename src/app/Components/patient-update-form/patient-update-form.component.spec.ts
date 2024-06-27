@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PatientUpdateFormComponent } from './patient-update-form.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('PatientUpdateFormComponent', () => {
   let component: PatientUpdateFormComponent;
@@ -8,7 +9,8 @@ describe('PatientUpdateFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PatientUpdateFormComponent]
+      imports: [PatientUpdateFormComponent],
+      providers: [      HttpClient , HttpHandler]
     })
     .compileComponents();
     

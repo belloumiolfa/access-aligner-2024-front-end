@@ -18,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(),
     provideAnimations(),
+
     /*  (
       NgWizardModule.forRoot(
         ngWizardConfig

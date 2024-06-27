@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PhotoFormComponent } from './photo-form.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('PhotoFormComponent', () => {
   let component: PhotoFormComponent;
@@ -8,7 +9,8 @@ describe('PhotoFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PhotoFormComponent]
+      imports: [PhotoFormComponent],
+      providers: [      HttpClient , HttpHandler]
     })
     .compileComponents();
     

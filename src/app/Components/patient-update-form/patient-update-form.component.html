@@ -38,14 +38,15 @@
       </div>
 
       <div class="col-lg-3 col-md-12">
-        <div class="form-group form-float">
+        <div class="form-group form-float" style="right: 20px">
           <b>Birthday Date</b>
 
           <input
-            formControlName="birthday"
+            id="datetimepicker"
             type="date"
-            class="form-control date"
-            placeholder="Ex: 30/07/2016"
+            [value]="patient$?.birthday | date : 'yyyy-MM-dd'"
+            class="form-control birthday"
+            placeholder="Choose Date and Time"
           />
         </div>
       </div>

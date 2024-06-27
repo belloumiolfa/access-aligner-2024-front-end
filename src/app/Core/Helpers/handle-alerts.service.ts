@@ -58,4 +58,51 @@ export class HandleAlertsService {
       },
     });
   }
+
+
+  handleConfirmAlert(title: any, icon: any, showConfirmButton: any) {
+    Swal.fire({
+      title: title,
+      icon: icon,
+      toast: true,
+      
+      /* timerProgressBar: !showConfirmButton,
+      timer: !showConfirmButton ? 2000 : 0, */
+      showConfirmButton: showConfirmButton,
+      customClass: {
+        container: "",
+        popup: "",
+        title: "",
+        closeButton: "",
+        icon: "",
+        image: "",
+        htmlContainer: "",
+        input: "",
+        inputLabel: "",
+        validationMessage: "",
+        actions: "",
+        confirmButton: "",
+        denyButton: "",
+        cancelButton: "",
+        loader: "",
+        footer: "",
+        timerProgressBar: "",
+      },
+
+      showClass: {
+        popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `,
+      },
+      hideClass: {
+        popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `,
+      },
+    });
+  }
 }

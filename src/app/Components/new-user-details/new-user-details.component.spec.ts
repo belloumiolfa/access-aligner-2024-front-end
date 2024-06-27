@@ -12,12 +12,21 @@ describe('NewUserDetailsComponent', () => {
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NewUserDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(NewUserDetailsComponent);
+    const component = fixture.componentInstance;
+
+    // Mock user object with profile and photo
+    const mockUser = {
+      profile: { photo: 'https://example.com/user-photo.jpg' }
+    };
+
+    component.user = mockUser; // Set the mock user
+
+    fixture.detectChanges(); // Trigger change detection
+
     expect(component).toBeTruthy();
   });
 });
