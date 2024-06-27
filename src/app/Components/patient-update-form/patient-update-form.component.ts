@@ -1,38 +1,43 @@
-import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
   FormBuilder,
   FormControl,
   Validators,
-} from "@angular/forms";
-import { NgxSpinnerService } from "ngx-spinner";
-import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
-import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
-import { PatientService } from "../../Core/Services/PatientService/patient.service";
-import { ActivatedRoute } from "@angular/router";
-import { AppService } from "../../Core/Services/app.service";
+} from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { HandleAlertsService } from '../../Core/Helpers/handle-alerts.service';
+import { HandleErrorsService } from '../../Core/Helpers/handle-errors.service';
+import { PatientService } from '../../Core/Services/PatientService/patient.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppService } from '../../Core/Services/app.service';
 
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import 'moment/locale/fr';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
-import {provideNativeDateAdapter} from '@angular/material/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 declare var $: any;
 
 @Component({
-  selector: "app-patient-update-form",
+  selector: 'app-patient-update-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatDatepickerModule, MatInputModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+  ],
   providers: [provideNativeDateAdapter()],
-  templateUrl: "./patient-update-form.component.html",
-  styleUrl: "./patient-update-form.component.css",
+  templateUrl: './patient-update-form.component.html',
+  styleUrl: './patient-update-form.component.css',
 })
-export class PatientUpdateFormComponent implements OnInit{
+export class PatientUpdateFormComponent implements OnInit {
   patientForm!: FormGroup<any>;
   errors: any = {};
   id: any;
@@ -40,15 +45,14 @@ export class PatientUpdateFormComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
- 
+
     private patientService: PatientService,
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
     private spinner: NgxSpinnerService,
-    private appService: AppService
+    private appService: AppService,
+    private router: Router
   ) {
-
-  
     this.appService.getPatient$.subscribe((data) => {
       this.patient$ = data;
       // build update from
@@ -110,10 +114,11 @@ export class PatientUpdateFormComponent implements OnInit{
           (data) => {
             this.spinner.hide();
             this.handleAlerts.handleSweetAlert(
-              "Patient successfully updated!",
-              "success",
+              'Patient successfully updated!',
+              'success',
               false
             );
+
             this.appService.setPatient$(data);
             this.getPatients();
           },
@@ -121,8 +126,8 @@ export class PatientUpdateFormComponent implements OnInit{
             this.errors = this.handleErrors.handleError(err);
             this.spinner.hide();
             this.handleAlerts.handleSweetAlert(
-              "Check your data input carefully.",
-              "error",
+              'Check your data input carefully.',
+              'error',
               false
             );
           }

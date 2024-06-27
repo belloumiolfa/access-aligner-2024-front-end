@@ -1,24 +1,27 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
-} from "@angular/forms";
-import { TreatmentService } from "../../Core/Services/TreatService/treatment.service";
-import { AppService } from "../../Core/Services/app.service";
-import { NgxSpinnerService } from "ngx-spinner";
-import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
-import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
-import { CommonModule } from "@angular/common";
+} from '@angular/forms';
+import { TreatmentService } from '../../Core/Services/TreatService/treatment.service';
+import { AppService } from '../../Core/Services/app.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { HandleAlertsService } from '../../Core/Helpers/handle-alerts.service';
+import { HandleErrorsService } from '../../Core/Helpers/handle-errors.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { StepsService } from '../../Core/Services/Steps/steps.service';
 
 @Component({
-  selector: "app-new-treat-general",
+  selector: 'app-new-treat-general',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: "./new-treat-general.component.html",
-  styleUrl: "./new-treat-general.component.css",
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  templateUrl: './new-treat-general.component.html',
+  styleUrl: './new-treat-general.component.css',
 })
 export class NewTreatGeneralComponent {
   treatForm!: FormGroup<any>;
@@ -27,13 +30,17 @@ export class NewTreatGeneralComponent {
   errors: any;
   savedTreatment$!: any;
 
+  @Output() indexEmitter = new EventEmitter<string>();
+
   constructor(
     private formBuilder: FormBuilder,
     private treatmentService: TreatmentService,
     private appService: AppService,
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private stepsService: StepsService
   ) {
     appService.getPatient$.subscribe((data) => (this.patient$ = data));
     appService.getUser$.subscribe((data) => (this.doctor$ = data));
@@ -85,20 +92,28 @@ export class NewTreatGeneralComponent {
           this.spinner.hide();
           // set treatment
           this.handleAlerts.handleSweetAlert(
-            "Treatment information successfully added. ",
-            "success",
+            'Treatment information successfully added. ',
+            'success',
             false
           );
 
           this.appService.setTreatment(data);
+
+          this.router.navigate([
+            '/treatment/new-treatment/ ' + this.patient$.id + '/teeth',
+          ]);
+
+          this.stepsService.markStepAsDone(2);
+          this.stepsService.markCurrentStep(2);
         },
+
         (err) => {
           this.errors = this.handleErrors.handleError(err);
           this.spinner.hide();
 
           this.handleAlerts.handleSweetAlert(
-            "Check your data input carefully.",
-            "error",
+            'Check your data input carefully.',
+            'error',
             false
           );
         }

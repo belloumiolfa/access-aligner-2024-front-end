@@ -1,60 +1,62 @@
-import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
   Router,
   RouterModule,
   RouterOutlet,
-} from "@angular/router";
-import { NgxSpinnerService } from "ngx-spinner";
-import { Subscription, last } from "rxjs";
-import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
-import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
-import { PatientService } from "../../Core/Services/PatientService/patient.service";
-import { AppService } from "../../Core/Services/app.service";
+} from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription, last } from 'rxjs';
+import { HandleAlertsService } from '../../Core/Helpers/handle-alerts.service';
+import { HandleErrorsService } from '../../Core/Helpers/handle-errors.service';
+import { PatientService } from '../../Core/Services/PatientService/patient.service';
+import { AppService } from '../../Core/Services/app.service';
+import { StepsService } from '../../Core/Services/Steps/steps.service';
 @Component({
-  selector: "app-add-new-treatment",
+  selector: 'app-add-new-treatment',
   standalone: true,
   imports: [CommonModule, RouterModule, RouterOutlet],
-  templateUrl: "./add-new-treatment.component.html",
-  styleUrl: "./add-new-treatment.component.css",
+  templateUrl: './add-new-treatment.component.html',
+  styleUrl: './add-new-treatment.component.css',
 })
 export class AddNewTreatmentComponent {
   id!: number;
   errors: any;
   patient$!: any;
+  treatments$!: any;
   clickedIndex = 0;
 
   steps = [
     {
       id: 1,
-      label: "Patient Information",
-      url: "patient",
+      label: 'Patient Information',
+      url: 'patient',
       done: false,
     },
     {
       id: 2,
-      label: "Treatment Information",
-      url: "general",
+      label: 'Treatment Information',
+      url: 'general',
       done: false,
     },
     {
       id: 3,
-      label: "Teeth Information",
-      url: "teeth",
+      label: 'Teeth Information',
+      url: 'teeth',
       done: false,
     },
     {
       id: 4,
-      label: "Photographs and x-rays",
-      url: "photos",
+      label: 'Photographs and x-rays',
+      url: 'photos',
       done: false,
     },
     {
       id: 5,
-      label: "Clinics ",
-      url: "clinics",
+      label: 'Clinics ',
+      url: 'clinics',
       done: false,
     },
   ];
@@ -65,17 +67,35 @@ export class AddNewTreatmentComponent {
     private patientService: PatientService,
     private handleErrors: HandleErrorsService,
     private spinner: NgxSpinnerService,
-    private appService: AppService
+    private appService: AppService,
+    private stepsService: StepsService
   ) {
-    this.activeRoute.params.subscribe((params) => (this.id = params["id"]));
+    this.activeRoute.params.subscribe((params) => (this.id = params['id']));
     this.appService.getPatient$.subscribe((data) => (this.patient$ = data));
+
+    this.appService.getTreatment$.subscribe((data) => {
+      this.treatments$ = data;
+      console.log('data patientsss', this.treatments$);
+
+      if (this.treatments$.type != null) {
+        this.steps[1].done = true;
+      }
+
+      if (this.treatments$.teeth.length != 0) {
+        this.steps[2].done = true;
+      }
+
+      if (this.treatments$.photos.length != 0) {
+        this.steps[3].done = true;
+      }
+    });
   }
-  
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
-    let url = this.router.url.split("/");
+    let url = this.router.url.split('/');
     this.clickedIndex = this.steps.findIndex((step) => {
       return step.url == url[url.length - 1];
     });
@@ -118,5 +138,4 @@ export class AddNewTreatmentComponent {
       }`,
     ]);
   }
-
 }

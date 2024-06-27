@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import Swal from "sweetalert2";
+import { Injectable } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HandleAlertsService {
   constructor() {}
@@ -18,28 +18,28 @@ export class HandleAlertsService {
       icon: icon,
       toast: true,
       timerProgressBar: true,
-      timer: 2000,
+      timer: 1300,
       /* timerProgressBar: !showConfirmButton,
       timer: !showConfirmButton ? 2000 : 0, */
       showConfirmButton: showConfirmButton,
       customClass: {
-        container: "",
-        popup: "",
-        title: "",
-        closeButton: "",
-        icon: "",
-        image: "",
-        htmlContainer: "",
-        input: "",
-        inputLabel: "",
-        validationMessage: "",
-        actions: "",
-        confirmButton: "",
-        denyButton: "",
-        cancelButton: "",
-        loader: "",
-        footer: "",
-        timerProgressBar: "",
+        container: '',
+        popup: '',
+        title: '',
+        closeButton: '',
+        icon: '',
+        image: '',
+        htmlContainer: '',
+        input: '',
+        inputLabel: '',
+        validationMessage: '',
+        actions: '',
+        confirmButton: '',
+        denyButton: '',
+        cancelButton: '',
+        loader: '',
+        footer: '',
+        timerProgressBar: '',
       },
 
       showClass: {
@@ -59,34 +59,33 @@ export class HandleAlertsService {
     });
   }
 
-
   handleConfirmAlert(title: any, icon: any, showConfirmButton: any) {
     Swal.fire({
       title: title,
       icon: icon,
       toast: true,
-      
+
       /* timerProgressBar: !showConfirmButton,
       timer: !showConfirmButton ? 2000 : 0, */
       showConfirmButton: showConfirmButton,
       customClass: {
-        container: "",
-        popup: "",
-        title: "",
-        closeButton: "",
-        icon: "",
-        image: "",
-        htmlContainer: "",
-        input: "",
-        inputLabel: "",
-        validationMessage: "",
-        actions: "",
-        confirmButton: "",
-        denyButton: "",
-        cancelButton: "",
-        loader: "",
-        footer: "",
-        timerProgressBar: "",
+        container: '',
+        popup: '',
+        title: '',
+        closeButton: '',
+        icon: '',
+        image: '',
+        htmlContainer: '',
+        input: '',
+        inputLabel: '',
+        validationMessage: '',
+        actions: '',
+        confirmButton: '',
+        denyButton: '',
+        cancelButton: '',
+        loader: '',
+        footer: '',
+        timerProgressBar: '',
       },
 
       showClass: {
