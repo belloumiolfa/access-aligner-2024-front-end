@@ -43,6 +43,8 @@ export class PatientListComponent {
       this.patients$ = data;
       this.patientsBeforeFilter$ = this.patients$;
     });
+
+    console.log(this.patients$);
   }
 
   deletePatient(id: any) {
@@ -66,12 +68,12 @@ export class PatientListComponent {
             console.log(data);
 
             this.appService.setPatients$(data);
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your patient has been deleted.",
-              icon: "success",
-              confirmButtonColor: "#8CD4F5",
-            });
+           
+            this.handleAlerts.handleSweetAlert(
+              "Your patient has been deleted.",
+              "error",
+              false
+            );
           },
           (err) => {
             this.errors = this.handleErrors.handleError(err);
@@ -90,7 +92,6 @@ export class PatientListComponent {
   }
 
   serachByName() {
-    console.log("patients list before condition", this.patients$);
     if (this.searchTerm.trim() !== "") {
       this.filter = true;
 
@@ -106,6 +107,7 @@ export class PatientListComponent {
       );
       //    console.log('filter result', this.patients$);
     } else {
+      this.patients$ = this.patientsBeforeFilter$;
       this.filter = false;
     }
 

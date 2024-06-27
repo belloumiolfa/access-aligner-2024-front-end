@@ -56,8 +56,6 @@ export class AddFileComponent {
   }
 
   deleteFile(existedFile: any) {
-    console.log(existedFile);
-
-    this.deletedFile.emit(existedFile.id);
+    this.deletedFile.emit(existedFile);
   }
 }

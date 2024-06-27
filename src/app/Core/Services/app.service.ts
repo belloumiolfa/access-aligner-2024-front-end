@@ -133,9 +133,8 @@ export class AppService {
 
   existedPhotos: any[] = [];
   setTreatment(data: any) {
-
     this.treatment$.next(data);
-    this.getTreatPhotos(data?.photos, data.id);
+    this.setTreatPhotos(this.getTreatPhotos(data?.photos, data.id));
   }
 
   getTreatPhotos(files: any, treatId: any) {
@@ -162,6 +161,9 @@ export class AppService {
           reader.readAsDataURL(data);
         });
     });
-    this.treatPhotos$.next(this.existedPhotos);
+    return this.existedPhotos;
+  }
+  setTreatPhotos(photos: any) {
+    this.treatPhotos$.next(photos);
   }
 }

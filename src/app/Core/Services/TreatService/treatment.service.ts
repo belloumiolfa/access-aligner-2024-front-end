@@ -136,7 +136,18 @@ export class TreatmentService {
       );
   }
 
-
-
-  
+  deleteFile(id: any): Observable<any> {
+    return this.http
+      .delete(this.apiBaseUrl + "/api/private/deleteFile?id=" + id, {
+        headers: new HttpHeaders().set(
+          "Authorization",
+          `Bearer ${loggedInUser()}`
+        ),
+      })
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
 }

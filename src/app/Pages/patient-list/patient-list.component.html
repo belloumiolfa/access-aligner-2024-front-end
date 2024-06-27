@@ -58,9 +58,7 @@
               </td>
             </tr>
 
-            <tr
-              *ngFor="let patient of filter ? patients$ : patientsBeforeFilter$"
-            >
+            <tr *ngFor="let patient of patients$">
               <td><span class="font-bold">#</span>{{ patient.id }}</td>
 
               <td>

@@ -15,11 +15,7 @@
                 </button>
               </div>
               <div class="image">
-                <img
-                  [src]="(existedFile.resource) "
-                  alt="img"
-                  class="img-fluid"
-                />
+                <img [src]="existedFile.resource" alt="img" class="img-fluid" />
               </div>
               <div class="file-name">
                 <p class="m-b-5 text-muted">
@@ -43,6 +39,7 @@
         class="dropzone"
         style="height: auto"
         [multiple]="false"
+        maxFiles="1"
         accept="image/jpeg,image/jpg,image/png,image/gif"
         (change)="onSelect($event, item)"
       >

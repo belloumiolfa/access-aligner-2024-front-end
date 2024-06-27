@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { NgxDropzoneModule } from 'ngx-dropzone';
-import { AddFileComponent } from '../add-file/add-file.component';
-import { AppService } from '../../Core/Services/app.service';
-import { TreatmentService } from '../../Core/Services/TreatService/treatment.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { HandleAlertsService } from '../../Core/Helpers/handle-alerts.service';
-import { HandleErrorsService } from '../../Core/Helpers/handle-errors.service';
-import { Router } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { NgxDropzoneModule } from "ngx-dropzone";
+import { AddFileComponent } from "../add-file/add-file.component";
+import { AppService } from "../../Core/Services/app.service";
+import { TreatmentService } from "../../Core/Services/TreatService/treatment.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
+import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-new-treat-photos',
@@ -124,13 +124,69 @@ export class NewTreatPhotosComponent {
     this.files.push(e);
   }
 
+  deletePhoto(id: any) {
+    this.spinner.show();
+
+    this.treatmentService.deleteFile(id).subscribe(
+      (data) => {
+        this.spinner.hide();
+
+        this.handleAlerts.handleSweetAlert(data.message, "success", false);
+      },
+      (err) => {
+        this.errors = this.handleErrors.handleError(err);
+        this.spinner.hide();
+
+        console.log("errors ", this.errors);
+        this.handleAlerts.handleSweetAlert(
+          "Check your data input carefully.",
+          "error",
+          false
+        );
+      }
+    );
+  }
+
   onDeleteFile(event: any) {
-    console.log('delete by id =' + event);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      cancelButtonColor: "#b9b9b9",
+      confirmButtonText: "Yes, delete it!",
+      customClass: {
+        popup: "sweet-alert", // corrected class name
+      },
+    }).then(
+      (result) => {
+        // delete from existed files
+        this.appService.setTreatPhotos(
+          this.existedFiles$?.filter((file) => file.id !== event.id)
+        );
+
+        // delete from API
+        this.deletePhoto(event.id);
+      },
+      (err) => {
+        this.errors = this.handleErrors.handleError(err);
+        this.spinner.hide();
+
+        console.log("errors ", this.errors);
+        this.handleAlerts.handleSweetAlert(
+          "Check your data input carefully.",
+          "error",
+          false
+        );
+      }
+    );
   }
 
   onSubmit(e: any) {
     e.preventDefault();
     this.spinner.show();
+    console.log(this.files);
 
     this.treatmentService
       .addTreatPhotos(this.files, this.treatment$.id)
@@ -138,7 +194,7 @@ export class NewTreatPhotosComponent {
         (data) => {
           this.appService.setTreatment(data);
           this.spinner.hide();
-
+          this.files = [];
           this.handleAlerts.handleSweetAlert(
             'Patient successfully Added!',
             'success',
