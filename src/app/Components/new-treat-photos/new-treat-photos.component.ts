@@ -7,7 +7,6 @@ import { TreatmentService } from "../../Core/Services/TreatService/treatment.ser
 import { NgxSpinnerService } from "ngx-spinner";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
-import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-new-treat-photos",
@@ -18,7 +17,7 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 })
 export class NewTreatPhotosComponent {
   files: File[] = [];
-  existedFiles: any[] = [];
+  existedFiles$: any[] = [];
 
   photos = [
     {
@@ -92,11 +91,11 @@ export class NewTreatPhotosComponent {
       label: "Téléradio ",
     },
   ];
+
   treatment$!: any;
   errors: any;
 
   constructor(
-    private sanitizer: DomSanitizer,
     private appService: AppService,
     private treatmentService: TreatmentService,
     private handleErrors: HandleErrorsService,
@@ -105,46 +104,16 @@ export class NewTreatPhotosComponent {
   ) {
     this.appService.getTreatment$.subscribe((data) => {
       this.treatment$ = data;
-      this.treatment$?.photos?.forEach((element: any) => {
-        this.getPhoto(element);
-      });
-      console.log(this.treatment$);
     });
-  }
-
-  getPhoto(file: any) {
-    this.treatmentService.getTreatPhoto(file.id, this.treatment$.id).subscribe(
-      (data) => {
-        let exist = false;
-        for (let i = 0; i < this.existedFiles.length; i++) {
-          exist = this.existedFiles[i].name === file.name;
-          break;
-        }
-        if (!exist) {
-          const reader = new FileReader();
-          reader.onload = (e: any) => {
-            let photo = {
-              resource: this.sanitizer.bypassSecurityTrustUrl(
-                URL.createObjectURL(data)
-              ),
-              id: file.id,
-              name: file.name,
-              type: file.type,
-            };
-            this.existedFiles.push(photo);
-          };
-          reader.readAsDataURL(data);
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.appService.getTreatPhotos$.subscribe((data) => {
+      this.existedFiles$ = data;
+    });
+    console.log(this.existedFiles$);
   }
 
   existedFile(photo: any) {
-    const result = this.existedFiles.filter(
-      (file) => file.name.split(".")[0] == photo.name
+    const result = this.existedFiles$?.filter(
+      (file: { name: string }) => file?.name?.split(".")[0] == photo.name
     );
     return result[0];
   }
@@ -154,25 +123,25 @@ export class NewTreatPhotosComponent {
   }
 
   onDeleteFile(event: any) {
-    this.existedFiles = this.existedFiles.filter(
-      (file: any) => file.id !== event.id
-    );
-    this.files = this.files.filter((file: any) => file.name !== event.name);
-    this.treatment$.photos = this.treatment$.photos.filter(
-      (file: any) => file.id !== event.id
-    );
-
-    this.appService.setTreatment(this.treatment$);
+    console.log("delete by id =" + event);
   }
 
   onSubmit(e: any) {
     e.preventDefault();
+    this.spinner.show();
+
     this.treatmentService
       .addTreatPhotos(this.files, this.treatment$.id)
       .subscribe(
         (data) => {
           this.appService.setTreatment(data);
-         // window.location.reload();
+          this.spinner.hide();
+
+          this.handleAlerts.handleSweetAlert(
+            "Patient successfully Added!",
+            "success",
+            false
+          );
         },
 
         (err) => {
@@ -190,11 +159,5 @@ export class NewTreatPhotosComponent {
 
   onReset() {
     this.files = [];
-  }
-
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    console.log(this.files);
   }
 }

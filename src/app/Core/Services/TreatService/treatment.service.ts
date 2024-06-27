@@ -135,26 +135,4 @@ export class TreatmentService {
         })
       );
   }
-  getTreatPhotos(id: any, type: any): Observable<any> {
-    return this.http
-      .get(
-        this.apiBaseUrl +
-          "/api/private/getPhotos?id=" +
-          id +
-          "&type=" +
-          type,
-        {
-          responseType: "blob",
-          headers: new HttpHeaders().set(
-            "Authorization",
-            `Bearer ${loggedInUser()}`
-          ),
-        }
-      )
-      .pipe(
-        map((data: any) => {
-          return data;
-        })
-      );
-  }
 }

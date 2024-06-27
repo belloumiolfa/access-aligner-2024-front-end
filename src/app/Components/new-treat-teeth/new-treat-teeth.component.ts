@@ -27,7 +27,7 @@ export class NewTreatTeethComponent {
   ];
 
   color: any = {};
-  teeth = teeth;
+  teethTab: any[] = [];
   treatment$!: any;
   errors: any;
 
@@ -37,23 +37,24 @@ export class NewTreatTeethComponent {
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
     private spinner: NgxSpinnerService
-  ) {
-    this.appService.getTreatment$.subscribe((data) => {
-      console.log(data);
-      
-      this.treatment$ = data;
-      this.treatment$.teeth?.forEach((element: any) => {
-        this.changeColor(element.num, this.colors[element.action]);
-      });
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    teeth.forEach((element) => {
-      let t = { num: element.id, status: element.status };
-      this.data.push(t);
+
+    this.appService.getTreatment$.subscribe((data) => {
+      this.treatment$ = data;
+      this.teethTab.forEach((e) => {
+        e.status = 0;
+        e.color = "";
+      });
+
+      this.teethTab = teeth;
+
+      this.treatment$.teeth?.forEach((element: any) => {
+        this.changeColor(element.num, this.colors[element.action]);
+      });
     });
   }
 
@@ -62,28 +63,26 @@ export class NewTreatTeethComponent {
   }
 
   changeColor(id: number, color: any) {
-
-    this.teeth.find((currentItem) => {
+    this.teethTab.find((currentItem) => {
       if (currentItem.id === id) {
         currentItem.color = color.color;
-      }
-    });
-    this.data.find((currentItem) => {
-      if (currentItem.num === id) {
-        currentItem.status = this.colors.indexOf(color);
+        currentItem.status = color.id;
       }
     });
   }
 
   onSubmit() {
+    this.teethTab.forEach((element) => {
+      let t = { num: element.id, status: element.status };
+      this.data.push(t);
+    });
+
     let data = this.data.filter((x) => x.status != 0);
     console.log(data);
 
     this.treatmentService.addTreatTeeth(data, this.treatment$.id).subscribe(
       (data) => {
         this.spinner.hide();
-
-        console.log(data);
 
         // set treatment
         this.handleAlerts.handleSweetAlert(

@@ -18,6 +18,8 @@ export class AppService {
   private patients$ = new BehaviorSubject({});
   private patient$ = new BehaviorSubject({});
   private treatment$ = new BehaviorSubject({});
+  private treatPhotos$ = new BehaviorSubject<any[]>([]);
+  private treatClinics$ = new BehaviorSubject([]);
   errors: any;
 
   constructor(
@@ -33,6 +35,8 @@ export class AppService {
   getPatients$ = this.patients$.asObservable();
   getPatient$ = this.patient$.asObservable();
   getTreatment$ = this.treatment$.asObservable();
+  getTreatPhotos$ = this.treatPhotos$.asObservable();
+  getTreatClinics$ = this.treatClinics$.asObservable();
 
   setUser$(user: User) {
     this.user$.next(user);
@@ -127,8 +131,37 @@ export class AppService {
     this.patient$.next(data);
   }
 
+  existedPhotos: any[] = [];
   setTreatment(data: any) {
-    // get photos and clinix and put them in separate array to usedin add file component ( array of imageUrl )
-    this.treatment$.next({ ...this.getTreatment$, ...data });
+
+    this.treatment$.next(data);
+    this.getTreatPhotos(data?.photos, data.id);
+  }
+
+  getTreatPhotos(files: any, treatId: any) {
+    // Clear the existing photos
+    this.existedPhotos = [];
+
+    files?.forEach((file: any) => {
+      this.treatmentService
+        .getTreatPhoto(file.id, treatId)
+        .subscribe((data) => {
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            let photo = {
+              resource: this.sanitizer.bypassSecurityTrustUrl(
+                URL.createObjectURL(data)
+              ),
+              id: file.id,
+              name: file.name,
+              type: file.type,
+            };
+
+            this.existedPhotos.push(photo);
+          };
+          reader.readAsDataURL(data);
+        });
+    });
+    this.treatPhotos$.next(this.existedPhotos);
   }
 }

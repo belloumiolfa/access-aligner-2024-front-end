@@ -15,17 +15,14 @@ import { UserService } from "../../Core/Services/UserService/user.service";
 export class AddFileComponent {
   @Output() file = new EventEmitter<any>();
   @Output() deletedFile = new EventEmitter<any>();
+
   @Input() item!: any;
   @Input() existedFile!: any;
-  imageUrl!: SafeUrl;
 
   selectedFiles: File[] = [];
-  constructor(private sanitizer: DomSanitizer) {}
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.getImageUrl(this.existedFile?.resource);
-  }
+
+  constructor() {}
+
   renameFile(item: any) {
     if (this.selectedFiles) {
       // Extract file extension from original filename
@@ -59,17 +56,8 @@ export class AddFileComponent {
   }
 
   deleteFile(existedFile: any) {
-    this.deletedFile.emit(existedFile);
-  }
+    console.log(existedFile);
 
-  getImageUrl(photo: any) {
-
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(
-        URL.createObjectURL(photo)
-      );
-    };
-    reader.readAsDataURL(photo);
+    this.deletedFile.emit(existedFile.id);
   }
 }

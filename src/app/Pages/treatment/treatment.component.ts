@@ -9,4 +9,6 @@ import { RouterOutlet } from "@angular/router";
   templateUrl: "./treatment.component.html",
   styleUrl: "./treatment.component.css",
 })
-export class TreatmentComponent {}
+export class TreatmentComponent {
+  
+}

@@ -37,6 +37,7 @@ export class NewTreatGeneralComponent {
   ) {
     appService.getPatient$.subscribe((data) => (this.patient$ = data));
     appService.getUser$.subscribe((data) => (this.doctor$ = data));
+
     appService.getTreatment$.subscribe((data) => {
       this.savedTreatment$ = data;
       this.treatForm = this.formBuilder.group({
@@ -82,9 +83,6 @@ export class NewTreatGeneralComponent {
       .subscribe(
         (data) => {
           this.spinner.hide();
-
-          console.log(data);
-
           // set treatment
           this.handleAlerts.handleSweetAlert(
             "Treatment information successfully added. ",

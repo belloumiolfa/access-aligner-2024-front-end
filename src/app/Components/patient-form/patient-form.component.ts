@@ -64,14 +64,14 @@ export class PatientFormComponent {
 
   onSubmit(e: any) {
     this.errors = this.handleErrors.handleError({});
+    console.log(this.patientForm.value.birthday);
 
     if (this.patientForm.valid)
       this.patientService
         .addPatient(this.patientForm.value, this.user$.id)
         .subscribe(
           (data) => {
-            console.log(data);
-
+ 
             this.getPatients();
 
             this.handleAlerts.handleSweetAlert(
