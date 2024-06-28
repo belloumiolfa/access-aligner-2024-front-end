@@ -16,51 +16,51 @@ const MENU_ITEMS: MenuItem[] = [
     label: "Palients",
     isTitle: false,
     icon: "zmdi zmdi-accounts-list-alt",
-    /*     collapsed: true,*/ 
-    url: "patients",
-    /* children: [
+    collapsed: true,
+    url: "",
+    children: [
       {
         key: "patient-list",
         label: "Patient List",
-        url: "/",
+        url: "/patients",
         icon: "zmdi zmdi-arrow-right",
         parentKey: "treat-patient",
       },
       {
         key: "patient-new",
         label: "New patient",
-        url: "/",
+        url: "/patients/new-patient",
         icon: "zmdi zmdi-arrow-right",
-
         parentKey: "treat-patient",
       },
-    ], */
+    ],
   },
   {
     key: "treat-cases",
-    label: "Plans",
+    label: "Treatment",
     isTitle: false,
     icon: "zmdi zmdi-folder-person",
     collapsed: true,
     children: [
+      // add status to treatment list to filter treatments
       {
         key: "treat-plan",
-        label: "List Plan ",
-        url: "/",
+        label: "List Treatments ",
+        url: "/treatment/list",
         icon: "zmdi zmdi-arrow-right",
         parentKey: "treat-cases",
       },
       {
         key: "treat-archive",
         label: "Archive",
-        url: "/",
+        url: "/treatment/list",
         icon: "zmdi zmdi-arrow-right",
         parentKey: "treat-cases",
       },
       {
         key: "treat-new-plan",
-        label: "New Plan",
-        url: "/",
+        label: "New Treatment",
+        url: "treatment/new-treatment/null",
         icon: "zmdi zmdi-arrow-right",
         parentKey: "treat-cases",
       },

@@ -1,0 +1,10 @@
+ 
+ TreatmentDTO[id=17, antCross=1, classI=1, crowding=1, extract=1, gap=1, overbite=1, treat=lower-arch, postCross=0, reduceOverbite=1, status=INITIALIZED, description=null, patient=PatientDTO[id=17, firstName=olfa, lastName=belloumi, birthday=2024-07-11 01:00:00.0, sex=Female, email=olfabelloumi@gmail.com, phone=58198759, profession=dddd, address=fsdfsdf, comment=, createdAt=2024-06-28 15:18:39.63, doctor=UserDTO[id=3, userName=olfa2, email=olfabelloumi9@gmail.com, createdAt=2024-06-14 09:02:40.639, roleList=[Role(id=4, name=DENTIST, description=Dentists are healthcare professionals who specialize in the diagnosis, prevention, and treatment of diseases and conditions affecting the teeth, gums, and oral cavity., userList=[Doctor(treatments=[])])], profile=ProfileDTO[id=3, firstName=wassim, lastName=toukabri , dateOfBirth=null, description=null, phone=58198759, mobile=null, address=null, createdAt=null, photo=File(id=683, createdAt=2024-06-26 14:26:45.762, name=photo-3.jpg, type=image/jpeg, role=null, size=3082, treatment=null)], eventList=[], userStatus=UserStatusDTO[id=access.aligner.backend.Entities.Keys.UserStatusKey@3293863, updatedAt=2024-06-14 09:03:42.743, responsible=null, status=Status(id=4, name=ACCEPTED, userStatus=[], description=During this phase, the administration accepts the user.)]], nbrTreat=0], teeth=[TeethDTO[id=307, num=16, action=1], TeethDTO[id=306, num=14, action=2], TeethDTO[id=308, num=15, action=2]], photos=[], 
+ 
+ 
+ 
+ 
+ 
+ clinics=[FileDTO[id=857, createdAt=2024-06-28 15:39:24.769, name=maxillaryDigit.jfif, type=image/jpeg, role=clinic, size=7937], 
+ FileDTO[id=855, createdAt=2024-06-28 15:38:33.646, name=maxillaryDigit.jfif, type=image/jpeg, role=clinic, size=7937]]]
+

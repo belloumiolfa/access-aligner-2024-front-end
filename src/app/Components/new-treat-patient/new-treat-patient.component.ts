@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
-import { PatientUpdateFormComponent } from "../patient-update-form/patient-update-form.component";
+import { PatientFormComponent } from "../patient-form/patient-form.component";
 
 @Component({
   selector: "app-new-treat-patient",
   standalone: true,
-  imports: [PatientUpdateFormComponent],
+  imports: [PatientFormComponent],
   templateUrl: "./new-treat-patient.component.html",
   styleUrl: "./new-treat-patient.component.css",
 })

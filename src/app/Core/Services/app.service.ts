@@ -72,7 +72,7 @@ export class AppService {
   setPatients$(data: any) {
     let tab: any[] = [];
     data.forEach((element: any) => {
-      if (element.doctor.profile.photo != null) {
+      if (element.doctor.profile.photo?.id) {
         this.userService
           .getPhoto(element.doctor.profile?.photo.id, "Profile")
           .subscribe(
@@ -133,8 +133,15 @@ export class AppService {
 
   existedPhotos: any[] = [];
   setTreatment(data: any) {
-    this.treatment$.next(data);
-    this.setTreatPhotos(this.getTreatPhotos(data?.photos, data.id));
+    let treatment = {
+      ...data,
+      photos: this.getTreatPhotos(data?.photos, data.id),
+    };
+    console.log(treatment);
+
+    this.treatment$.next(treatment);
+
+    // this.setTreatPhotos(this.getTreatPhotos(data?.photos, data.id));
   }
 
   getTreatPhotos(files: any, treatId: any) {
@@ -163,6 +170,7 @@ export class AppService {
     });
     return this.existedPhotos;
   }
+
   setTreatPhotos(photos: any) {
     this.treatPhotos$.next(photos);
   }

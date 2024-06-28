@@ -2,7 +2,12 @@
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="card">
       <div class="header">
-        <h2><strong>Basic Example</strong> - Horizontal Layout</h2>
+        <h2>
+          <strong
+            >{{ this.patient$.firstName }} {{ this.patient$.lastname }}</strong
+          >
+          -
+        </h2>
       </div>
       <div id="wizard_horizontal" role="application" class="wizard clearfix">
         <div class="steps clearfix">

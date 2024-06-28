@@ -43,12 +43,9 @@ export class PatientListComponent {
       this.patients$ = data;
       this.patientsBeforeFilter$ = this.patients$;
     });
-
-    console.log(this.patients$);
   }
 
   deletePatient(id: any) {
-    console.log("id patient", id);
 
     Swal.fire({
       title: "Are you sure?",
@@ -71,7 +68,7 @@ export class PatientListComponent {
            
             this.handleAlerts.handleSweetAlert(
               "Your patient has been deleted.",
-              "error",
+              "success",
               false
             );
           },
@@ -95,7 +92,6 @@ export class PatientListComponent {
     if (this.searchTerm.trim() !== "") {
       this.filter = true;
 
-      //  console.log('search term', this.searchTerm);
       this.patients$ = this.patientsBeforeFilter$.filter(
         (patient: {
           firstName: string | string[];
@@ -105,12 +101,10 @@ export class PatientListComponent {
           (patient.lastName && patient.lastName.includes(this.searchTerm)) ||
           (patient.firstName + " " + patient.lastName).includes(this.searchTerm)
       );
-      //    console.log('filter result', this.patients$);
     } else {
       this.patients$ = this.patientsBeforeFilter$;
       this.filter = false;
     }
 
-    //  console.log('patients list after condition', this.patients$);
   }
 }

@@ -1,0 +1,649 @@
+<div class="card">
+  <div class="header">
+    <div class="align-right">
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-default btn-filter"
+        data-target="all"
+      >
+        Todos
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-success btn-filter"
+        data-target="approved"
+      >
+        Approved
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-warning btn-filter"
+        data-target="suspended"
+      >
+        Suspended
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-info btn-filter"
+        data-target="pending"
+      >
+        Pending
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-danger btn-filter"
+        data-target="blocked"
+      >
+        Blocked
+      </button>
+    </div>
+  </div>
+  <div class="body project_report">
+    <div class="table-responsive">
+      <!--if admin add js-exportable class -->
+      <table class="table table-hover js-exportable">
+        <!-- Add selected stata-->
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Project</th>
+            <th>Prograss</th>
+            <th>Team</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Status</th>
+            <th>Project</th>
+            <th>Prograss</th>
+            <th>Team</th>
+            <th>Action</th>
+          </tr>
+        </tfoot>
+
+        <tbody>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6><a href="javascript:void(0);">Alpino 4.1</a></h6>
+              <small>Created 14.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="48"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 48%"
+                ></div>
+              </div>
+              <small>Completion with: 48%</small>
+            </td>
+            <td data-status="approved">
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar1.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <!-- if created by current user -->
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="suspended">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);"
+                  >Many desktop publishing packages and web</a
+                >
+              </h6>
+              <small>Created 18.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="78"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 78%"
+                ></div>
+              </div>
+              <small>Completion with: 78%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar10.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar7.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar5.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-default">InActive</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);"
+                  >iNext - One Page Responsive Template</a
+                >
+              </h6>
+              <small>Created 14.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="29"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 29%"
+                ></div>
+              </div>
+              <small>Completion with: 29%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="suspended">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);"
+                  >Oakleaf Admin - Bootstrap html5 with SASS</a
+                >
+              </h6>
+              <small>Created 18.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="13"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 13%"
+                ></div>
+              </div>
+              <small>Completion with: 13%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar7.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar1.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6><a href="javascript:void(0);">Alpino 4.1</a></h6>
+              <small>Created 14.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="48"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 48%"
+                ></div>
+              </div>
+              <small>Completion with: 48%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar1.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="blocked">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);"
+                  >Many desktop publishing packages and web</a
+                >
+              </h6>
+              <small>Created 18.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="78"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 78%"
+                ></div>
+              </div>
+              <small>Completion with: 78%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar10.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar7.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar5.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-warning">Pending</span>
+            </td>
+            <td class="project-title">
+              <h6><a href="javascript:void(0);">Alpino 4.1</a></h6>
+              <small>Created 14.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="48"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 48%"
+                ></div>
+              </div>
+              <small>Completion with: 48%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar1.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-primary">Closed</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);"
+                  >Massive Event - Conference and Event</a
+                >
+              </h6>
+              <small>Created 18.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="100"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 100%"
+                ></div>
+              </div>
+              <small>Completion with: 100%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar10.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar7.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar5.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-warning">Pending</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);"
+                  >Startup - OnePage Business Corporate Template</a
+                >
+              </h6>
+              <small>Created 14.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="56"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 56%"
+                ></div>
+              </div>
+              <small>Completion with: 56%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar1.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar5.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar9.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);"
+                  >Falcon - Bootstrap Admin Template + UI Kit</a
+                >
+              </h6>
+              <small>Created 18.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="48"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 48%"
+                ></div>
+              </div>
+              <small>Completion with: 48%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar4.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar1.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);">Oreo Admin Bootstrap 4</a>
+              </h6>
+              <small>Created 14.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="73"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 73%"
+                ></div>
+              </div>
+              <small>Completion with: 73%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar5.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar8.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar7.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+          <tr data-status="approved">
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);">Blazing Saddles Angular 5</a>
+              </h6>
+              <small>Created 18.Mar.2018</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  aria-valuenow="23"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 23%"
+                ></div>
+              </div>
+              <small>Completion with: 23%</small>
+            </td>
+            <td>
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img src="assets/images/xs/avatar1.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar5.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td class="project-actions">
+              <a
+                href="/dashboard/timeline/123456789"
+                class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-eye"></i
+              ></a>
+              <a href="javascript:void(0);" class="btn btn-neutral btn-sm"
+                ><i class="zmdi zmdi-edit"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

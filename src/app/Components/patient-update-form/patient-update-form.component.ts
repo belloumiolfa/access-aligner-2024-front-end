@@ -14,25 +14,30 @@ import { PatientService } from "../../Core/Services/PatientService/patient.servi
 import { ActivatedRoute } from "@angular/router";
 import { AppService } from "../../Core/Services/app.service";
 
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
-import 'moment/locale/fr';
-import {MatInputModule} from '@angular/material/input';
+import "moment/locale/fr";
+import { MatInputModule } from "@angular/material/input";
 
-import {provideNativeDateAdapter} from '@angular/material/core';
+import { provideNativeDateAdapter } from "@angular/material/core";
 
 declare var $: any;
 
 @Component({
   selector: "app-patient-update-form",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatDatepickerModule, MatInputModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+  ],
   providers: [provideNativeDateAdapter()],
   templateUrl: "./patient-update-form.component.html",
   styleUrl: "./patient-update-form.component.css",
 })
-export class PatientUpdateFormComponent implements OnInit{
+export class PatientUpdateFormComponent implements OnInit {
   patientForm!: FormGroup<any>;
   errors: any = {};
   id: any;
@@ -40,15 +45,13 @@ export class PatientUpdateFormComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
- 
+
     private patientService: PatientService,
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
     private spinner: NgxSpinnerService,
     private appService: AppService
   ) {
-
-  
     this.appService.getPatient$.subscribe((data) => {
       this.patient$ = data;
       // build update from
@@ -75,15 +78,15 @@ export class PatientUpdateFormComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    $('#datetimepicker')
+    $("#datetimepicker")
       .bootstrapMaterialDatePicker({
         weekStart: 0,
         time: false,
       })
-      .on('change', (e: any, date: { format: (arg0: string) => any }) => {
-        const formattedDate = date.format('YYYY-MM-DD');
-        this.patientForm.get('birthday')?.setValue(formattedDate);
-        console.log('Selected Date:', formattedDate);
+      .on("change", (e: any, date: { format: (arg0: string) => any }) => {
+        const formattedDate = date.format("YYYY-MM-DD");
+        this.patientForm.get("birthday")?.setValue(formattedDate);
+        console.log("Selected Date:", formattedDate);
       });
   }
   getPatients() {

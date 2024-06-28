@@ -105,11 +105,8 @@ export class NewTreatPhotosComponent {
   ) {
     this.appService.getTreatment$.subscribe((data) => {
       this.treatment$ = data;
+      this.existedFiles$ = this.treatment$.photos;
     });
-    this.appService.getTreatPhotos$.subscribe((data) => {
-      this.existedFiles$ = data;
-    });
-    console.log(this.existedFiles$);
   }
 
   existedFile(photo: any) {
@@ -129,7 +126,6 @@ export class NewTreatPhotosComponent {
     this.treatmentService.deleteFile(id).subscribe(
       (data) => {
         this.spinner.hide();
-
         this.handleAlerts.handleSweetAlert(data.message, "success", false);
       },
       (err) => {
@@ -161,9 +157,11 @@ export class NewTreatPhotosComponent {
     }).then(
       (result) => {
         // delete from existed files
-        this.appService.setTreatPhotos(
-          this.existedFiles$?.filter((file) => file.id !== event.id)
+        this.treatment$.photos = this.existedFiles$?.filter(
+          (file) => file.name !== event.name
         );
+
+        this.appService.setTreatment(this.treatment$);
 
         // delete from API
         this.deletePhoto(event.id);
@@ -185,10 +183,9 @@ export class NewTreatPhotosComponent {
   onSubmit(e: any) {
     e.preventDefault();
     this.spinner.show();
-    console.log(this.files);
 
     this.treatmentService
-      .addTreatPhotos(this.files, this.treatment$.id)
+      .addTreatPhotos(this.files, this.treatment$.id, "photo")
       .subscribe(
         (data) => {
           this.appService.setTreatment(data);

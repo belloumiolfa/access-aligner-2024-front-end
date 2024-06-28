@@ -76,19 +76,20 @@ export class AddNewTreatmentComponent {
     this.clickedIndex = this.steps.findIndex((step) => {
       return step.url == url[url.length - 1];
     });
+    if (this.id != null)
+      this.patientService.getPatient(this.id).subscribe(
+        (data) => {
+          this.spinner.hide();
+          this.steps[0].done = true;
+          this.appService.setPatient$(data);
+        },
+        (err) => {
+          this.spinner.hide();
+          this.errors = this.handleErrors.handleError(err);
+        }
+      );
 
-    this.patientService.getPatient(this.id).subscribe(
-      (data) => {
-        this.spinner.hide();
-        this.steps[0].done = true;
-        this.appService.setPatient$(data);
-      },
-      (err) => {
-        this.spinner.hide();
-        this.errors = this.handleErrors.handleError(err);
-      }
-    );
-  }
+   }
 
   nextStep() {
     this.clickedIndex = this.clickedIndex + 1;
