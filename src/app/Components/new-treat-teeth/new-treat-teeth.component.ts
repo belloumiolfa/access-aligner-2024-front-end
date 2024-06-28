@@ -1,29 +1,31 @@
-import { Component } from "@angular/core";
-import { teeth } from "../../Shared/Static Data/teeth";
-import { CommonModule } from "@angular/common";
-import { AppService } from "../../Core/Services/app.service";
-import { TreatmentService } from "../../Core/Services/TreatService/treatment.service";
-import { error } from "console";
-import { NgxSpinnerService } from "ngx-spinner";
-import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
-import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
+import { Component } from '@angular/core';
+import { teeth } from '../../Shared/Static Data/teeth';
+import { CommonModule } from '@angular/common';
+import { AppService } from '../../Core/Services/app.service';
+import { TreatmentService } from '../../Core/Services/TreatService/treatment.service';
+import { error } from 'console';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { HandleAlertsService } from '../../Core/Helpers/handle-alerts.service';
+import { HandleErrorsService } from '../../Core/Helpers/handle-errors.service';
+import { StepsService } from '../../Core/Services/Steps/steps.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-new-treat-teeth",
+  selector: 'app-new-treat-teeth',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: "./new-treat-teeth.component.html",
-  styleUrl: "./new-treat-teeth.component.css",
+  templateUrl: './new-treat-teeth.component.html',
+  styleUrl: './new-treat-teeth.component.css',
 })
 export class NewTreatTeethComponent {
   data: any[] = [];
   colors = [
-    { id: 0, color: "#FFFFFF", class: "btn-simple", label: "undo" },
+    { id: 0, color: '#FFFFFF', class: 'btn-simple', label: 'undo' },
 
-    { id: 1, color: "#3F51B5", class: "bg-indigo", label: "Missing" },
-    { id: 2, color: "#009688", class: "bg-teal", label: "No moving" },
-    { id: 3, color: "#FFC107", class: "bg-amber", label: "Implant" },
-    { id: 4, color: "#F44336", class: "bg-red", label: "Crown" },
+    { id: 1, color: '#3F51B5', class: 'bg-indigo', label: 'Missing' },
+    { id: 2, color: '#009688', class: 'bg-teal', label: 'No moving' },
+    { id: 3, color: '#FFC107', class: 'bg-amber', label: 'Implant' },
+    { id: 4, color: '#F44336', class: 'bg-red', label: 'Crown' },
   ];
 
   color: any = {};
@@ -36,7 +38,9 @@ export class NewTreatTeethComponent {
     private treatmentService: TreatmentService,
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private stepsService: StepsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +51,7 @@ export class NewTreatTeethComponent {
       this.treatment$ = data;
       this.teethTab.forEach((e) => {
         e.status = 0;
-        e.color = "";
+        e.color = '';
       });
 
       this.teethTab = teeth;
@@ -86,10 +90,16 @@ export class NewTreatTeethComponent {
 
         // set treatment
         this.handleAlerts.handleSweetAlert(
-          "Treatment information successfully added. ",
-          "success",
+          'Treatment information successfully added. ',
+          'success',
           false
         );
+
+        this.router.navigate([
+          '/treatment/new-treatment/ ' + this.treatment$.patient.id + '/photos',
+        ]);
+
+        this.stepsService.markCurrentStep(3);
 
         this.appService.setTreatment(data);
       },
@@ -98,8 +108,8 @@ export class NewTreatTeethComponent {
         this.spinner.hide();
 
         this.handleAlerts.handleSweetAlert(
-          "Check your data input carefully.",
-          "error",
+          'Check your data input carefully.',
+          'error',
           false
         );
       }

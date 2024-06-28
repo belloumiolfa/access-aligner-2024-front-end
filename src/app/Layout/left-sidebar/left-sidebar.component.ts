@@ -38,6 +38,8 @@ export class LeftSidebarComponent {
   chunkSize: number = 7;
   isCollapsed: any = true;
 
+  activeOpenMenuItem: any | null = null;  // Track the active open menu item
+
   constructor(private appService: AppService) {
     this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
   }
@@ -73,6 +75,9 @@ export class LeftSidebarComponent {
           menu.collapsed = true;
         }
       });
+      this.activeOpenMenuItem = menuItem.key;  // Set active open menu item
+    } else {
+      this.activeOpenMenuItem = null;  
     }
     collapse.toggle();
   }

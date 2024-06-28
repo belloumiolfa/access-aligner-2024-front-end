@@ -1,0 +1,52 @@
+<time class="cbp_tmtime" datetime="2017-11-04T18:30"
+  ><span class="hidden">25/12/2017</span> <span class="large">Patient</span>
+</time>
+<div class="cbp_tmicon"><i class="zmdi zmdi-account"></i></div>
+
+<div class="cbp_tmlabel row clearfix">
+  <div class="col-lg-6 col-md-12">
+    <h2>
+      <p class="text-primary">Complete Name</p>
+    </h2>
+    <p>
+      {{ patient$.firstName }} {{ patient$.lastName }}
+
+      <span
+        *ngIf="patient$.sex !== ''"
+        [class]="
+          patient$.sex == 'Male'
+            ? 'badge badge-default m-l-10 hidden-sm-down'
+            : 'badge badge-primary m-l-10 hidden-sm-down'
+        "
+        >{{ patient$.sex }}</span
+      >
+    </p>
+
+    <h2>
+      <p class="text-primary">Email</p>
+    </h2>
+    <p>{{ patient$.email }}</p>
+
+    <h2>
+      <p class="text-primary">Birthday</p>
+    </h2>
+    <p>{{ patient$.birthday | date : "yyyy-MM-dd" }}</p>
+  </div>
+
+  <div class="col-lg-6 col-md-12">
+    <h2>
+      <p class="text-primary">Phone</p>
+    </h2>
+    <p>{{ patient$.phone }}</p>
+
+    <h2>
+      <p class="text-primary">Adresse</p>
+    </h2>
+    <p>{{ patient$.address }}</p>
+
+    <h2>
+      <p class="text-primary">Profession</p>
+    </h2>
+    <p>{{ patient$?.address }}</p>
+  </div>
+</div>

@@ -13,7 +13,7 @@ const MENU_ITEMS: MenuItem[] = [
   { key: "treat", label: "Treatment", isTitle: true },
   {
     key: "treat-patient",
-    label: "Palients",
+    label: "Patients",
     isTitle: false,
     icon: "zmdi zmdi-accounts-list-alt",
     /*     collapsed: true,*/ 
@@ -38,13 +38,13 @@ const MENU_ITEMS: MenuItem[] = [
   },
   {
     key: "treat-cases",
-    label: "Plans",
+    label: "Treatments",
     isTitle: false,
     icon: "zmdi zmdi-folder-person",
     collapsed: true,
     children: [
       {
-        key: "treat-plan",
+        key: "List Treatments",
         label: "List Plan ",
         url: "/",
         icon: "zmdi zmdi-arrow-right",
@@ -66,6 +66,7 @@ const MENU_ITEMS: MenuItem[] = [
       },
     ],
   },
+
   {
     key: "apps-invoice",
     label: "Invoices",
@@ -96,7 +97,11 @@ const MENU_ITEMS: MenuItem[] = [
       },
     ],
   },
+
+  /*
   { key: "apps", label: "Apps", isTitle: true },
+
+  
   {
     key: "apps-calendar",
     label: "Calendar",
@@ -137,6 +142,8 @@ const MENU_ITEMS: MenuItem[] = [
       },
     ],
   },
+
+  */
 ];
 
 export { MENU_ITEMS };

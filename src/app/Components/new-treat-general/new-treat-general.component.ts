@@ -99,11 +99,12 @@ export class NewTreatGeneralComponent {
 
           this.appService.setTreatment(data);
 
-          this.router.navigate([
+            this.router.navigate([
             '/treatment/new-treatment/ ' + this.patient$.id + '/teeth',
           ]);
 
-          this.stepsService.markStepAsDone(2);
+          
+
           this.stepsService.markCurrentStep(2);
         },
 
@@ -116,6 +117,7 @@ export class NewTreatGeneralComponent {
             'error',
             false
           );
+
         }
       );
   }

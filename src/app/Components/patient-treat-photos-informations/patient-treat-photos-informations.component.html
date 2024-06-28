@@ -1,0 +1,31 @@
+<time class="cbp_tmtime" datetime="2017-10-22T12:13"
+  ><span>12:13 PM</span> <span>Two weeks ago</span></time
+>
+<div class="cbp_tmicon bg-orange">
+  <i class="zmdi zmdi-camera"></i>
+</div>
+<div class="cbp_tmlabel align-center">
+  <h2>
+   
+    <span>  PATIENT'S CLINICAL  </span> 
+    <a href="javascript:void(0);"> PHOTOGRAPHS.</a>
+  </h2>
+ 
+  <div class="row">
+    <div
+      class="col-lg-3 col-md-6 col-6 align-center"
+      *ngFor="let item of existedFiles$"
+    >
+      <a href="javascript:void(0);"
+        ><img
+          [src]="item.resource"
+          alt=""
+          class="img-fluid img-thumbnail m-t-30"
+        />
+        <p class="m-b-5 text-muted">
+          <small>{{ item.name }}</small>
+        </p>
+      </a>
+    </div>
+  </div>
+</div>

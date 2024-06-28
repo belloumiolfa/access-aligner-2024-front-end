@@ -13,10 +13,11 @@ import { HandleErrorsService } from '../../Core/Helpers/handle-errors.service';
 import { PatientService } from '../../Core/Services/PatientService/patient.service';
 import { AppService } from '../../Core/Services/app.service';
 import { StepsService } from '../../Core/Services/Steps/steps.service';
+import { TimelineTreatmentsComponent } from '../timeline-treatments/timeline-treatments.component';
 @Component({
   selector: 'app-add-new-treatment',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet],
+  imports: [CommonModule, RouterModule, RouterOutlet, TimelineTreatmentsComponent],
   templateUrl: './add-new-treatment.component.html',
   styleUrl: './add-new-treatment.component.css',
 })
@@ -25,7 +26,7 @@ export class AddNewTreatmentComponent {
   errors: any;
   patient$!: any;
   treatments$!: any;
-  clickedIndex = 0;
+  clickedIndex!: any;
 
   steps = [
     {
@@ -69,14 +70,20 @@ export class AddNewTreatmentComponent {
     private appService: AppService,
     private stepsService: StepsService
   ) {
+    this.stepsService.getClickedIndex$.subscribe((data) => {
+      this.clickedIndex = data;
+
+  
+    });
+
     this.activeRoute.params.subscribe((params) => (this.id = params['id']));
     this.appService.getPatient$.subscribe((data) => (this.patient$ = data));
 
     this.appService.getTreatment$.subscribe((data) => {
       this.treatments$ = data;
-      console.log('data patientsss', this.treatments$);
+    
 
-      if (this.treatments$.type != null) {
+      if (this.treatments$.treat != null) {
         this.steps[1].done = true;
       }
 
@@ -88,13 +95,15 @@ export class AddNewTreatmentComponent {
         this.steps[3].done = true;
       }
     });
+
+    this.steps[1].done = false;
+    this.steps[2].done = false;
+    this.steps[3].done = false;
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
     let url = this.router.url.split('/');
+
     this.clickedIndex = this.steps.findIndex((step) => {
       return step.url == url[url.length - 1];
     });
@@ -131,10 +140,15 @@ export class AddNewTreatmentComponent {
   }
 
   finishing() {
-    this.router.navigate([
+  /*  this.router.navigate([
       `treatment/new-treatment/${this.patient$.id}/${
         this.steps[this.clickedIndex].url
       }`,
     ]);
+
+
+    */
+
+
   }
 }

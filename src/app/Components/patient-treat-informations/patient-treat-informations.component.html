@@ -1,0 +1,230 @@
+<time class="cbp_tmtime" datetime="2017-11-04T03:45"
+  ><span>03:45 AM</span> <span>Today</span></time
+>
+<div class="cbp_tmicon bg-info">
+  <i class="zmdi zmdi-assignment-account"></i>
+</div>
+<div class="cbp_tmlabel row clearfix align-center">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <h2>
+      Treatment : <span class="text-primary"> {{ treatment$.treat }} </span>
+    </h2>
+
+    <div class="form-float">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Correcting posterior crossbite ? </b>
+                <div class="form-float">
+                  <span class="text-primary" *ngIf="treatment$.postCross == 1"
+                    >Yes</span
+                  >
+                  <span class="text-primary" *ngIf="treatment$.postCross == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Correcting anterior crossbite ? </b>
+
+                <div class="form-float">
+                  <span class="text-primary" *ngIf="treatment$.antCross == 1"
+                    >Yes</span
+                  >
+                  <span class="text-primary" *ngIf="treatment$.antCross == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Closing the gap (If applicable) ?</b>
+
+                <div class="form-float">
+                  <span class="text-primary" *ngIf="treatment$.gap == 1"
+                    >Yes</span
+                  >
+                  <span class="text-primary" *ngIf="treatment$.gap == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Correcting the overbite (if present) ? </b>
+
+                <div class="form-float">
+                  <span class="text-primary" *ngIf="treatment$.overbite == 1"
+                    >Yes</span
+                  >
+                  <span class="text-primary" *ngIf="treatment$.overbite == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-12 col-sm-12">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Restoring Class I occlusion ? </b>
+
+                <div class="form-float">
+                  <span class="text-primary" *ngIf="treatment$.classI == 1"
+                    >Yes</span
+                  >
+                  <span class="text-primary" *ngIf="treatment$.classI == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Reducing the overbite ? </b>
+
+                <div class="form-float">
+                  <span
+                    class="text-primary"
+                    *ngIf="treatment$.reduceOverbite == 1"
+                    >Yes</span
+                  >
+                  <span
+                    class="text-primary"
+                    *ngIf="treatment$.reduceOverbite == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Closing crowding </b>
+
+                <div class="form-float">
+                  <span class="text-primary" *ngIf="treatment$.crowding == 1"
+                    >Yes</span
+                  >
+                  <span class="text-primary" *ngIf="treatment$.crowding == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="form-float">
+                <b>Planned extractions (if necessary) </b>
+                <div class="form-float">
+                  <span class="text-primary" *ngIf="treatment$.extract == 1"
+                    >Yes</span
+                  >
+                  <span class="text-primary" *ngIf="treatment$.extract == 0"
+                    >No</span
+                  >
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="col-lg-6 col-md-12">
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Correcting posterior crossbite ?</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Correcting posterior crossbite ?</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Correcting anterior crossbite ?</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Correcting anterior crossbite ?</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Closing the gap (If applicable) ?</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Closing the gap (If applicable) ?</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Correcting the overbite (if present) ?</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Correcting the overbite (if present) ?</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+  </div>
+
+  <div class="col-lg-6 col-md-12">
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Restoring Class I occlusion ?</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Restoring Class I occlusion ?</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Reducing the overbite ?</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Reducing the overbite ?</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Closing crowding</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Closing crowding</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '0'">
+      <span>Planned extractions (if necessary)</span>
+      <a href="javascript:void(0);"> No </a>
+    </h2>
+
+    <h2 *ngIf="treatment$.antCross === '1'">
+      <span>Planned extractions (if necessary)</span>
+      <a href="javascript:void(0);"> Yes </a>
+    </h2>
+  </div>
+
+
+
+  
+  
+  -->
+  <div class="col-lg-6 col-md-12"></div>
+</div>

@@ -32,7 +32,7 @@ import { NewTreatGeneralComponent } from './Components/new-treat-general/new-tre
 import { NewTreatPhotosComponent } from './Components/new-treat-photos/new-treat-photos.component';
 import { NewTreatClinicsComponent } from './Components/new-treat-clinics/new-treat-clinics.component';
 import { NewTreatTeethComponent } from './Components/new-treat-teeth/new-treat-teeth.component';
-import { TimelineTreatmentsComponent } from './Components/timeline-treatments/timeline-treatments.component';
+import { TimelineTreatmentsComponent } from './Pages/timeline-treatments/timeline-treatments.component';
 import { ComingPageComponent } from './Shared/Pages/coming-page/coming-page.component';
 export const routes: Routes = [
   {

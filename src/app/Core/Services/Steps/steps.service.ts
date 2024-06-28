@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StepsService {
   constructor() {}
+
+  clickedIndex$ = new BehaviorSubject<number>(0);
+
+  getClickedIndex$ = this.clickedIndex$.asObservable();
   steps = [
     {
       id: 1,
@@ -53,7 +58,9 @@ export class StepsService {
     }
   }
 
-  markCurrentStep(stepIndex: number) {
-    this.steps[stepIndex].current = true;
+  markCurrentStep(stepIndex: any) {
+    this.clickedIndex$.next(stepIndex);
   }
+
+  returnClickIndex() {}
 }

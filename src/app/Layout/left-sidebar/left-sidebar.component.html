@@ -6,13 +6,19 @@
 >
   <li
     [class]="className"
-    [ngClass]="{ active: activeMenuItems.includes(menu.key) }"
+    [ngClass]="{
+      active: activeMenuItems.includes(menu.key),
+      'active open': activeOpenMenuItem === menu.key
+    }"
   >
     <div type="button" class="waves-effect">
       <a
         appWaveEffect
         [class]="linkClassName"
-        [ngClass]="{ active: activeMenuItems.includes(menu.key) }"
+        [ngClass]="{
+          active: activeMenuItems.includes(menu.key),
+          'active open': activeOpenMenuItem === menu.key
+        }"
         href="javascript: void(0);"
         role="button"
         id="topnav-{{ menu.key }}"
@@ -193,9 +199,7 @@
             /></a>
           </div>
           <div class="detail">
-            <h6>
-              {{ user.userName }}<br />
-            </h6>
+            <h6>{{ user.userName }}<br /></h6>
 
             <p class="m-b-0">
               {{ user.email }}

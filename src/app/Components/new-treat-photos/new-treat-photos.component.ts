@@ -1,13 +1,13 @@
-import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
-import { NgxDropzoneModule } from "ngx-dropzone";
-import { AddFileComponent } from "../add-file/add-file.component";
-import { AppService } from "../../Core/Services/app.service";
-import { TreatmentService } from "../../Core/Services/TreatService/treatment.service";
-import { NgxSpinnerService } from "ngx-spinner";
-import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
-import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
-import Swal from "sweetalert2";
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { AddFileComponent } from '../add-file/add-file.component';
+import { AppService } from '../../Core/Services/app.service';
+import { TreatmentService } from '../../Core/Services/TreatService/treatment.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { HandleAlertsService } from '../../Core/Helpers/handle-alerts.service';
+import { HandleErrorsService } from '../../Core/Helpers/handle-errors.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-treat-photos',
@@ -101,8 +101,7 @@ export class NewTreatPhotosComponent {
     private treatmentService: TreatmentService,
     private handleErrors: HandleErrorsService,
     private handleAlerts: HandleAlertsService,
-    private spinner: NgxSpinnerService,
-    private router: Router
+    private spinner: NgxSpinnerService
   ) {
     this.appService.getTreatment$.subscribe((data) => {
       this.treatment$ = data;
@@ -131,16 +130,16 @@ export class NewTreatPhotosComponent {
       (data) => {
         this.spinner.hide();
 
-        this.handleAlerts.handleSweetAlert(data.message, "success", false);
+        this.handleAlerts.handleSweetAlert(data.message, 'success', false);
       },
       (err) => {
         this.errors = this.handleErrors.handleError(err);
         this.spinner.hide();
 
-        console.log("errors ", this.errors);
+        console.log('errors ', this.errors);
         this.handleAlerts.handleSweetAlert(
-          "Check your data input carefully.",
-          "error",
+          'Check your data input carefully.',
+          'error',
           false
         );
       }
@@ -149,15 +148,15 @@ export class NewTreatPhotosComponent {
 
   onDeleteFile(event: any) {
     Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#DD6B55",
-      cancelButtonColor: "#b9b9b9",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#DD6B55',
+      cancelButtonColor: '#b9b9b9',
+      confirmButtonText: 'Yes, delete it!',
       customClass: {
-        popup: "sweet-alert", // corrected class name
+        popup: 'sweet-alert', // corrected class name
       },
     }).then(
       (result) => {
@@ -173,10 +172,10 @@ export class NewTreatPhotosComponent {
         this.errors = this.handleErrors.handleError(err);
         this.spinner.hide();
 
-        console.log("errors ", this.errors);
+        console.log('errors ', this.errors);
         this.handleAlerts.handleSweetAlert(
-          "Check your data input carefully.",
-          "error",
+          'Check your data input carefully.',
+          'error',
           false
         );
       }
@@ -201,11 +200,13 @@ export class NewTreatPhotosComponent {
             false
           );
 
-          this.router.navigate([
+          /*    this.router.navigate([
             '/treatment/new-treatment/ ' +
               this.treatment$.patient.id +
               '/general',
           ]);
+
+          */
         },
 
         (err) => {
