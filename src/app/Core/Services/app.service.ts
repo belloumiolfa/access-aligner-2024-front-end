@@ -18,6 +18,7 @@ export class AppService {
   private patients$ = new BehaviorSubject({});
   private patient$ = new BehaviorSubject({});
   private treatment$ = new BehaviorSubject({});
+  private treatments$ = new BehaviorSubject<any[]>([]);
   private treatPhotos$ = new BehaviorSubject<any[]>([]);
   private treatClinics$ = new BehaviorSubject([]);
   errors: any;
@@ -35,6 +36,7 @@ export class AppService {
   getPatients$ = this.patients$.asObservable();
   getPatient$ = this.patient$.asObservable();
   getTreatment$ = this.treatment$.asObservable();
+  getTreatments$ = this.treatments$.asObservable();
   getTreatPhotos$ = this.treatPhotos$.asObservable();
   getTreatClinics$ = this.treatClinics$.asObservable();
 
@@ -114,20 +116,21 @@ export class AppService {
   }
 
   setPatient$(data: any) {
-    // get initial treatment
-    this.treatmentService.getInitPaatientTreat(data.id).subscribe(
-      (data) => {
-        this.setTreatment(data);
-      },
-      (err: any) => {
-        this.errors = this.handleErrors.handleError(err);
-        this.handleAlerts.handleSweetAlert(
-          "Check your data input carefully.",
-          "error",
-          false
-        );
-      }
-    );
+    if (Object.values(data).length > 0)
+      // get initial treatment
+      this.treatmentService.getInitPaatientTreat(data.id).subscribe(
+        (data) => {
+          this.setTreatment(data);
+        },
+        (err: any) => {
+          this.errors = this.handleErrors.handleError(err);
+          this.handleAlerts.handleSweetAlert(
+            "Check your data input carefully.",
+            "error",
+            false
+          );
+        }
+      );
     this.patient$.next(data);
   }
 
@@ -173,5 +176,9 @@ export class AppService {
 
   setTreatPhotos(photos: any) {
     this.treatPhotos$.next(photos);
+  }
+
+  setTreatments(data: any) {
+    this.treatments$.next(data);
   }
 }

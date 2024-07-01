@@ -51,45 +51,45 @@ export class PatientFormComponent implements OnInit {
     private appService: AppService
   ) {
     this.appService.getUser$.subscribe((data) => (this.user$ = data));
-    this.appService.getPatient$.subscribe((data) => {
-      this.patient$ = data;
-      // build update from
-      this.patientForm = this.formBuilder.group({
-        firstName: new FormControl(this.patient$.firstName, [
-          Validators.required,
-        ]),
-        lastName: new FormControl(this.patient$.lastName, [
-          Validators.required,
-        ]),
-        birthday: new FormControl(this.patient$.birthday, [
-          Validators.required,
-        ]),
-        sex: new FormControl(this.patient$.sex, []),
-        email: new FormControl(this.patient$.email, [
-          Validators.required,
-          Validators.email,
-        ]),
-        phone: new FormControl(this.patient$.phone, [Validators.required]),
-        profession: new FormControl(this.patient$.profession, []),
-        address: new FormControl(this.patient$.address, []),
-        comment: new FormControl(this.patient$.comment, []),
-      });
-    });
     this.appService.getPatients$.subscribe((data) => (this.patients$ = data));
-
-      this.patientForm = this.formBuilder.group({
-        firstName: new FormControl("", [Validators.required]),
-        lastName: new FormControl("", [Validators.required]),
-        birthday: new FormControl(null),
-        sex: new FormControl("", []),
-        email: new FormControl("", [Validators.required, Validators.email]),
-        phone: new FormControl("", [Validators.required]),
-        profession: new FormControl("", []),
-        address: new FormControl("", []),
-        comment: new FormControl("", []),
-      });
   }
+
+  initializeForm(): void {
+    this.patientForm = this.formBuilder.group({
+      firstName: new FormControl("", [Validators.required]),
+      lastName: new FormControl("", [Validators.required]),
+      birthday: new FormControl(null, [Validators.required]),
+      sex: new FormControl(""),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      phone: new FormControl("", [Validators.required]),
+      profession: new FormControl(""),
+      address: new FormControl(""),
+      comment: new FormControl(""),
+    });
+
+    // Subscribe to getPatient$ only if you need to update existing patient data
+    this.appService.getPatient$.subscribe((data) => {
+      if (data) {
+        this.patient$ = data;
+        // Populate the form with existing patient data for update
+        this.patientForm.patchValue({
+          firstName: this.patient$.firstName,
+          lastName: this.patient$.lastName,
+          birthday: this.patient$.birthday,
+          sex: this.patient$.sex,
+          email: this.patient$.email,
+          phone: this.patient$.phone,
+          profession: this.patient$.profession,
+          address: this.patient$.address,
+          comment: this.patient$.comment,
+        });
+      }
+    });
+  }
+
   ngOnInit(): void {
+    this.initializeForm(); // Initialize form on component initialization
+
     $("#datetimepicker")
       .bootstrapMaterialDatePicker({
         weekStart: 0,
@@ -125,7 +125,8 @@ export class PatientFormComponent implements OnInit {
           console.log(data);
 
           this.appService.setPatients$(data);
-          this.patientForm.reset();
+          this.appService.setPatient$(data[0]);
+          // this.patientForm.reset();
         },
         (err) => {
           this.errors = this.handleErrors.handleError(err);

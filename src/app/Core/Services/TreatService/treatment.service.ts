@@ -153,4 +153,20 @@ export class TreatmentService {
         })
       );
   }
+  
+  getTreatments(): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiBaseUrl}/api/private/getTreatments` , {
+        headers: new HttpHeaders().set(
+          "Authorization",
+          `Bearer ${loggedInUser()}`
+        ),
+      })
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
 }

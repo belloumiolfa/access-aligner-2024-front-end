@@ -88,9 +88,14 @@ export class AddNewTreatmentComponent {
           this.errors = this.handleErrors.handleError(err);
         }
       );
-
-   }
-
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log("on destroy add new treatment");
+    this.appService.setPatient$({});
+    this.appService.setTreatment({});
+  }
   nextStep() {
     this.clickedIndex = this.clickedIndex + 1;
     this.router.navigate([
