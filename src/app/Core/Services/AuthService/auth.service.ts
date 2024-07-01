@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { User } from "../../Models/user.models";
-import { Observable, map } from "rxjs";
-import { logOut, loggedInUser } from "../../Helpers/utils";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../../environments/environment.development";
+import { Injectable } from '@angular/core';
+import { User } from '../../Models/user.models';
+import { Observable, map } from 'rxjs';
+import { logOut, loggedInUser } from '../../Helpers/utils';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthService {
   apiBaseUrl = environment.apiBaseUrl;
@@ -44,7 +44,8 @@ export class AuthService {
             // && user.token
             this.user = user;
             // store user details and jwt in session
-            sessionStorage.setItem("currentUser", JSON.stringify(user));
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+       
           }
           return user;
         })

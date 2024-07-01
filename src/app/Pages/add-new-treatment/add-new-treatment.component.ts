@@ -14,6 +14,9 @@ import { PatientService } from '../../Core/Services/PatientService/patient.servi
 import { AppService } from '../../Core/Services/app.service';
 import { StepsService } from '../../Core/Services/Steps/steps.service';
 import { TimelineTreatmentsComponent } from '../timeline-treatments/timeline-treatments.component';
+import { TreatmentService } from '../../Core/Services/TreatService/treatment.service';
+
+declare var $: any;
 @Component({
   selector: 'app-add-new-treatment',
   standalone: true,
@@ -68,7 +71,8 @@ export class AddNewTreatmentComponent {
     private handleErrors: HandleErrorsService,
     private spinner: NgxSpinnerService,
     private appService: AppService,
-    private stepsService: StepsService
+    private stepsService: StepsService,
+    private treatService: TreatmentService
   ) {
     this.stepsService.getClickedIndex$.subscribe((data) => {
       this.clickedIndex = data;
@@ -119,6 +123,10 @@ export class AddNewTreatmentComponent {
         this.errors = this.handleErrors.handleError(err);
       }
     );
+
+
+
+    $('#finishModal').appendTo("body");
   }
 
   nextStep() {
@@ -140,15 +148,18 @@ export class AddNewTreatmentComponent {
   }
 
   finishing() {
-  /*  this.router.navigate([
-      `treatment/new-treatment/${this.patient$.id}/${
-        this.steps[this.clickedIndex].url
-      }`,
-    ]);
-
-
-    */
-
+  
 
   }
+
+ saveTreatment() {
+  
+let status="Finished" ;
+    this.treatService.saveTreatement(this.treatments$.id,status).subscribe(
+      (data) => {
+          console.log ("data ", data)
+      })
+  }
+
+
 }

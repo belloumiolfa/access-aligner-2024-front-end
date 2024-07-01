@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PatientDisplayInformationsComponent } from '../../Components/patient-display-informations/patient-display-informations.component';
 import { PatientTreatInformationsComponent } from '../../Components/patient-treat-informations/patient-treat-informations.component';
 import { PatientTreatTeethInformationsComponent } from '../../Components/patient-treat-teeth-informations/patient-treat-teeth-informations.component';
@@ -15,6 +15,13 @@ import { PatientTreatClinicsInformationsComponent } from '../../Components/patie
   templateUrl: './timeline-treatments.component.html',
   styleUrl: './timeline-treatments.component.css'
 })
-export class TimelineTreatmentsComponent {
+export class TimelineTreatmentsComponent implements OnInit{
+
+
+
+  constructor () {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
 }

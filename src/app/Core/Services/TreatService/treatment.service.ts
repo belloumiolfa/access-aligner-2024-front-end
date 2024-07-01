@@ -1,11 +1,11 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { environment } from "../../../../environments/environment.development";
-import { Observable, map } from "rxjs";
-import { loggedInUser } from "../../Helpers/utils";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment.development';
+import { Observable, map } from 'rxjs';
+import { loggedInUser } from '../../Helpers/utils';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class TreatmentService {
   apiBaseUrl = environment.apiBaseUrl;
@@ -16,12 +16,12 @@ export class TreatmentService {
       .post<any>(
         `${this.apiBaseUrl}/api/private/add-information?patientId=` +
           patientId +
-          "&doctorId=" +
+          '&doctorId=' +
           doctorId,
         { ...data },
         {
           headers: new HttpHeaders().set(
-            "Authorization",
+            'Authorization',
             `Bearer ${loggedInUser()}`
           ),
         }
@@ -37,7 +37,7 @@ export class TreatmentService {
     return this.http
       .get<any>(`${this.apiBaseUrl}/api/private/get-treatment?id=` + id, {
         headers: new HttpHeaders().set(
-          "Authorization",
+          'Authorization',
           `Bearer ${loggedInUser()}`
         ),
       })
@@ -54,7 +54,7 @@ export class TreatmentService {
         `${this.apiBaseUrl}/api/private/get-init-treatment?patientId=` + id,
         {
           headers: new HttpHeaders().set(
-            "Authorization",
+            'Authorization',
             `Bearer ${loggedInUser()}`
           ),
         }
@@ -73,7 +73,7 @@ export class TreatmentService {
         data,
         {
           headers: new HttpHeaders().set(
-            "Authorization",
+            'Authorization',
             `Bearer ${loggedInUser()}`
           ),
         }
@@ -91,7 +91,7 @@ export class TreatmentService {
 
     if (data.length != 0) {
       for (let i = 0; i < photos.length; i++) {
-        formData.append("photos", photos[i]);
+        formData.append('photos', photos[i]);
       }
     }
 
@@ -101,7 +101,7 @@ export class TreatmentService {
         formData,
         {
           headers: new HttpHeaders().set(
-            "Authorization",
+            'Authorization',
             `Bearer ${loggedInUser()}`
           ),
         }
@@ -117,14 +117,14 @@ export class TreatmentService {
     return this.http
       .get(
         this.apiBaseUrl +
-          "/api/private/getTreatPhoto?fileId=" +
+          '/api/private/getTreatPhoto?fileId=' +
           fileId +
-          "&treatId=" +
+          '&treatId=' +
           treatId,
         {
-          responseType: "blob",
+          responseType: 'blob',
           headers: new HttpHeaders().set(
-            "Authorization",
+            'Authorization',
             `Bearer ${loggedInUser()}`
           ),
         }
@@ -138,9 +138,24 @@ export class TreatmentService {
 
   deleteFile(id: any): Observable<any> {
     return this.http
-      .delete(this.apiBaseUrl + "/api/private/deleteFile?id=" + id, {
+      .delete(this.apiBaseUrl + '/api/private/deleteFile?id=' + id, {
         headers: new HttpHeaders().set(
-          "Authorization",
+          'Authorization',
+          `Bearer ${loggedInUser()}`
+        ),
+      })
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
+  saveTreatement(id: any, status: string) {
+    return this.http
+      .put(this.apiBaseUrl + '/api/private/deleteFile?id=' + id, status, {
+        headers: new HttpHeaders().set(
+          'Authorization',
           `Bearer ${loggedInUser()}`
         ),
       })

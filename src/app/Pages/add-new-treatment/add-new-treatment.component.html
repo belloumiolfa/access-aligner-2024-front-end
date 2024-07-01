@@ -59,43 +59,41 @@
     </div>
   </div>
 
-  
-</div>
-
-
-
-
-
-<!--  Finish Modal-->
-<div
-class="modal fade"
-id="finishModal"
-tabindex="-1"
-role="dialog"
-aria-labelledby="exampleModalLabel"
-aria-hidden="true"
-data-backdrop="false"
->
-<div class="modal-dialog modal-lg" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="title" id="finishModalLabel"> {{ patient$.firstName }} {{ patient$.lastName }} Treatment</h4>
-    </div>
-    <div class="modal-body">
-      <app-timeline-treatments></app-timeline-treatments>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default btn-round waves-effect">
-        SAVE CHANGES
-      </button>
-      <button
-        type="button"
-        class="btn btn-danger btn-simple btn-round waves-effect"
-        data-dismiss="modal"
-      >
-        CLOSE
-      </button>
+  <!--  Finish Modal-->
+  <!-- Finish Modal -->
+  <div
+    class="modal fade"
+    id="finishModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    data-backdrop="true"
+    data-keyboard="false"
+  >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="title" id="finishModalLabel">
+            {{ patient$.firstName }} {{ patient$.lastName }} Treatment
+          </h4>
+        </div>
+        <div class="modal-body">
+          <app-timeline-treatments></app-timeline-treatments>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-round waves-effect" onclick="saveTreatment()">
+            SAVE CHANGES
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-simple btn-round waves-effect"
+            data-dismiss="modal"
+          >
+            CLOSE
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </div>

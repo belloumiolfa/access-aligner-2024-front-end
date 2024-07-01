@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HandleErrorsService {
   errors: any = {};
@@ -21,19 +21,15 @@ export class HandleErrorsService {
         //this.router.navigate(["/500"]);
 
         break;
-      case 403:
-        console.log(err);
-       // this.router.navigate(["/403"]);
 
-        break;
       case 503:
         console.log(err);
-       // this.router.navigate(["/503"]);
+        // this.router.navigate(["/503"]);
 
         break;
       case 403:
         console.log(err);
-       // this.router.navigate(["/locked"]);
+        // this.router.navigate(["/locked"]);
         break;
 
       default:

@@ -1754,7 +1754,7 @@ fieldset[disabled] .btn-warning.active {
   box-shadow: none;
 }
 .btn-danger {
-  background-color: #ff3636;
+  background-color: #f96332;
   color: #fff;
 }
 .btn-danger:hover,
@@ -1799,13 +1799,13 @@ fieldset[disabled] .btn-danger:focus,
 fieldset[disabled] .btn-danger.focus,
 fieldset[disabled] .btn-danger:active,
 fieldset[disabled] .btn-danger.active {
-  background-color: #ff3636;
-  border-color: #ff3636;
+  background-color: #f96332;
+  border-color: #f96332;
 }
 .btn-danger.btn-simple,
 .wizard > .actions .disabled a.btn-danger {
-  color: #ff3636;
-  border-color: #ff3636;
+  color: #f96332;
+  border-color: #f96332;
 }
 .btn-danger.btn-simple:hover,
 .wizard > .actions .disabled a.btn-danger:hover,
@@ -1814,18 +1814,18 @@ fieldset[disabled] .btn-danger.active {
 .btn-danger.btn-simple:active,
 .wizard > .actions .disabled a.btn-danger:active {
   background-color: rgba(0, 0, 0, 0);
-  color: #f55;
-  border-color: #f55;
+  color: #f96332;
+  border-color: #f96332;
   box-shadow: none;
 }
 .btn-danger.btn-link {
-  color: #ff3636;
+  color: #f96332;
 }
 .btn-danger.btn-link:hover,
 .btn-danger.btn-link:focus,
 .btn-danger.btn-link:active {
   background-color: rgba(0, 0, 0, 0);
-  color: #f55;
+  color: #f96332;
   text-decoration: none;
   box-shadow: none;
 }
@@ -3378,6 +3378,7 @@ body {
   -o-transform: translate3d(0, -25px, 0);
   -ms-transform: translate3d(0, -25px, 0);
   transform: translate3d(0, -25px, 0);
+  animation-duration: 1s;
   visibility: hidden;
   display: none;
   opacity: 0;

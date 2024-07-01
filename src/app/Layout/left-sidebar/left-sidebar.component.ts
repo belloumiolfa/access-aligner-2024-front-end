@@ -38,7 +38,12 @@ export class LeftSidebarComponent {
   chunkSize: number = 7;
   isCollapsed: any = true;
 
-  activeOpenMenuItem: any | null = null;  // Track the active open menu item
+  activeIndex: any;  // Update this line to use a string if your keys are strings
+
+  activeOpenMenuItem: string | null = null;
+
+
+
 
   constructor(private appService: AppService) {
     this.appService.getPhoto$.subscribe((data) => (this.profilePhoto$ = data));
@@ -56,9 +61,7 @@ export class LeftSidebarComponent {
   hasGrandChildren(item: MenuItem) {
     return hasGrandChildren(item);
   }
-  /**
-   *  Toggle the dropdown menu
-   */
+
   toggleMenuItem(menuItem: MenuItem, collapse: any): void {
     menuItem.collapsed = !menuItem.collapsed;
 
@@ -75,14 +78,31 @@ export class LeftSidebarComponent {
           menu.collapsed = true;
         }
       });
-      this.activeOpenMenuItem = menuItem.key;  // Set active open menu item
-    } else {
-      this.activeOpenMenuItem = null;  
-    }
+   
+   
+    } 
+
+
+   
     collapse.toggle();
   }
+
+  
   verifyProfilePhoto(photo: any) {
     if (Object.keys(photo).length > 0) return photo;
     else return "assets/images/profile_av.png";
   }
+
+  setActiveIndex(index: number) {
+    if (this.activeIndex === index) {
+      this.activeIndex = null; // Toggle off if clicking the same index
+
+      console.log("same iii apply css ")
+    } else {
+      this.activeIndex = index;
+      console.log("same iii apply css ")
+    }
+  }
+
+
 }
