@@ -21,7 +21,14 @@
           </li>
         </ul>
 
-        <button type="button" class="btn btn-primary btn-round">UPDATE</button>
+        <button
+          type="button"
+          class="btn btn-primary btn-round"
+          data-dismiss="modal"
+          [routerLink]="'/treatment/new-treatment/' + id + '/patient'"
+        >
+          UPDATE
+        </button>
       </div>
     </div>
   </div>
