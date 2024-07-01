@@ -18,6 +18,7 @@ export class AddFileComponent {
 
   @Input() item!: any;
   @Input() existedFile!: any;
+  @Input() acceptedType!: any;
 
   selectedFiles: File[] = [];
 

@@ -40,7 +40,7 @@
         style="height: auto"
         [multiple]="false"
         maxFiles="1"
-        accept="image/jpeg,image/jpg,image/png,image/gif"
+        [accept]="acceptedType"
         (change)="onSelect($event, item)"
       >
         <ngx-dropzone-label>

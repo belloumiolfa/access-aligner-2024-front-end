@@ -14,13 +14,13 @@ import { PatientService } from '../../Core/Services/PatientService/patient.servi
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../Core/Services/app.service';
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
-import 'moment/locale/fr';
-import { MatInputModule } from '@angular/material/input';
+import "moment/locale/fr";
+import { MatInputModule } from "@angular/material/input";
 
-import { provideNativeDateAdapter } from '@angular/material/core';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 declare var $: any;
 
@@ -79,15 +79,15 @@ export class PatientUpdateFormComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    $('#datetimepicker')
+    $("#datetimepicker")
       .bootstrapMaterialDatePicker({
         weekStart: 0,
         time: false,
       })
-      .on('change', (e: any, date: { format: (arg0: string) => any }) => {
-        const formattedDate = date.format('YYYY-MM-DD');
-        this.patientForm.get('birthday')?.setValue(formattedDate);
-        console.log('Selected Date:', formattedDate);
+      .on("change", (e: any, date: { format: (arg0: string) => any }) => {
+        const formattedDate = date.format("YYYY-MM-DD");
+        this.patientForm.get("birthday")?.setValue(formattedDate);
+        console.log("Selected Date:", formattedDate);
       });
   }
   getPatients() {

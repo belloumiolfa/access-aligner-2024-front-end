@@ -2,17 +2,21 @@ import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PatientInfosComponent } from "../../Components/patient-infos/patient-infos.component";
 import { PatientFormComponent } from "../../Components/patient-form/patient-form.component";
-import { PatientUpdateFormComponent } from "../../Components/patient-update-form/patient-update-form.component";
 import { AppService } from "../../Core/Services/app.service";
 import { PatientService } from "../../Core/Services/PatientService/patient.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { HandleAlertsService } from "../../Core/Helpers/handle-alerts.service";
 import { HandleErrorsService } from "../../Core/Helpers/handle-errors.service";
+import { PatientUpdateFormComponent } from "../../Components/patient-update-form/patient-update-form.component";
 
 @Component({
   selector: "app-update-patient",
   standalone: true,
-  imports: [PatientInfosComponent, PatientUpdateFormComponent],
+  imports: [
+    PatientInfosComponent,
+    PatientFormComponent,
+    PatientUpdateFormComponent,
+  ],
   templateUrl: "./update-patient.component.html",
   styleUrl: "./update-patient.component.css",
 })

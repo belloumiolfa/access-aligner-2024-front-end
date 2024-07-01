@@ -1,0 +1,199 @@
+<div class="card">
+  <div class="header">
+    <div class="align-right">
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-default btn-filter"
+        data-target="all"
+      >
+        Todos
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-success btn-filter"
+        data-target="approved"
+      >
+        Approved
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-warning btn-filter"
+        data-target="suspended"
+      >
+        Suspended
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-info btn-filter"
+        data-target="pending"
+      >
+        Pending
+      </button>
+      <button
+        type="button"
+        class="btn btn-round btn-simple btn-sm btn-danger btn-filter"
+        data-target="blocked"
+      >
+        Blocked
+      </button>
+    </div>
+  </div>
+  <div class="body project_report">
+    <div class="table-responsive">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div id="DataTables_Table_0_filter" class="">
+            <label
+              >Search:<input
+                type="search"
+                class="form-control form-control-sm"
+                placeholder="search by name"
+                [(ngModel)]="searchTerm"
+                (input)="serachByName()"
+                aria-controls="DataTables_Table_0"
+            /></label>
+          </div>
+        </div>
+      </div>
+      <!--if admin add js-exportable class -->
+      <table class="table table-hover js-exportable">
+        <!-- Add selected stata-->
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Project</th>
+            <th>Prograss</th>
+            <th>Team</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Status</th>
+            <th>Project</th>
+            <th>Prograss</th>
+            <th>Team</th>
+            <th>Action</th>
+          </tr>
+        </tfoot>
+
+        <tbody>
+          <tr *ngIf="treatmentsBeforeFilter?.length === 0 && !filter">
+            <td
+              colspan="7"
+              *ngIf="treatmentsBeforeFilter?.length === 0 && !filter"
+            >
+              <div
+                class="alert alert-info alert-table"
+                role="alert"
+                *ngIf="treatmentsBeforeFilter?.length === 0 && !filter"
+              >
+                No patients added yet ... !
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="treatments$.length === 0 && filter">
+            <td colspan="7" *ngIf="treatments$.length === 0 && filter">
+              <div
+                class="alert alert-danger alert-table"
+                role="alert"
+                *ngIf="treatments$.length === 0 && filter"
+              >
+                No treatments$ found ... !
+              </div>
+            </td>
+          </tr>
+          <tr data-status="approved" *ngFor="let treatment of treatments$">
+            <td>
+              <span class="badge badge-success">{{ treatment.status }}</span>
+            </td>
+            <td class="project-title">
+              <h6>
+                <a href="javascript:void(0);">
+                  {{ treatment.patient.firstName }}
+                  {{ treatment.patient.lastName }}</a
+                >
+              </h6>
+              <small>Treatment: {{ getTreatmentType(treatment.treat) }}</small>
+            </td>
+            <td>
+              <div class="progress">
+                <div
+                  class="progress-bar l-dark"
+                  role="progressbar"
+                  [attr.aria-valuenow]="
+                    calculateCompletionPercentage(treatment)
+                  "
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  [style]="
+                    'width:' + calculateCompletionPercentage(treatment) + '%'
+                  "
+                ></div>
+              </div>
+              <small
+                >Completion with:
+                {{ calculateCompletionPercentage(treatment) }}%</small
+              >
+            </td>
+            <td data-status="approved">
+              <ul class="list-unstyled team-info">
+                <li>
+                  <img
+                    [src]="
+                      treatment?.patient.doctor?.profile.photo
+                        ? treatment?.patient.doctor?.profile.photo
+                        : 'assets/images/profile_av.png'
+                    "
+                    alt="Avatar"
+                  />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar2.jpg" alt="Avatar" />
+                </li>
+                <li>
+                  <img src="assets/images/xs/avatar3.jpg" alt="Avatar" />
+                </li>
+              </ul>
+            </td>
+            <td data-status="approved">
+              <img
+                [src]="
+                  treatment?.patient.doctor?.profile.photo
+                    ? treatment?.patient.doctor?.profile.photo
+                    : 'assets/images/profile_av.png'
+                "
+                class="rounded-circle avatar"
+                alt=""
+              />
+              <p class="c_name">
+                Dr. {{ treatment?.patient.doctor?.profile.lastName }}
+              </p>
+            </td>
+            <td class="project-actions">
+              <button
+                [routerLink]="'detail/' + 12"
+                class="btn btn-icon btn-neutral btn-icon-mini"
+              >
+                <i class="zmdi zmdi-eye"></i>
+              </button>
+              <button
+                [routerLink]="'update/' + 12"
+                class="btn btn-icon btn-neutral btn-icon-mini"
+              >
+                <i class="zmdi zmdi-edit"></i>
+              </button>
+              <button
+                (click)="deleteTreatment(12)"
+                class="btn btn-icon btn-neutral btn-icon-mini"
+              >
+                <i class="zmdi zmdi-delete"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

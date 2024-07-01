@@ -85,7 +85,7 @@ export class TreatmentService {
       );
   }
 
-  addTreatPhotos(data: any, id: any) {
+  addTreatPhotos(data: any, id: any, role: string) {
     const photos: FileList = data;
     const formData = new FormData();
 
@@ -97,7 +97,10 @@ export class TreatmentService {
 
     return this.http
       .post<any>(
-        `${this.apiBaseUrl}/api/private/add-photographs?treatId=` + id,
+        `${this.apiBaseUrl}/api/private/add-photographs?treatId=` +
+          id +
+          "&role=" +
+          role,
         formData,
         {
           headers: new HttpHeaders().set(
@@ -165,4 +168,20 @@ export class TreatmentService {
         })
       );
   }
+  
+  getTreatments(): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiBaseUrl}/api/private/getTreatments` , {
+        headers: new HttpHeaders().set(
+          "Authorization",
+          `Bearer ${loggedInUser()}`
+        ),
+      })
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
 }

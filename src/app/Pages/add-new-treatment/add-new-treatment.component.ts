@@ -111,24 +111,26 @@ export class AddNewTreatmentComponent {
     this.clickedIndex = this.steps.findIndex((step) => {
       return step.url == url[url.length - 1];
     });
-
-    this.patientService.getPatient(this.id).subscribe(
-      (data) => {
-        this.spinner.hide();
-        this.steps[0].done = true;
-        this.appService.setPatient$(data);
-      },
-      (err) => {
-        this.spinner.hide();
-        this.errors = this.handleErrors.handleError(err);
-      }
-    );
-
-
-
-    $('#finishModal').appendTo("body");
+    if (this.id != null)
+      this.patientService.getPatient(this.id).subscribe(
+        (data) => {
+          this.spinner.hide();
+          this.steps[0].done = true;
+          this.appService.setPatient$(data);
+        },
+        (err) => {
+          this.spinner.hide();
+          this.errors = this.handleErrors.handleError(err);
+        }
+      );
   }
-
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log("on destroy add new treatment");
+    this.appService.setPatient$({});
+    this.appService.setTreatment({});
+  }
   nextStep() {
     this.clickedIndex = this.clickedIndex + 1;
     this.router.navigate([
