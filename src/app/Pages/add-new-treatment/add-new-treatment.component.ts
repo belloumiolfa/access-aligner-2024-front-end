@@ -20,7 +20,12 @@ declare var $: any;
 @Component({
   selector: 'app-add-new-treatment',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, TimelineTreatmentsComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    TimelineTreatmentsComponent,
+  ],
   templateUrl: './add-new-treatment.component.html',
   styleUrl: './add-new-treatment.component.css',
 })
@@ -76,8 +81,6 @@ export class AddNewTreatmentComponent {
   ) {
     this.stepsService.getClickedIndex$.subscribe((data) => {
       this.clickedIndex = data;
-
-  
     });
 
     this.activeRoute.params.subscribe((params) => (this.id = params['id']));
@@ -85,7 +88,6 @@ export class AddNewTreatmentComponent {
 
     this.appService.getTreatment$.subscribe((data) => {
       this.treatments$ = data;
-    
 
       if (this.treatments$.treat != null) {
         this.steps[1].done = true;
@@ -123,11 +125,13 @@ export class AddNewTreatmentComponent {
           this.errors = this.handleErrors.handleError(err);
         }
       );
+
+    $('#finishModal').appendTo('body');
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    console.log("on destroy add new treatment");
+    console.log('on destroy add new treatment');
     this.appService.setPatient$({});
     this.appService.setTreatment({});
   }
@@ -149,19 +153,14 @@ export class AddNewTreatmentComponent {
     ]);
   }
 
-  finishing() {
-  
+  finishing() {}
 
+  saveTreatment() {
+    let status = 'Finished';
+    this.treatService
+      .saveTreatement(this.treatments$.id, status)
+      .subscribe((data) => {
+        console.log('data ', data);
+      });
   }
-
- saveTreatment() {
-  
-let status="Finished" ;
-    this.treatService.saveTreatement(this.treatments$.id,status).subscribe(
-      (data) => {
-          console.log ("data ", data)
-      })
-  }
-
-
 }

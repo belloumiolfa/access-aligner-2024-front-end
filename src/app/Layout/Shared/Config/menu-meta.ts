@@ -19,10 +19,6 @@ const MENU_ITEMS: MenuItem[] = [
     collapsed: true,
     url: "",
     children: [
-    icon: 'zmdi zmdi-accounts-list-alt',
-    /*     collapsed: true,*/
-    url: 'patients',
-    /* children: [
       {
         key: "patient-list",
         label: "Patient List",
